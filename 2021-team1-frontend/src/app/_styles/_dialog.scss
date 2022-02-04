@@ -1,0 +1,14 @@
+@import "colors";
+
+.mat-dialog-actions {
+  background-color: $color-frosted-pine;
+  justify-content: flex-end;
+  margin-left: -24px;
+  margin-right: -24px;
+  padding: 15px !important;
+}
+
+.mat-dialog-title {
+  color: $color-lime;
+  text-transform: uppercase;
+}

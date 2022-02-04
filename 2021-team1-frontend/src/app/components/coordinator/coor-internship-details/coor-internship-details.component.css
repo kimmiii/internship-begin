@@ -1,0 +1,209 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+  margin-right: 20px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+p {
+  width: 70%;
+}
+
+.actionButton {
+  font-size: 14pt;
+  padding: 10px;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.errorDescription {
+  display: block;
+  margin-top: 10px;
+  color: red;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 120px;
+}
+
+.horizontalWithMargin {
+  float: left;
+}
+
+.largeWidth {
+  display: block;
+  width: 1220px;
+}
+
+.middleMarginBottom {
+  margin-bottom: 50px;
+}
+
+.middleMarginTop {
+  margin-top: 80px;
+}
+
+.middleWidth {
+  width: 300px;
+}
+
+.modalPopup {
+  height: 135px;
+}
+
+.modalPopup p {
+  width: 100%;
+}
+
+.pairOfButtons {
+  float: left;
+}
+
+.smallMarginBottom {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.smallMarginTop {
+  margin-top: 30px;
+}
+
+.tooltip {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  margin-left: 150px;
+}
+
+#assignToMePopUp {
+  height: 170px;
+}
+
+#assignToMeHyperlink {
+  display: block;
+  text-decoration: none;
+  color: steelblue;
+  font-size: 12pt;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+#assignToMeHyperlink:hover {
+  font-weight: bold;
+}
+
+#melding {
+  width: 100%;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  color: #6ca336;
+  margin-top: 20px;
+}
+
+#melding2 {
+  width: 100%;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  color: #6ca336;
+  margin-top: 20px;
+}
+
+#moreInfoTooltip {
+  margin-left: 230px;
+}
+
+#rejectTooltip {
+  margin-left: 100px;
+}
+
+#reviewerTooltip {
+  margin-left: 290px;
+}
+
+@media screen and (max-width: 1150px) {
+  .horizontalWithMargin {
+    float: none;
+    margin-bottom: -30px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .pairOfButtons {
+    float: none;
+    margin-bottom: 20px;
+  }
+
+  #btnApprove {
+    width: 326px;
+  }
+
+  #btnToggleMoreInfo {
+    width: 326px;
+  }
+
+  #btnToggleRejection {
+    width: 326px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 250px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  button {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .box {
+    margin-left: 0;
+  }
+
+  .horizontal {
+    float: none;
+  }
+
+  .middleMarginBottom {
+    margin-bottom: 0;
+  }
+
+  .middleMarginTop {
+    margin-top: 50px;
+  }
+
+  .modalPopup {
+    width: 350px;
+  }
+
+  .modalPopup button {
+    display: inline;
+  }
+
+  .pairOfButtons {
+    margin-bottom: 0;
+  }
+}
+

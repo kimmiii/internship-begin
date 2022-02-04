@@ -1,0 +1,212 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 10px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+hr {
+  border-top: solid 2px #328da880;
+  border-bottom: none;
+  width: 1000px;
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 20px;
+}
+
+ul li {
+  display: inline;
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #6ca336;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+p {
+  width: 70%;
+  margin-bottom: 30px;
+}
+
+table {
+  display: inline-block;
+  width: 1000px;
+  border-collapse: collapse;
+  margin-left: 20px;
+}
+
+table tbody {
+  height: 802px;
+  display: block;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickableItem:hover {
+  color: #328da880;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+.deselectedPage {
+  background-color: white;
+  color: #6ca336;
+}
+
+.disabled {
+  background-color: #6ca33630;
+  cursor: default;
+}
+
+.float {
+  float: left;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+  margin-bottom: 70px;
+}
+
+.hide {
+  display: inline;
+}
+
+.hideButton {
+  display: none;
+}
+
+.hoverable {
+  color: #6ca336;
+}
+
+.hoverable:hover {
+  background-color: #6ca336;
+  color: white;
+}
+
+.middleMarginBottom {
+  margin-bottom: 50px;
+}
+
+.navPageClickable {
+  cursor: pointer;
+}
+
+.pagination {
+  margin-left: 300px;
+}
+
+.selectedPage {
+  background-color: #6ca336;
+  color: white;
+}
+
+.showFilter {
+  display: inline;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #328da810;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #328da880;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #328da880;
+}
+
+#emptyTable {
+  display: block;
+  width: 100%;
+  height: 310px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 1400px) {
+  table {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  table {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  table {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 150px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  table {
+    margin-left: 0;
+  }
+
+  .float {
+    float: none;
+  }
+
+  .pagination {
+    margin-left: 0;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .hideButton {
+    display: block;
+  }
+
+  .showFilter {
+    display: inline;
+  }
+}

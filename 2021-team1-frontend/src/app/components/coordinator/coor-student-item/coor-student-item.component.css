@@ -1,0 +1,69 @@
+button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+button:hover {
+  background-color: #6ca336;
+}
+
+div {
+  padding: 5px;
+}
+
+label {
+  display: inline-block;
+  line-height: 35px;
+}
+
+.buttons {
+  float: right;
+  margin-top: -3px;
+}
+
+.star {
+  display: inline-block;
+  font-family: 'Segoe MDL2 Assets', serif;
+  font-size: 13pt;
+  margin-left: -2px;
+  margin-right: 2px;
+  margin-top: 3px;
+}
+
+.studentName {
+  margin: 0;
+  padding: 0;
+  width: 315px;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.symbols {
+  margin-top: -8px;
+}
+
+.textBalloon {
+  display: inline-block;
+  font-family: 'Segoe MDL2 Assets', serif;
+  font-size: 12pt;
+  margin-left: -2px;
+  margin-top: 5px;
+  margin-right: 3px;
+}
+
+@media screen and (max-width: 770px) {
+  div {
+    width: 300px;
+  }
+
+  .buttons {
+    width: 120px;
+  }
+}

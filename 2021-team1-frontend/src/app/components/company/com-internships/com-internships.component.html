@@ -1,0 +1,68 @@
+<div class="fullscreen">
+  <h2>MIJN STAGEAANVRAGEN</h2>
+  <p>
+    Deze lijsten tonen de ingediende stageaanvragen door uw bedrijf. Hier wordt een overzicht gegeven waarin stageaanvragen bekeken,
+    aangepast en opgevolgd kunnen worden.
+  </p>
+
+  <!-- Academic year filter -->
+  <ng-container *ngIf="allDataFetched">
+    <label>Academiejaar: </label>
+    <select class="academicYearCombobox" [value]="selectedAcademicYear" (change)="filterOnAcademicYear($event)">
+      <option *ngFor="let academicYear of academicYears" [value]="academicYear">{{ academicYear }}</option>
+    </select>
+    <br/>
+
+    <div class="pairOfTables">
+      <!-- Submitted list -->
+      <table>
+        <thead class="submitted">INGEDIEND</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of submittedInternshipList;">
+          <app-internship-item id="submittedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- Edit asked list -->
+      <table>
+        <thead class="askedChange">WIJZIGING GEVRAAGD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of editAskedInternshipList;">
+          <app-internship-item id="changeAskedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Approved list -->
+    <div class="pairOfTables">
+      <table>
+        <thead class="approved">GOEDGEKEURD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of approvedInternshipList;">
+          <app-internship-item id="approvedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- Rejected list -->
+      <table>
+        <thead class="rejected">AFGEKEURD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of rejectedInternshipList;">
+          <app-internship-item id="rejectedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <div class="spinner" *ngIf="!allInternshipItemsAreLoaded"></div>
+
+  <br/><br/><br/><br/>
+</div>

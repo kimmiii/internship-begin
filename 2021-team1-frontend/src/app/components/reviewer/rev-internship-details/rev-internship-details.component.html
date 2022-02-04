@@ -1,0 +1,32 @@
+<div id="fullscreen" class="fullscreen">
+
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <!-- <div class="middleMarginBottom">
+      <button id="btnCreatePDF" class="clickableItem" (click)="createPDF()">MAAK PDF</button>
+    </div> -->
+
+    <!-- Message: assigned to students -->
+    <div class="messageBox" *ngIf="internship.completed">
+      <p>Deze stageopdracht is volzet en toegewezen aan:</p>
+      <ul>
+        <li *ngFor="let student of internship.internshipAssignedUser">
+          {{ student.user.userFirstName }} {{ student.user.userSurname }}
+        </li>
+      </ul>
+    </div>
+
+    <app-internship-generic-details [internship]="internship"></app-internship-generic-details>
+
+    <div *ngIf="internship.projectStatus.code != 'APP' && internship.projectStatus.code != 'REJ'" class="smallMarginTop middleMarginBottom">
+        <button id="btnToggleSendToCoordinator" class="clickableItem actionButton" (click)="toggleSendToCoordinator()"
+                [disabled]="disableButton()" [ngClass]="{disabled: disableButton()}">VERSTUUR FEEDBACK</button>
+    </div>
+    <label class="errorDescription" *ngIf="confirmErrorIsVisible">Er is iets misgelopen. Probeer opnieuw.</label>
+
+    <app-rev-internship-review id="reviewComponent" *ngIf="reviewComponentVisible" [internship]="internship"></app-rev-internship-review>
+  </ng-container>
+
+  <div class="spinner" [hidden]="isAllDataFetched && !submitted"></div>
+
+  <br/> <br/> <br/> <br/>
+</div>

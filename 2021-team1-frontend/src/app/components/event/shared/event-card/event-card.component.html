@@ -1,0 +1,17 @@
+<mat-card class="event-card">
+  <div class="event-card__content">
+
+    <p>
+      <strong>{{ event?.name }}</strong> - {{ event?.dateEvent | date: 'dd/MM/yyyy' }}
+      ({{ event?.startHour | timeSpan }} - {{ event?.endHour | timeSpan }}) -
+      <em>{{ EventLocation[event?.location] | replace: '_' : ' ' |  titlecase }}</em>
+    </p>
+
+    <ng-container *ngIf="showStatusChangeActions">
+      <button mat-icon-button (click)="changeStatusEvent(event)">
+        <mat-icon *ngIf="event.isActivated">cancel</mat-icon>
+        <mat-icon *ngIf="!event.isActivated && !hasActiveEvents">check_circle</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+</mat-card>

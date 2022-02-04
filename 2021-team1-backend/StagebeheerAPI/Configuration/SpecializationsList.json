@@ -1,0 +1,27 @@
+[
+  {
+    "Code": "AI",
+    "Description": "Applicatie-ontwikkeling (Keuzetraject AI & Robotics)",
+    "Hyperlink": "https://www.pxl.be/applicatieontwikkeling"
+  },
+  {
+    "Code": "AO",
+    "Description": "Applicatie-ontwikkeling (Keuzetraject Full-stack development)",
+    "Hyperlink": "https://www.pxl.be/applicatieontwikkeling"
+  },
+  {
+    "Code": "SM",
+    "Description": "Software-management",
+    "Hyperlink": "https://www.pxl.be/softwaremanagement"
+  },
+  {
+    "Code": "SN",
+    "Description": "Systemen en netwerkbeheer",
+    "Hyperlink": "https://www.pxl.be/systemen-en-netwerkbeheer"
+  },
+  {
+    "Code": "EICT",
+    "Description": "Elektronica-ICT",
+    "Hyperlink": "https://www.pxl.be/elektronica-ICT"
+  }
+]

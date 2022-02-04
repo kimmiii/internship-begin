@@ -1,0 +1,20 @@
+<ng-container *ngIf="allDataIsFetched">
+  <form [formGroup]="specialisationEditForm" (ngSubmit)="changeSpecialisation()">
+      <label class="noLineHeight bold">Afstudeerrichting</label>
+      <label class="errorDescription" *ngIf="!specialisations.valid && btnSendClicked">&nbsp; (Maak een keuze)</label><br/>
+      <div class="smallMarginTop middleMarginBottom" formArrayName="specialisations">
+        <div *ngFor="let specControl of specialisations['controls']; let i = index;">
+          <div>
+            <label>
+              <input type="checkbox" [formControlName]="i" [value]="specialisationList[i].description" [(ngModel)]="checkedSpecialisationsList[i]" >
+              {{specialisationList[i].description}}
+              <a [href]="specialisationList[i].hyperlink" target="_blank"><span class="infoSign clickableItem">&#xF167;</span></a>
+            </label>
+          </div>
+        </div>
+      </div>
+    <input id="btnSend" type="submit" value="OPSLAAN" class="clickableItem" [disabled]="formSubmitted">
+  </form>
+</ng-container>
+
+<div class="spinner" [hidden]="allDataIsFetched"></div>

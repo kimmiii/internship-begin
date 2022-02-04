@@ -1,0 +1,211 @@
+button {
+  cursor: pointer;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 7px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+hr {
+  border-top: solid 1px #328da880;
+  border-bottom: none;
+  width: 400px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+table {
+  width: 400px;
+  overflow: hidden;
+  border-collapse: collapse;
+  padding: 0;
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 10px;
+}
+
+table tbody {
+  height: 238px;
+  display: block;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  width: 70%;
+}
+
+.company-overview {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.container {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.horizontal {
+  float: left;
+  width: 150px;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: unset;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.fullscreen {
+  margin-bottom: 200px;
+}
+
+.smallMarginBottom {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.smallMarginRight {
+  margin-right: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #328da810;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #328da880;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #328da880;
+}
+
+.newLine {
+  clear: both;
+}
+
+.middleMarginRight {
+  margin-right: 200px;
+}
+
+.modalPopup {
+  position: fixed;
+  width: 450px;
+  height: 160px;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+  padding: 15px;
+  border: solid 1px darkgray;
+  box-shadow: 1px 1px 3px black;
+}
+
+.modalPopup div {
+  text-align: center;
+}
+
+.modalPopup div button {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 3px;
+}
+
+.modalPopup p {
+  text-align: center;
+  width: 100%;
+  color: black;
+  margin-top: 16px;
+}
+
+#addButton {
+  clear: both;
+  display: block;
+}
+
+#emptyTable {
+  display: block;
+  width: 100%;
+  height: 220px;
+  text-align: center;
+  line-height: 220px;
+}
+
+#melding {
+  width: 100%;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  color: #6ca336;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 170px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  table {
+    float: none;
+  }
+
+  .horizontal {
+    float: none;
+  }
+
+  .modalPopup {
+    width: 350px;
+  }
+
+  .modalPopup button {
+    display: inline;
+  }
+
+  .newLine {
+    margin-top: 20px;
+  }
+
+  #addButton {
+    margin-top: 20px;
+  }
+}
+
+
+

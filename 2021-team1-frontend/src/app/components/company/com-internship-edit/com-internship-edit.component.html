@@ -1,0 +1,261 @@
+<div class="fullscreen">
+  <h2>STAGEAANVRAAG WIJZIGEN</h2>
+  <p>
+    Via onderstaand formulier kunnen stageopdrachten voor PXL-Digital worden ingegeven. Er staat geen limiet
+    op het aantal opdrachten dat ingestuurd kan worden, maar we beperken het aantal stagiairs per
+    bedrijf (meestal 2), afhankelijk van de grootte van de onderneming en aantal technische begeleiders.
+    <br/><br/>
+    <span class="necessary">* vereist</span>
+  </p>
+
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <!-- EDIT-form-->
+    <form [formGroup]="applicationForm" (ngSubmit)="editForm()">
+
+      <!-- Company -->
+      <div formGroupName="company">
+        <h3>BEDRIJF</h3>
+        <p>Locatie van de stage (indien elders dan het adres van het stagebedrijf).</p> <br/>
+
+        <div class="newLine">
+          <div class="horizontal">
+            <label for="companyStreet">Straat</label>
+            <label class="errorDescription" *ngIf="!companyStreet.valid && btnSendClicked">&nbsp; (Minimum 3 karakters - Maximum 50 karakters)</label><br/>
+            <input id="companyStreet" class="middle" type="text" formControlName="companyStreet"
+                   [ngClass]="{error: !companyStreet.valid && btnSendClicked}"/>
+          </div>
+
+          <div class="horizontal">
+            <label for="companyHouseNumber">Huisnummer</label>
+            <label class="errorDescription" *ngIf="!companyHouseNumber.valid && btnSendClicked">&nbsp; (Maximum 10 karakters)</label><br/>
+            <input id="companyHouseNumber" class="veryShort" type="number" formControlName="companyHouseNumber"
+                   [ngClass]="{error: !companyHouseNumber.valid && btnSendClicked}"/>
+          </div>
+
+          <div class="horizontal">
+            <label for="companyMailboxNumber">Bus</label>
+            <label class="errorDescription" *ngIf="!companyMailboxNumber.valid && btnSendClicked">&nbsp; (Maximum 10 karakters)</label><br/>
+            <input id="companyMailboxNumber" class="veryShort" type="text" formControlName="companyMailboxNumber"
+                   [ngClass]="{error: !companyMailboxNumber.valid && btnSendClicked}"/>
+          </div>
+        </div>
+
+        <div class="newLine">
+          <div class="horizontal">
+            <label for="companyZipCode">Postcode</label>
+            <label class="errorDescription" *ngIf="!companyZipCode.valid && btnSendClicked">&nbsp; (Minimum 4 - Maximum 50 karakters)</label><br/>
+            <input id="companyZipCode" class="short" type="text" formControlName="companyZipCode"
+                   [ngClass]="{error: !companyZipCode.valid && btnSendClicked}"/>
+          </div>
+
+          <div class="horizontal">
+            <label for="companyCity">Gemeente</label>
+            <label class="errorDescription" *ngIf="!companyCity.valid && btnSendClicked">&nbsp; (Minimum 2 karakters - Maximum 50 karakters)</label><br/>
+            <input id="companyCity" class="middle" type="text" formControlName="companyCity"
+                   [ngClass]="{error: !companyCity.valid && btnSendClicked}"/>
+          </div>
+
+          <div class="horizontal">
+            <label for="companyCountry">Land</label> <br/>
+            <select id="companyCountry" formControlName="companyCountry" class="middle height">
+              <option></option>
+              <option *ngFor="let country of countryList" [value]="country.name">{{ country.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <hr class="newLine line"/>
+
+      <!-- Contact -->
+      <div formGroupName="contact">
+        <h3>CONTACTPERSOON</h3>
+        <p>Deze persoon zal de stagecontracten ondertekenen. <br/>
+          In het menu 'Profiel' kunnen nieuwe contactpersonen voor uw bedrijf toegevoegd worden.</p> <br/>
+
+        <label for="contactCombobox">Contactpersoon*</label> <br/>
+        <select id="contactCombobox" formControlName="contactCombobox" class="middle height" [ngClass]="{error: !contactCombobox.valid && btnSendClicked}">
+          <option *ngFor="let contact of contactList" [value]="contact.contactId">{{ contact.firstname }} {{ contact.surname }}</option>
+        </select>
+      </div>
+
+      <hr class="newLine middleMarginTopAndBottom"/>
+
+      <!-- Company promotor -->
+      <div formGroupName="promotor">
+        <h3>BEDRIJFSPROMOTOR</h3>
+        <p>Deze persoon zal de student technisch begeleiden tijdens de stageperiode en zal tevens aanwezig zijn
+          tijdens het juryexamen van de student.</p> <br/>
+
+        <div class="newLine">
+          <div class="horizontal">
+            <label for="promotorfirstname">Voornaam*</label>
+            <label class="errorDescription" *ngIf="!promotorfirstname.valid && btnSendClicked">&nbsp; Max. 50 karakters</label><br/>
+            <input id="promotorfirstname" class="middle" type="text" formControlName="promotorfirstname"
+                   [ngClass]="{error: !promotorfirstname.valid && btnSendClicked}"/>
+          </div>
+
+          <div class="horizontal">
+            <label for="promotorSurname">Naam*</label>
+            <label class="errorDescription" *ngIf="!promotorSurname.valid && btnSendClicked">&nbsp; Min 50 karakters</label><br/>
+            <input id="promotorSurname" class="middle" type="text" formControlName="promotorSurname"
+                   [ngClass]="{error: !promotorSurname.valid && btnSendClicked}"/>
+          </div>
+        </div>
+
+        <div class="newLine">
+          <label for="promotorFunction">Functie*</label>
+          <label class="errorDescription" *ngIf="!promotorFunction.valid && btnSendClicked">&nbsp; Min 2 karakters - Max 100 karakters</label><br/>
+          <input id="promotorFunction" class="long" type="text" formControlName="promotorFunction"
+                 [ngClass]="{error: !promotorFunction.valid && btnSendClicked}"/>
+        </div>
+
+        <div class="horizontal middleMarginBottom">
+          <label for="promotorEmail">E-mailadres*</label>
+          <label class="errorDescription" *ngIf="!promotorEmail.valid && btnSendClicked">&nbsp; Geen geldig e-mailadres</label><br/>
+          <input id="promotorEmail" class="long smallMarginTop" type="email" formControlName="promotorEmail"
+                 [ngClass]="{error: !promotorEmail.valid && btnSendClicked}"/>
+        </div>
+      </div>
+
+      <hr class="newLine middleMarginTopAndBottom"/>
+
+      <!-- Internship application -->
+      <div formGroupName="topic">
+        <h3>STAGEOPDRACHT</h3>
+        <p>Informatie over het onderzoekstopic kan u
+          <a href="https://docs.google.com/document/d/1MiIpI7U51rwLPKmZY2Cvq7tSqqtEloRp8lvVE06DRj4/edit" target="_blank">hier</a> vinden.</p> <br/>
+
+        <div class="noLineHeight">
+          <label for="topicTitle">Titel*</label>
+          <label class="errorDescription" *ngIf="!topicTitle.valid && btnSendClicked">&nbsp; (Maximum 80 karakters)</label><br/>
+          <label class="description">Geef een gepaste titel (max. 80 karakters) voor de stageopdracht.</label> <br/>
+          <input id="topicTitle" class="long middleMarginBottom" type="text" formControlName="topicTitle"
+                [ngClass]="{error: !topicTitle.valid && btnSendClicked}"/>
+        </div>
+
+        <label class="noLineHeight">Voorkeur afstudeerrichting*</label>
+        <label class="errorDescription" *ngIf="!topicSpecialisations.valid && btnSendClicked">&nbsp; (Maak een keuze)</label><br/>
+        <label class="description">Selecteer hier de afstudeerrichting waarvoor de stageopdracht bestemd is.</label> <br/>
+        <div class="smallMarginTop middleMarginBottom" formArrayName="topicSpecialisations">
+          <div *ngFor="let specControl of topicSpecialisations['controls']; let i = index;">
+            <div>
+              <label>
+                <input type="checkbox" [formControlName]="i" [value]="specialisationList[i].description" [(ngModel)]="checkedSpecialisationsList[i]" >
+                {{specialisationList[i].description}}
+                <a [href]="specialisationList[i].hyperlink" target="_blank"><span class="infoSign clickableItem"><span class="tooltip">Meer info.</span>&#xF167;</span></a>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <label class="noLineHeight" for="topicAssignment">Beschrijving van de opdracht*</label>
+        <label class="errorDescription" *ngIf="!topicAssignment.valid && btnSendClicked">&nbsp; (Maximum 1500 karakters)</label><br/>
+        <label class="description">Beschrijf hier duidelijk en zo gedetailleerd mogelijk wat de stageopdracht inhoudelijk zal omvatten.</label> <br/>
+        <textarea id="topicAssignment" class="smallMarginTop long middleMarginBottom" type="text" formControlName="topicAssignment" name="topicAssignment"
+                  [ngClass]="{error: !topicAssignment.valid && btnSendClicked}"></textarea> <br/>
+
+        <label class="noLineHeight">Omgeving*</label>
+        <label class="errorDescription" *ngIf="!topicEnvironments.valid && btnSendClicked">&nbsp; (Maak een keuze)</label><br/>
+        <label class="description">In welke IT-omgeving dient de stageopdracht uitgewerkt te worden?</label> <br/>
+        <div class="smallMarginTop" formArrayName="topicEnvironments">
+          <div *ngFor="let envControl of topicEnvironments['controls']; let i = index;">
+            <div>
+              <label>
+                <input type="checkbox" [formControlName]="i" [value]="environmentList[i].description" [(ngModel)]="checkedEnvironmentsList[i]" >
+                {{environmentList[i].description}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="noLineHeight">
+          <input id="topicEnvironmentOther" class="long middleMarginBottom" type="text" formControlName="topicEnvironmentOther" name="topicEnvironmentOther"
+              [attr.disabled]="checkedEnvironmentsList[checkedEnvironmentsList.length - 1] ? null : ''" [ngClass]="{error: !topicEnvironmentOther.valid && btnSendClicked}"/>
+        </div>
+
+        <label class="noLineHeight" for="topicDetails">Technische details</label>
+        <label class="errorDescription" *ngIf="!topicDetails.valid && btnSendClicked">&nbsp; (Maximum 500 karakters)</label><br/>
+        <label class="description">Verdere beschrijving van de technische omgeving.</label> <br/>
+        <textarea id="topicDetails" class="smallMarginTop long middleMarginBottom" type="text" formControlName="topicDetails"
+                  [ngClass]="{error: !topicDetails.valid && btnSendClicked}"></textarea> <br/>
+
+        <label class="noLineHeight" for="topicConditions">Randvoorwaarden</label>
+        <label class="errorDescription" *ngIf="!topicConditions.valid && btnSendClicked">&nbsp; (Maximum 500 karakters)</label><br/>
+        <label class="description">Zijn er specifieke eisen waaraan moet worden voldaan voor het uitvoeren van de stageopdracht -
+          bijvoorbeeld bereidheid tot communicatie in het Engels, beschikken over een auto, bereikbaarheid met openbaar vervoer, ...</label> <br/>
+        <textarea id="topicConditions" class="smallMarginTop long middleMarginBottom" type="text" formControlName="topicConditions"></textarea> <br/>
+
+        <label class="noLineHeight" for="topicResearchTheme">Onderzoeksthema*</label>
+        <label class="errorDescription" *ngIf="!topicResearchTheme.valid && btnSendClicked">&nbsp; (Maximum 500 karakters)</label><br/>
+        <label class="description">Onderzoek dat leidt tot het vergaren van diepgaande kennis voor het oplossen van een praktijkprobleem.
+          Het thema kan zich situeren in het kader of in het verlengde van de stageopdracht, ofwel inzake een specifieke onderzoeksopdracht aangebracht
+          door het bedrijf.</label> <br/>
+        <textarea id="topicResearchTheme" class="smallMarginTop marginBottomNegative long" type="text" formControlName="topicResearchTheme"
+                  [ngClass]="{error: !topicResearchTheme.valid && btnSendClicked}"></textarea>
+      </div>
+
+      <hr class="newLine line"/>
+
+      <!-- Other -->
+      <div formGroupName="other">
+        <h3>OVERIGE</h3>
+
+        <label class="noLineHeight" >Inleidende activiteiten/verwachtingen</label>
+        <div class="smallMarginTop middleMarginBottom" formArrayName="otherExpectations">
+          <div *ngFor="let expControl of otherExpectations['controls']; let i = index;">
+            <div>
+              <label>
+                <input type="checkbox" [formControlName]="i" [value]="expectationList[i].description" [(ngModel)]="checkedExpectationsList[i]" >
+                {{expectationList[i].description}}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <label class="noLineHeight">Aantal gewenste stagiairs (max. 2 per stageproject)*</label>
+        <label class="errorDescription" *ngIf="!otherCountStudent.valid && btnSendClicked">&nbsp; (Maak een keuze)</label><br/>
+        <div class="smallMarginTop middleMarginBottom">
+          <input id="otherCountStudent1" type="radio" formControlName="otherCountStudent" value="1" name="otherCountStudent" [checked]="internship.totalInternsRequired == 1"/>
+          <label for="otherCountStudent1">1</label> <br/>
+          <input id="otherCountStudent2" type="radio" formControlName="otherCountStudent" value="2" name="otherCountStudent" [checked]="internship.totalInternsRequired == 2"/>
+          <label for="otherCountStudent2">2</label> <br/>
+          <label for="secondTopicResearchTheme">Onderzoeksthema voor tweede student (* indien 2 stagiairs)</label> <br/>
+          <textarea id="secondTopicResearchTheme" class="smallMarginTop long" type="text" formControlName="secondTopicResearchTheme" name="secondTopicResearchTheme"
+                    [attr.disabled]="otherCountStudent.value == 2 ? null : ''" [ngClass]="{error: !secondTopicResearchTheme.valid && btnSendClicked}"></textarea>
+        </div>
+
+        <label class="noLineHeight" for="otherStudents">Bedrijf is gecontacteerd door student(en) en wenst deze opdracht enkel aan deze student(en) aan te bieden.</label>
+        <label class="errorDescription" *ngIf="!otherStudents.valid && btnSendClicked">&nbsp; (Maximum 50 karakters)</label><br/>
+        <label class="description">Indien u meerdere namen wenst in te geven, gelieve de namen te scheiden door een komma.</label> <br/>
+        <input id="otherStudents" class="long middleMarginBottom" type="text" formControlName="otherStudents"
+              [ngClass]="{error: !otherStudents.valid && btnSendClicked}"/> <br/>
+
+        <label class="noLineHeight" for="otherRemarks">Andere bemerkingen</label>
+        <label class="errorDescription" *ngIf="!otherRemarks.valid && btnSendClicked">&nbsp; (Maximum 500 karakters)</label><br/>
+        <textarea id="otherRemarks" class="smallMarginTop middleMarginBottom long" type="text" formControlName="otherRemarks"
+                  [ngClass]="{error: !otherRemarks.valid && btnSendClicked}"></textarea> <br/>
+
+        <label class="noLineHeight">Stageperiode*</label>
+        <label class="errorDescription" *ngIf="!otherPeriod.valid && btnSendClicked">&nbsp; (Maak een keuze)</label><br/>
+        <div class="smallMarginTop middleMarginBottom" formArrayName="otherPeriod">
+          <div *ngFor="let perControl of otherPeriod['controls']; let i = index;">
+            <div>
+              <label>
+                <input type="checkbox" [formControlName]="i" [value]="periodList[i].description" [(ngModel)]="checkedPeriodsList[i]" >
+                {{periodList[i].description}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons & errors -->
+      <input id="btnSend" type="submit" value="WIJZIGEN" class="clickableItem" [disabled]="submitted">
+      <label class="bigErrorDescription" *ngIf="applicationForm.invalid && btnSendClicked">Niet alle velden zijn correct ingevuld.</label>
+    </form>
+  </ng-container>
+
+  <div class="spinner" [hidden]="isAllDataFetched == true && submitted == false"></div>
+
+  <br/> <br/> <br/> <br/>
+</div>

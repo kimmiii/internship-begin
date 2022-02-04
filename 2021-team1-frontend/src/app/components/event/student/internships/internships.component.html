@@ -1,0 +1,56 @@
+<div class="internships-overview">
+  <h3>STAGEOPDRACHTEN</h3>
+
+  <div class="filters">
+    <ng-select class="filter" [(ngModel)]="selectedCompanies" [multiple]=true placeholder="Kies een bedrijf"
+               (change)="filterInternships()">
+      <ng-option *ngFor="let company of companies" [value]="company.companyId">{{ company.name }}</ng-option>
+    </ng-select>
+
+    <ng-select class="filter" [(ngModel)]="selectedSpecialisations" [multiple]=true
+               placeholder="Kies een afstudeerrichting"
+               (change)="filterInternships()">
+      <ng-option *ngFor="let specialisation of specialisations"
+                 [value]="specialisation.specialisationId">{{specialisation.description}}</ng-option>
+    </ng-select>
+
+    <ng-select class="filter" [(ngModel)]="selectedLocations" [multiple]=true placeholder="Kies een locatie"
+               (change)="filterInternships()">
+      <ng-option *ngFor="let location of locations" [value]="location.wpCity">{{ location.wpZipCode }}
+        - {{ location.wpCity }}</ng-option>
+    </ng-select>
+
+    <ng-select class="filter" [(ngModel)]="selectedTechnologies" [multiple]=true placeholder="Kies een technologie"
+               (change)="filterInternships()">
+      <ng-option *ngFor="let technology of technologies"
+                 [value]="technology.environmentId">{{technology.description}}</ng-option>
+    </ng-select>
+  </div>
+
+
+  <div class="internship-list" *ngIf="internships?.length; else noInternships">
+    <div *ngFor="let internship of internships" class="card-holder"
+         (click)="routeToInternshipDetailPage(internship.internshipId)">
+      <mat-card class="internship-card">
+        <mat-card-content>
+          <div class="top-details">
+            <img class="internship-card-image" alt="stageopdracht" mat-card-image src="./../../../../../assets/images/PXLLogo.png">
+            <h3>{{internship?.companyName}} - {{internship?.wpCity}} </h3>
+            <h2>{{internship?.researchTopicTitle}}</h2>
+            <p><strong>Contact:</strong> {{internship?.contactPersonName}}</p>
+          </div>
+          <p>{{internship?.assignmentDescription}}</p><br />
+          <p><strong>Afstudeerrichting:</strong></p>
+          <div
+            *ngFor="let specialisation of internship.internshipSpecialisation">{{specialisation.description}}</div>
+          <p><strong>Technologiën:</strong></p>
+          <div *ngFor="let environment of internship.internshipEnvironment">{{environment.description}}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #noInternships>
+  <p><em>Er voldoen geen stageopdrachten aan uw zoektermen.</em></p>
+</ng-template>

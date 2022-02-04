@@ -1,0 +1,94 @@
+.box {
+  margin-left: 230px;
+  margin-top: 30px;
+  margin-right: 20px;
+  font-size: 9.5pt;
+  text-align: center;
+  padding: 3px;
+  border-radius: 2px;
+  background-color: lightyellow;
+  border: solid 1px gold;
+  color: gold;
+  z-index: 5;
+}
+
+.company {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: -3px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact {
+  margin-left: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 9.5pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.imageDiv {
+  display: inline-block;
+  width: 40px;
+  line-height: 80px;
+}
+
+.fullComponent {
+  width: 300px;
+  height: 90px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.promotor {
+  margin-top: 0;
+  margin-left: 5px;
+  margin-bottom: 0;
+  font-size: 9.5pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.smallMarginRight {
+  margin-right: 15px;
+}
+
+.smallerWidth {
+  width: 230px;
+}
+
+.student {
+  margin-top: 6px;
+  padding-left: 25px;
+  font-size: 10pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.symbol {
+  font-family: 'Segoe MDL2 Assets', serif;
+}
+
+.textDiv {
+  float: left;
+  width: 230px;
+  height: 90px;
+}
+
+.title {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 7px;
+  font-size: 9.5pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

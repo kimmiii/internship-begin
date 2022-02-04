@@ -1,0 +1,118 @@
+p {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.biggerFont {
+  font-size: 14pt;
+}
+
+.fullComponent {
+  width: 1000px;
+  height: 70px;
+  padding: 5px;
+}
+
+.fullNotification {
+  font-family: Arial, sans-serif;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 55px;
+  font-size: 9pt;
+  padding: 2px;
+  border: 2px solid #ab0000;
+  background-color: #ab000030;
+  color: #ab0000;
+  margin-bottom: 5px;
+}
+
+.horizontal {
+  display: inline-block;
+}
+
+.infoDiv {
+  margin-top: 11px;
+  width: 480px;
+}
+
+.myInternshipNotification {
+  font-family: Arial, sans-serif;
+  display: block;
+  float: right;
+  text-align: center;
+  width: 80px;
+  font-size: 9pt;
+  padding: 2px;
+  border: 2px solid #6ca336;
+  background-color: #6ca33640;
+  color: #6ca336;
+  margin-bottom: 8px;
+}
+
+.symbol {
+  font-family: 'Segoe MDL2 Assets', serif;
+  margin-right: 10px;
+  float: right;
+  font-size: 25pt;
+  line-height: 20px;
+  text-align: right;
+  margin-top: 5px;
+}
+
+.symbol div {
+  margin-top: 2px;
+  padding: 0;
+}
+
+.titleDiv {
+  margin-top: 11px;
+  width: 400px;
+}
+
+
+.verySmallMarginBottom {
+  margin-bottom: 3px;
+}
+
+@media screen and (max-width: 1400px) {
+  .fullComponent {
+    width: 700px;
+    height: 120px;
+  }
+
+  .symbol {
+    margin-top: -45px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .fullComponent {
+    width: 500px;
+  }
+
+  .infoDiv {
+    width: 450px;
+  }
+
+  .symbol {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .fullComponent {
+    width: 400px;
+  }
+
+  .infoDiv {
+    width: 300px;
+  }
+
+  .titleDiv {
+    width: 300px;
+  }
+}

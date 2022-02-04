@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>evenement aanmaken</h1>
+
+<div mat-dialog-content [formGroup]="createEventForm">
+  <div class="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Naam event</mat-label>
+      <input matInput [formControlName]="nameFormControlName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Datum</mat-label>
+      <input matInput [formControlName]="dateFormControlName" [min]=todayDate [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Locatie</mat-label>
+      <mat-select [formControlName]="locationFormControlName">
+        <mat-option *ngFor="let location of locations" [value]="location">
+          {{ EventLocation[location] | replace: '_': ' ' | titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Academiejaar</mat-label>
+      <mat-select [formControlName]="academicYearFormControlName">
+        <mat-option *ngFor="let academicYear of academicYears$ | async" [value]="academicYear.id">
+          {{ academicYear.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Startuur</mat-label>
+      <input matInput type="time" [formControlName]="startHourFormControlName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Einduur</mat-label>
+      <input matInput type="time" [formControlName]="endHourFormControlName">
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button
+          color="accent"
+          (click)="cancel()">
+    Annuleer
+  </button>
+  <button mat-flat-button
+          color="accent"
+          (click)="generateEvent()"
+          [disabled]="createEventForm.invalid">
+    Aanmaken
+  </button>
+</div>

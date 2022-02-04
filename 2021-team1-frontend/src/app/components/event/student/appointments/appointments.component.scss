@@ -1,0 +1,55 @@
+@import "../../../../_styles/colors";
+
+.warning {
+  align-items: center;
+  background-color: $warning-light-color;
+  border-radius: 6px;
+  color: $warning-color;
+  display: flex;
+  font-size: 13px;
+  font-style: normal;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 10px;
+  width: fit-content;
+}
+
+.appointments {
+  width: 275px;
+}
+
+.appointment {
+  cursor: pointer;
+  margin: 10px;
+
+  &:hover {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.appointment-card {
+  background-color: rgb(242, 240, 240);
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__content {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+}
+
+.teams__logo {
+  bottom: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  width: 22px;
+}
+
+.title--smaller {
+  font-family: Roboto, serif;
+  font-size: 16px;
+  font-weight: 500;
+}

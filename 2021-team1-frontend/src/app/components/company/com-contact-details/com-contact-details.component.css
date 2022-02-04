@@ -1,0 +1,14 @@
+h4 {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  color: #6ca336;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.bold {
+  font-weight: bold;
+}

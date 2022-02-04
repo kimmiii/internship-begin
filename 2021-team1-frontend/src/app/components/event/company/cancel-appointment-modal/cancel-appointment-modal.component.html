@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Afspraak annuleren</h1>
+
+<div mat-dialog-content [formGroup]="cancelFormGroup">
+  <p>Weet je zeker dat je de afspraak met {{ appointment?.studentName }} wil annuleren?</p>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Reden (optioneel)</mat-label>
+    <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5"
+              [formControlName]="cancelMotivationFormControlName">
+      </textarea>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button
+          color="accent"
+          (click)="cancel()">
+    Annuleer
+  </button>
+  <button mat-flat-button
+          color="accent"
+          (click)="cancelAppointment()"
+          [disabled]="cancelFormGroup.invalid">
+    Bevestig
+  </button>
+</div>

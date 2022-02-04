@@ -1,0 +1,81 @@
+@import "../../../../_styles/colors";
+
+.student-report {
+  padding-right: 30px;
+}
+
+.report-grid {
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  &__titles {
+    font-weight: 500;
+    padding: 0 24px;
+  }
+
+  &__student {
+    border: 1px solid $color-pearl-river;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    &__appointment {
+      align-items: center;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 100px 1fr 1fr;
+
+      &--no-appointments {
+        grid-column: span 3;
+      }
+
+      &__status {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        &--reserved {
+          color: $warning-color;
+        }
+
+        &--confirmed {
+          color: $success-color;
+        }
+
+        &--cancelled {
+          color: $error-color;
+        }
+      }
+    }
+
+    &--success {
+      border-left: 6px solid $success-color;
+    }
+
+    &--warning {
+      border-left: 6px solid $warning-color;
+    }
+
+    &--error {
+      border-left: 6px solid $error-color;
+    }
+  }
+}
+
+.filters {
+  align-items: center;
+  background-color: $color-frosted-pine;
+  border-radius: 6px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 20px 0;
+  padding: 20px;
+
+  &__item {
+    ::ng-deep.ng-select-container {
+      min-height: 40px;
+    }
+  }
+}

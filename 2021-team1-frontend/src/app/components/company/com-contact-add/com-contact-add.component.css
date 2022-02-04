@@ -1,0 +1,67 @@
+input {
+  width: 300px;
+}
+
+.errorDescription {
+  margin-left: 10px;
+}
+
+.smallMarginBottom {
+  margin-bottom: 10px;
+}
+
+#btnAdd {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  width: 160px;
+  cursor: pointer;
+}
+
+#btnAdd:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+#email {
+  margin-left: 48px;
+}
+
+#firstname {
+  margin-left: 60px;
+}
+
+#function {
+  margin-left: 80px;
+}
+
+#phoneNumber {
+  margin-left: 10px;
+}
+
+#surname {
+  margin-left: 93px;
+}
+
+@media screen and (max-width: 1200px) {
+  .errorDescription {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .fullComponent {
+    clear: both;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  input {
+    width: 200px;
+  }
+}

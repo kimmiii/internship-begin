@@ -1,0 +1,46 @@
+hr {
+  border-top: solid 2px #328da880;
+  border-bottom: none;
+  width: 600px;
+  margin-bottom: 0;
+}
+
+p {
+  width: 70%;
+}
+
+table {
+  display: inline-block;
+  width: 400px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin-right: 20px;
+}
+
+table tbody {
+  height: 300px;
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+}
+
+.confirmationPopup {
+  margin-top: 0;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 225px;
+  }
+}

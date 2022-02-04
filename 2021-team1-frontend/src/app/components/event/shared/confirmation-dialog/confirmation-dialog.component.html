@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{ data?.title || 'Bevestigen' }}</h1>
+
+<div mat-dialog-content>{{ data?.info || 'Wil u deze actie uitvoeren?' }}</div>
+
+<div mat-dialog-actions>
+  <button mat-button
+          color="accent"
+          mat-dialog-close>
+    Annuleer
+  </button>
+  <button mat-flat-button
+          color="accent"
+          [mat-dialog-close]="true"
+          cdkFocusInitial>
+    Bevestig
+  </button>
+</div>

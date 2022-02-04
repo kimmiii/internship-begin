@@ -1,0 +1,46 @@
+@import "../../../../_styles/colors";
+
+.internship-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 30px;
+}
+
+.internship-card {
+  background-color: rgb(242, 240, 240);
+  cursor: pointer;
+  height: 100%;
+  padding-left: 30px;
+  width: auto;
+}
+
+.card-holder {
+  :hover {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+}
+
+.filter {
+  height: 50px;
+  width: 100%;
+}
+
+.internship-card-image {
+  clear: left;
+  float: left;
+  height: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+
+.top-details {
+  margin-bottom: 40px;
+}
+
+

@@ -1,0 +1,45 @@
+<div class="fullscreen">
+  <h2>ALLE STAGEOPDRACHTEN</h2>
+  <p class="middleMarginBottom">
+    Deze lijst toont alle stageopdrachten. Het is mogelijk om meer informatie over een stageopdracht te raadplegen,
+    stageopdrachten te markeren als favoriet en te solliciteren voor stageopdrachten.
+  </p>
+
+  <ng-container *ngIf="isAllDataFetched">
+  <!-- FILTER -->
+  <button class="clickable hideButton" (click)="toggleFilter()">{{ showFilter ? 'VERBERG FILTER' : 'TOON FILTER'}}</button>
+  <app-stu-filter class="float hide" [ngClass]="{showFilter: showFilter}" (filterLoaded)="hideSpinnerFilter()" (filterNotLoaded)="showSpinnerFilter()" (executeFiltering)="filter($event)"></app-stu-filter>
+
+  <!-- TABLE -->
+    <table>
+      <tbody class="container" *ngIf="internshipList.length == 0">
+        <tr id="emptyTable italic">Geen stageopdrachten gevonden</tr>
+      </tbody>
+
+      <tbody class="container" *ngIf="internshipList.length > 0">
+        <tr *ngFor="let internship of internshipList; let i = index;">
+          <app-stu-internship-item id="internship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)"
+          (internshipItemLoaded)="hideSpinnerInternshipItem()"></app-stu-internship-item>
+          <hr/>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PAGINATION -->
+    <nav class="pagination">
+      <ul>
+        <li class="navPageClickable deselectedPage" (click)="decreasePageIndex()" [ngClass]="{disabled: pageNumber == 1, hoverable: pageNumber > 1}"><a>Vorige</a></li>
+        <li class="navPageClickable hoverable" *ngFor="let item of countPagesArray; let i = index;"
+            [ngClass]="{selectedPage: i + 1 == pageNumber, deselectedPage: i != pageNumber}"
+            (click)="updateIndex(i+1)">
+            <a>{{i + 1}}</a>
+        </li>
+        <li class="navPageClickable deselectedPage" (click)="increasePageIndex()" [ngClass]="{disabled: pageNumber >= countPages, hoverable: pageNumber < countPages}"><a>Volgende</a></li>
+      </ul>
+    </nav>
+  </ng-container>
+
+  <div class="spinner" [hidden]="filterLoaded && internshipItemLoaded && isAllDataFetched"></div>
+
+  <br/><br/>
+</div>

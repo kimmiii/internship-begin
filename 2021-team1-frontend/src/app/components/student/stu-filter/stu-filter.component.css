@@ -1,0 +1,80 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 10pt;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+h5 {
+  margin-top: 0;
+  margin-left: 0;
+  margin-bottom: 10px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  color: #6ca336;
+}
+
+label {
+  display: block;
+  width: 250px;
+  font-size: 11pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+label:hover .tooltip {
+  display: block;
+}
+
+select {
+  margin-left: 3px;
+}
+
+.fullComponent {
+  width: 260px;
+  height: 802px;
+  margin-right: 20px;
+}
+
+.inline {
+  display: inline;
+}
+
+.middleMarginBottom {
+  margin-bottom: 25px;
+}
+
+.middleWidth {
+  width: 250px;
+}
+
+.verySmallMarginTop {
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 800px) {
+  label {
+    width: 380px;
+  }
+
+  .fullComponent {
+    width: 400px;
+    margin: 0;
+    height: 750px;
+  }
+
+  .middleWidth {
+    width: 380px;
+  }
+}

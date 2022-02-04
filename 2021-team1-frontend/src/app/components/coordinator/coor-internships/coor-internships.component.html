@@ -1,0 +1,104 @@
+<div class="fullscreen">
+  <h2>STAGEAANVRAGEN</h2>
+  <p>
+    Deze lijsten tonen de stageaanvragen die geëvalueerd moeten worden. Hier wordt een overzicht gegeven waarin stageaanvragen
+    bekeken, opgevolgd en goed- of afgekeurd kunnen worden.<br/>
+  </p>
+
+  <!-- FILTER -->
+  <select class="filterCombobox" (change)="filter($event)" [value]="filterIndex">
+    <option [value]="1">Toon alle stages</option>
+    <option [value]="2">Toon stages met afstudeerrichting Elektronica-ICT</option>
+    <option [value]="3">Verberg stages met enkel afstudeerrichting Elektronica-ICT</option>
+  </select>
+
+  <br/>
+
+  <!-- Academic year filter -->
+  <label>Academiejaar: </label>
+  <select class="academicYearCombobox" [value]="selectedAcademicYear" (change)="filterOnAcademicYear($event)">
+    <option *ngFor="let academicYear of academicYears" [value]="academicYear">{{ academicYear }}</option>
+  </select>
+  <br/>
+
+  <!-- Period filter -->
+  <div>
+    <label>Periode: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+    <form class="periodForm" [formGroup]="periodFilterForm" *ngIf="formLoaded" (change)="filterInternships()">
+      <input id="allInternships" type="radio" formControlName="filterPeriod" [value]="0">
+      <label for="allInternships">Alle &nbsp;</label>
+      <input id="bothPeriods" type="radio" formControlName="filterPeriod" [value]="1">
+      <label for="bothPeriods">Beide &nbsp;</label>
+      <input id="period1" type="radio" formControlName="filterPeriod" [value]="2">
+      <label for="period1">Semester 1 &nbsp;</label>
+      <input id="period2" type="radio" formControlName="filterPeriod" [value]="3">
+      <label for="period2">Semester 2 &nbsp;</label>
+    </form>
+  </div>
+
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <div class="pairOfTables">
+      <!-- TABLE SUBMITTED -->
+      <table>
+        <tr class="tableInfo" align="center">
+          <td>Ingediend door bedrijf</td>
+        </tr>
+        <thead class="submitted">TE EVALUEREN</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of companyEvaluateInternshipList;">
+          <app-coor-internship-item id="companyEvaluatieInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-coor-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLE REVIEW -->
+      <table>
+        <tr class="tableInfo" align="center">
+          <td>Door bedrijf</td>
+        </tr>
+        <thead class="askedChange">HERZIENING</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of companyReviewInternshipList;">
+          <app-coor-internship-item id="companyReviewInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-coor-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TABLE TO EVALUATE -->
+    <div class="pairOfTables">
+      <table>
+        <tr class="tableInfo" align="center">
+          <td>Na evaluatie door reviewer(s)</td>
+        </tr>
+        <thead class="submitted">TE EVALUEREN</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of promotorEvaluateInternshipList;">
+          <app-coor-internship-item id="promotorEvaluateInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-coor-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- TABLE IN CONTROL BY REVIEWER(S) -->
+      <table>
+        <tr class="tableInfo" align="center">
+          <td>Door reviewer(s)</td>
+        </tr>
+        <thead class="askedChange">CONTROLE</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of promotorReviewInternshipList;">
+          <app-coor-internship-item id="promotorReviewInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-coor-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <div class="spinner" *ngIf="!allInternshipItemsAreLoaded"></div>
+
+  <br/><br/><br/><br/>
+</div>

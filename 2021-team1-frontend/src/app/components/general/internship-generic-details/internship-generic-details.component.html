@@ -1,0 +1,387 @@
+<!-- Variable title on the base of projectStatus -->
+<h2 *ngIf="internship.projectStatusId != 3 && internship.projectStatusId != 4">STAGEAANVRAAG</h2> <!-- in evaluation -->
+<h2 *ngIf="internship.projectStatusId == 3 || internship.projectStatusId == 4">STAGEOPDRACHT</h2> <!-- approved/rejected -->
+
+<!-- Only students can't see the status label for an internship -->
+<div *ngIf="roleCodeLoggedInUser != 'STU'" class="label labelColor">
+  <label class="title">Status:</label>
+  <label id="statusLabel1" *ngIf="showOriginalStatusDescription(); else treatment">
+    {{ internship.projectStatus.description }}
+  </label>
+  <ng-template #treatment>
+    <label id="statusLabel2">In behandeling</label>
+  </ng-template>
+</div>
+
+<!-- Last version -->
+<div style="font-size: 10pt;" class="smallMarginBottom smallMarginTop" *ngIf="roleCodeLoggedInUser != 'STU'">
+  <label class="bold">Laatste versie: </label>
+  <label id="createdAt">{{ internship.createdAt | date:'dd-MM-yyyy \'om\' HHumm' }}</label>
+</div>
+
+<!-- When internship not APP or REJ -->
+<p class="smallMarginBottom" *ngIf="(internship.projectStatusId != 3 && internship.projectStatusId != 4) && roleCodeLoggedInUser != 'STU'">
+  Bekijk alle informatie over de ingediende stageaanvraag bekijken.
+</p>
+
+<!-- When internship is APP or REJ -->
+<p class="smallMarginBottom" *ngIf="(internship.projectStatusId == 3 || internship.projectStatusId == 4) && roleCodeLoggedInUser != 'STU'">
+  Bekijk alle informatie over de stageopdracht. <br/>
+  <!-- Favourite count -->
+  <span *ngIf="internship.projectStatusId == 4 && (student == null)">
+    <strong> {{favouriteCount}} </strong> <span *ngIf="favouriteCount != 1; else treatment2">studenten hebben</span>
+    <ng-template #treatment2>
+      <span>student heeft</span>
+    </ng-template>
+    deze stageopdracht gemarkeerd als favoriet.
+
+    <br/>
+
+    <!-- Applied students count -->
+    <strong> {{appliedStudentsCount}} </strong> <span *ngIf="appliedStudentsCount != 1; else treatment3">studenten hebben</span>
+    <ng-template #treatment3>
+      <span>student heeft</span>
+    </ng-template>
+    gesolliciteerd voor deze stageopdracht. <br/><br/>
+
+    <!-- Toggle for showing/hiding student list -->
+    <span *ngIf="appliedStudentsCount > 0 && roleCodeLoggedInUser == 'COM'" class="clickableText clickableItem" (click)="toggleAppliedStudentList()">
+      <span *ngIf="!studentListVisible">Toon</span>
+      <span *ngIf="studentListVisible">Verberg</span>
+    studenten die gesolliciteerd hebben.</span>
+  </span>
+</p>
+
+<!-- APPLIED STUDENTS LIST -->
+<div *ngIf="studentListVisible && roleCodeLoggedInUser == 'COM'">
+  <p>Lijst van studenten die gesolliciteerd hebben voor deze stageopdracht. Klik op het oogje om de cv van de student te raadplegen.
+  Indien er geen oogje naast de naam van de student staat, heeft deze nog geen cv geüpload.</p>
+
+  <!-- Filter combobox for applied students -->
+  <select class="filterCombobox" (change)="filter($event)" [value]="filterIndexAppliedStudents">
+    <option [value]="1">Toon alle studenten</option>
+    <option [value]="2">Toon enkel studenten met cv</option>
+    <option [value]="3">Toon de reeds geselecteerde studenten</option>
+  </select>
+
+  <!-- STUDENTLIST -->
+  <table class="studentList">
+    <tbody class="container">
+    <tr *ngFor="let student of appliedStudentsList;">
+      <span *ngIf="appliedStudentsList.length > 0;">
+         <app-com-applied-student-item [userInternships]="internship.userInternships" [student]="student"
+                                       [internship]="internship" (hireStudentClicked)="hireStudent($event)"></app-com-applied-student-item>
+         <hr class="tdDivider"/>
+      </span>
+    </tr>
+    <tr style="font-style: italic;" class="italic" *ngIf="appliedStudentsList.length == 0">
+      Geen studenten om weer te geven.
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- INTERNSHIP -->
+<p class="smallMarginBottom" *ngIf="roleCodeLoggedInUser == 'STU'">
+  Bekijk alle informatie over de stageopdracht.
+</p>
+
+<!-- EXTERNAL FEEDBACK -->
+<div *ngIf="showExternalFeedback() && student == null"
+     [ngClass]="{horizontalWithMargin: internship.externalFeedback != null && (internship.internalFeedback != null && roleCodeLoggedInUser != 'COM')}">
+  <label class="bold">Feedback door de PXL-stagecoördinator aan het stagebedrijf</label> <br/>
+  <table id="externalFeedback">
+    <tbody class="container">
+    <tr *ngFor="let message of externalFeedbackList;">
+      <div class="message">
+        <label class="bold">{{ message.UserFromName }}</label>
+        <label class="bold italic smallFont">&nbsp;{{ message.MessageDT }}</label>
+        <label class="messageBody" [innerHTML]="message.MessageBody"></label>
+      </div>
+      <hr class="messageDivider"/>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- INTERNAL FEEDBACK -->
+<div *ngIf="showInternalFeedback() && student == null" class="externalFeedback">
+  <label class="bold">Interne communicatie</label> <br/>
+  <table>
+    <tbody class="container">
+    <tr id="internalFeedbackMessage" *ngFor="let message of internalFeedbackList;">
+      <div class="message">
+        <label class="bold">{{ message.UserFromName }}</label>
+        <label class="bold italic smallFont">&nbsp;{{ message.MessageDT }}</label> <br/>
+        <label class="messageBody" [innerHTML]="message.MessageBody"></label>
+      </div>
+      <hr class="messageDivider"/>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- REVIEWERS LIST -->
+<div *ngIf="showReviewers() && student == null">
+  <br/> <br/>
+  <label class="bold">Deze stage wordt beoordeeld door volgende reviewer(s)</label> <br/>
+  <ul>
+    <li id="ExternalFEEReviewer" *ngFor="let reviewer of reviewersList; let i = index;">
+      <span style="float: left;">{{ reviewer.userFirstName}} {{ reviewer.userSurname }} &nbsp;</span>
+      <span id="envelope" class="symbol clickableItem" (click)="sendReminderEmail(reviewer.userId, i)" *ngIf="!showEnvelopeOrPaperPlane(i)">
+        <span class="tooltip" *ngIf="!showEnvelopeOrPaperPlane(i)">Stuur een herinneringsmail.</span>
+        &#xE119; <!-- envelope -->
+      </span>
+      <span id="emailSent" class="symbol" *ngIf="showEnvelopeOrPaperPlane(i)">
+        <span class="tooltip" *ngIf="showEnvelopeOrPaperPlane(i)">Herinneringsmail succesvol verzonden.</span>
+        &#xE122; <!-- paper plane -->
+      </span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="showFavouriteToggleButton && student == null">
+  <mat-slide-toggle *ngIf="roleCodeLoggedInUser == 'STU'" class="smallMarginTop" [(ngModel)]="favoriteToggle" color="primary"
+                    [ngClass]="{selected: favoriteToggle}" (toggleChange)="changeFavoriteInternship()">Favoriet</mat-slide-toggle> <br/>
+</div>
+
+<!-- COMPANY -->
+<h3>BEDRIJF</h3>
+
+<app-coor-company-details *ngIf="showCompanyDetails()" [company]="internship.company" class="smallMarginTop"></app-coor-company-details>
+
+<p class="bold smallMarginTop">Locatie van de stage (indien elders dan het adres van het stagebedrijf)</p> <br/>
+
+<label class="bold">Straat</label> <br/>
+<label id="wpStreet" class="smallMarginBottom" *ngIf="internship.wpStreet != null">{{ internship.wpStreet }}</label>
+<label class="smallMarginBottom italic" *ngIf="internship.wpStreet == null">{{ noInput }}</label>
+
+<div class="newLine">
+  <div class="horizontal">
+    <label class="bold">Huisnummer</label> <br/>
+    <label id="wpHouseNr" class="smallMarginBottom" *ngIf="internship.wpHouseNr != null">{{ internship.wpHouseNr }}</label>
+    <label class="smallMarginBottom italic" *ngIf="internship.wpHouseNr == null">{{ noInput }}</label>
+  </div>
+
+  <div class="horizontal">
+    <label class="bold">Bus</label> <br/>
+    <label id="wpBusNr"  class="smallMarginBottom" *ngIf="internship.wpBusNr != null">{{ internship.wpBusNr }}</label>
+    <label class="smallMarginBottom italic" *ngIf="internship.wpBusNr == null">{{ noInput }}</label>
+  </div>
+</div>
+
+<div class="newLine">
+  <div class="horizontal">
+    <label class="bold">Postcode</label> <br/>
+    <label id="wpZipCode" class="smallMarginBottom" *ngIf="internship.wpZipCode != null">{{ internship.wpZipCode }}</label>
+    <label class="smallMarginBottom italic" *ngIf="internship.wpZipCode == null">{{ noInput }}</label>
+  </div>
+
+  <div class="horizontal">
+    <label class="bold">Gemeente</label> <br/>
+    <label id="wpCity" class="smallMarginBottom" *ngIf="internship.wpCity != null">{{ internship.wpCity }}</label>
+    <label class="smallMarginBottom italic" *ngIf="internship.wpCity == null">{{ noInput }}</label>
+  </div>
+</div>
+
+<div class="newLine">
+  <label class="bold">Land</label> <br/>
+  <label id="wpCountry" *ngIf="internship.wpCountry != null">{{ internship.wpCountry }}</label>
+  <label class="italic" *ngIf="internship.wpCountry == null">{{ noInput }}</label>
+</div>
+
+<hr class="newLine line"/>
+
+<!-- CONTACT -->
+<h3>CONTACTPERSOON</h3>
+<p>Deze persoon zal de stagecontracten ondertekenen.</p> <br/>
+
+<div class="newLine">
+  <div class="horizontal">
+    <label class="bold">Voornaam</label> <br/>
+    <label id="contactFirstname" class="smallMarginBottom">{{ contact.firstname }}</label>
+  </div>
+
+  <div class="horizontal">
+    <label class="bold">Naam</label> <br/>
+    <label id="contactSurname" class="smallMarginBottom">{{ contact.surname }}</label>
+  </div>
+</div>
+
+<div class="newLine">
+  <label class="bold">Functie</label> <br/>
+  <label id="contactFunction" class="smallMarginBottom">{{ contact.function }}</label>
+</div>
+
+<div class="newLine">
+  <div class="horizontal">
+    <label class="bold">Telefoonnummer</label> <br/>
+    <label id="contactPhoneNumber" class="smallMarginBottom">{{ contact.phoneNumber }}</label>
+  </div>
+
+  <div class="horizontal">
+    <label class="bold">E-mailadres</label> <br/>
+    <label id="contactEmail">{{ contact.email }}</label>
+  </div>
+</div>
+
+
+<hr class="newLine line middleMarginTop"/>
+
+<!-- COMPANY PROMOTOR -->
+<h3>BEDRIJFSPROMOTOR</h3>
+<p>Deze persoon zal de student technisch begeleiden tijdens de stageperiode en zal tevens aanwezig zijn
+  tijdens het juryexamen van de student.</p> <br/>
+
+<div>
+  <div class="newLine">
+    <div class="horizontal">
+      <label class="bold">Voornaam</label> <br/>
+      <label id="promotorFirstname" class="smallMarginBottom">{{ internship.promotorFirstname }}</label>
+    </div>
+
+    <div class="horizontal">
+      <label class="bold">Naam</label> <br/>
+      <label id="promotorSurname" class="smallMarginBottom">{{ internship.promotorSurname }}</label>
+    </div>
+  </div>
+
+  <div class="newLine">
+    <label class="bold">Functie</label> <br/>
+    <label id="promotorFunction" class="smallMarginBottom">{{ internship.promotorFunction }}</label>
+  </div>
+
+  <div class="newLine">
+    <label class="bold">E-mailadres</label> <br/>
+    <label id="promotorEmail" class="smallMarginBottom">{{ internship.promotorEmail }}</label>
+  </div>
+</div>
+
+<button id="btnChangeCompanyPromotor" *ngIf="roleCodeLoggedInUser == 'COM' && internship.projectStatus.code != 'FEE'" class="btnChange" (click)="toggleComponyPromotorForm()">
+  <span *ngIf="!companyPromotorFormIsVisible">WIJZIG BEDRIJFSPROMOTOR</span>
+  <span *ngIf="companyPromotorFormIsVisible">VERBERG</span>
+</button>
+
+<app-com-edit-company-promotor *ngIf="companyPromotorFormIsVisible" [internship]="internship" (companyPromotorEdited)="closeCompanyPromotorComponent()"></app-com-edit-company-promotor>
+
+<hr class="newLine line"/>
+
+<!-- INTERNSHIP ASSIGNMENT -->
+<h3>STAGEOPDRACHT</h3>
+
+<div class="newLine">
+  <label class="bold">Titel</label> <br/>
+  <label id="researchTopicTitle" class="smallMarginBottom">{{ internship.researchTopicTitle }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Voorkeur afstudeerrichting</label> <br/>
+  <ul>
+    <li id="specialisation" *ngFor="let specialisation of internship.internshipSpecialisation">
+      {{ specialisation.specialisation.description }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="roleCodeLoggedInUser == 'COO'">
+  <button class="btnChange" [ngClass]="{disabled: internship.projectStatus.code != 'NEW'}"
+          [disabled]="internship.projectStatus.code != 'NEW'" (click)="toggleSpecialisationEditForm()">
+    <span class="tooltip" *ngIf="internship.projectStatus.code != 'NEW' && !specialisationEditFormIsVisible">
+      Niet mogelijk om de afstudeerrichting voor deze stageaanvraag te wijzigen.
+    </span>
+    <span *ngIf="!specialisationEditFormIsVisible">WIJZIG AFSTUDEERRICHTING</span>
+    <span *ngIf="specialisationEditFormIsVisible">VERBERG</span>
+  </button>
+  <app-specialisation-edit-form *ngIf="specialisationEditFormIsVisible" [internship]="internship" (specialisationEdited)="refreshPage()"></app-specialisation-edit-form>
+</div>
+
+<div class="newLine">
+  <label class="bold">Beschrijving van de opdracht</label> <br/>
+  <label id="assignmentDescription" class="longText smallMarginBottom break">{{ internship.assignmentDescription }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Omgeving</label> <br/>
+  <ul>
+    <li id="environmentDescription" *ngFor="let environment of internship.internshipEnvironment">
+      <span *ngIf="environment.environment.code != 'AND'; else other">{{ environment.environment.description }}</span>
+      <ng-template #other>
+        <span [hidden]="internship.internshipEnvironmentOthers == null">Andere: {{ internship.internshipEnvironmentOthers }}</span>
+      </ng-template>
+    </li>
+  </ul>
+</div>
+
+<div class="newLine">
+  <label class="bold">Technische details</label> <br/>
+  <label id="technicalDetails" class="longText smallMarginBottom break" *ngIf="internship.technicalDetails != null">{{ internship.technicalDetails }}</label>
+  <label class="smallMarginBottom italic" *ngIf="internship.technicalDetails == null">{{ noInput }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Randvoorwaarden</label> <br/>
+  <label id="conditions" class="longText smallMarginBottom break" *ngIf="internship.conditions != null">{{ internship.conditions }}</label>
+  <label class="smallMarginBottom italic" *ngIf="internship.conditions == null">{{ noInput }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Onderzoeksthema</label> <br/>
+  <label id="researchTopicDescription" class="longText" *ngIf="internship.totalInternsRequired == 1">{{ internship.researchTopicDescription }}</label>
+  <ul class="longText" *ngIf="internship.totalInternsRequired == 2">
+    <li *ngFor="let topic of researchTopicDescriptions">{{ topic }}</li>
+  </ul>
+</div>
+
+
+<hr class="newLine line smallMarginTop"/>
+
+<!-- OTHER -->
+<h3>OVERIGE</h3>
+
+<div class="newLine">
+  <label class="bold">Inleidende verwachtingen</label> <br/>
+  <label class="smallMarginBottom italic" *ngIf="internship.internshipExpectation.length == 0">{{ noInput }}</label>
+  <ul>
+    <li id="expectationDescription" *ngFor="let expectation of internship.internshipExpectation">{{ expectation.expectation.description }}</li>
+  </ul>
+</div>
+
+<div class="newLine">
+  <label class="bold">Aantal gewenste stagiairs</label> <br/>
+  <label id="totalInternsRequired" class="smallMarginBottom">{{ internship.totalInternsRequired }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Bedrijf is gecontacteerd door student(en) en wenst deze opdracht enkel aan deze student(en) aan te bieden.</label> <br/>
+  <label id="contactStudentNae" class="smallMarginBottom" *ngIf="internship.contactStudentName != null">{{ internship.contactStudentName }}</label>
+  <label class="smallMarginBottom italic" *ngIf="internship.contactStudentName == null">{{ noInput }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Andere bemerkingen</label> <br/>
+  <label id="remark" class="longText smallMarginBottom break" *ngIf="internship.remark != null">{{ internship.remark }}</label>
+  <label class="smallMarginBottom italic" *ngIf="internship.remark == null">{{ noInput }}</label>
+</div>
+
+<div class="newLine">
+  <label class="bold">Stageperiode</label> <br/>
+  <ul>
+    <li id="period" *ngFor="let period of internship.internshipPeriod">{{ period.period.description }}</li>
+  </ul>
+</div>
+
+<div class="newLine">
+  <label class="bold">Academiejaar</label> <br/>
+  <label class="smallMarginBottom">{{ internship.academicYear}}</label>
+</div>
+
+<div id="modalPopup" class="modalPopup" *ngIf="hireStudentModalPopUpIsVisible">
+  <p>Ben je zeker dat student <span class="bold">{{ studentToHire.userFirstName }} {{ studentToHire.userSurname }}</span>
+    deze stageopdracht mag doen? Hij/zij ontvangt een melding hiervan.</p>
+  <div>
+    <button (click)="confirmHireStudent()" [disabled]="hireStudentSubmitted">JA</button>
+    <button (click)="cancelHireStudent()">ANNULEER</button>
+  </div>
+</div>
+
+<div class="spinner" *ngIf="showSpinner"></div>

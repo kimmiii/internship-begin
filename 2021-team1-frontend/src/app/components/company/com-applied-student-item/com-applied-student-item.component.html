@@ -1,0 +1,37 @@
+<div>
+  <!-- Data student -->
+  <label><strong>{{ student.userFirstName }} {{ student.userSurname }}</strong></label> <br/>
+  <label class="emailAddress">{{ student.userEmailAddress }}</label>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <!-- EYE -->
+    <button *ngIf="student.cvPresent" class="symbol" (click)="showCV()"><span class="tooltip">Open cv.</span>&#xE18B;</button>
+    <!-- STAR -->
+    <button class="symbol" *ngIf="!studentIsInteresting" (click)="toggleInteresting()">
+      <span class="tooltip" *ngIf="!studentIsInteresting">Markeer student als 'interessant'.</span>
+      &#xE1CE;</button> <!-- empty star -->
+    <button class="symbol" *ngIf="studentIsInteresting" (click)="toggleInteresting()">
+      <span class="tooltip" *ngIf="studentIsInteresting">Markeer student als niet 'interessant'.</span>
+      &#xE00A;</button> <!-- full star -->
+    <!-- CHECKMARK -->
+    <button class="symbol" (click)="hireStudent()" [disabled]="hireButtonDisabled" [ngClass]="{disabled: hireButtonDisabled}">
+      <!-- tooltip: "I want this student"-->
+      <span class="tooltip" *ngIf="!hireButtonDisabled && !showRejectionNotification">Geef aan dat deze student de stageopdracht mag uitvoeren.</span>
+      <!-- tooltip: hireRequest = true -->
+      <span class="tooltip hireRequested" *ngIf="!oneOfTwoStudentsAssigned() && hireButtonDisabled && !internship.completed && !showRejectionNotification">Deze student is aangeduid door uw bedrijf om deze stageopdracht uit te voeren. Bij bevestiging door
+        de stagecoördinator en student, wordt deze student definitief toegewezen aan de stageopdracht.</span>
+      <!-- tooltip: "One of two students assigned" -->
+      <span class="tooltip hireRequested" *ngIf="oneOfTwoStudentsAssigned() && !showRejectionNotification">Deze student is toegewezen aan deze stageopdracht (plaats voor twee studenten).</span>
+      <!-- tooltip: internship full -->
+      <span class="tooltip hireRequested" *ngIf="internship.completed && !showRejectionNotification">Deze stageopdracht is volzet. Daarom is het
+        niet meer mogelijk studenten aan te nemen voor deze stageopdracht.</span>
+      <!-- tooltip: approval denied by coordinator -->
+      <span class="tooltip hireRequested" *ngIf="showRejectionNotification">Deze student heeft geen toestemming gekregen van de stagecoördinator om deze stageopdracht uit te voeren.</span>
+      &#xE001; <!-- checkmark -->
+    </button>
+  </div>
+
+  <span class="spinner" *ngIf="showSpinner"></span>
+
+</div>

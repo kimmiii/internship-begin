@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>afspraak maken</h1>
+
+<div mat-dialog-content [formGroup]="createAppointmentForm">
+
+  <div class="create-appointment__info">
+    <div class="create-appointment__info__item">
+      <label class="create-appointment__info__item--label">Bedrijf</label>
+      <p>{{ appointment?.companyName }}</p>
+    </div>
+
+    <div class="create-appointment__info__item">
+      <label class="create-appointment__info__item--label">Persoon</label>
+      <p>{{ appointment?.attendeeName }}</p>
+    </div>
+
+    <div class="create-appointment__info__item">
+      <label class="create-appointment__info__item--label">Uur</label>
+      <p>{{ appointment?.beginHour }} - {{ appointment?.endHour }}</p>
+    </div>
+  </div>
+
+  <div class="form">
+    <app-upload-file [label]="'CV'"
+                     [formControlName]="cvFormControlName">
+    </app-upload-file>
+
+    <app-upload-file [label]="'Motivatiebrief'"
+                     [formControlName]="letterFormControlName">
+    </app-upload-file>
+
+    <mat-form-field appearance="outline" class="form__wide-field">
+      <mat-label>Extra info</mat-label>
+      <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5"
+                [formControlName]="commentFormControlName">
+      </textarea>
+    </mat-form-field>
+  </div>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button
+          color="accent"
+          (click)="cancel()">
+    Annuleer
+  </button>
+  <button mat-flat-button
+          color="accent"
+          (click)="createAppointment()"
+          [disabled]="createAppointmentForm.invalid">
+    Bevestig
+  </button>
+</div>

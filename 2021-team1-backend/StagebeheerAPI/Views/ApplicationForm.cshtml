@@ -1,0 +1,425 @@
+﻿@using StagebeheerAPI.Models
+@model StagebeheerAPI.Models.Internship
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .userdata {
+            cursor: pointer;          
+            padding: 4px;
+            width: 70vw;
+        }
+
+        .Boltdata{
+            font-weight: bold;
+        }
+
+        .breakhere {
+            page-break-after: always
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #6ca336;
+        }
+
+        h3 {
+            font-weight: bold;
+            color: #6ca336;
+        }
+
+        textarea {
+            min-height: 5em;
+            max-height: 50vh;
+            width: 100%;
+        }
+
+        p {
+            width: 70%;
+        }
+
+        label {
+            line-height: 30px;
+        }
+
+        input {
+            margin-bottom: 15px;
+        }
+
+        hr {
+            border-top: solid 2px #6ca33699;
+            border-bottom: 0;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        .screen {
+            height: 100vh;
+            width: 98vw;
+            background-color: white;
+            padding-left: 50px;
+            padding-top: 50px;
+        }
+
+        .line {
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+
+        .newLine {
+            clear: both;
+        }
+
+        .necessary {
+            color: red;
+            font-weight: bold;
+        }
+
+        .horizontal {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .veryShort {
+            width: 50px;
+        }
+
+        .short {
+            width: 90px;
+        }
+
+        .middle {
+            width: 250px;
+        }
+
+        .long {
+            width: 520px;
+        }
+
+        .description {
+            display: inline-block;
+            font-size: 10pt;
+            line-height: 15px;
+            width: 70%;
+        }
+
+        .noLineHeight {
+            line-height: 0;
+        }
+
+        .smallMarginTop {
+            margin-top: 10px;
+        }
+
+        .marginBottomNegative {
+            margin-bottom: -50px;
+        }
+
+        .middleMarginBottom {
+            margin-bottom: 20px;
+        }
+
+        .error {
+            border: solid 2px red;
+        }
+
+        .errorDescription {
+            color: red;
+            font-size: 8pt;
+            margin-bottom: -50px;
+        }
+
+        .bigErrorDescription {
+            color: red;
+            font-size: 12pt;
+            margin-left: 20px;
+        }
+
+        .smallText {
+            font-size: 8.5pt;
+            margin-bottom: 4px;
+        }
+
+        .displayBlock {
+            display: block;
+        }
+
+        .horizontal {
+            display: inline-block;
+            float: none;
+        }
+
+        .short {
+            width: 70vw;
+        }
+
+        .middle {
+            width: 70vw;
+        }
+
+        .long {
+            width: 70vw;
+        }
+
+        .veryShort {
+            width: 70vw;
+        }
+
+        .line {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .marginBottomNegative {
+            margin-bottom: 0;
+        }
+
+        .screen {
+        }
+
+        .bigErrorDescription {
+            color: red;
+            font-size: 10pt;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="screen">
+        
+
+        <h2>STAGEAANVRAAG</h2>
+
+        <h3>BEDRIJF</h3>
+        <br />
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="companyStreet">Straat:</label> <br />
+                <label id="companyStreet" class="userdata" type="text">@Model.WpStreet</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="companyHouseNumber">Huisnummer:</label> <br />
+                <label id="companyHouseNumber" class="userdata" type="number">@Model.WpHouseNr</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="companyMailboxNumber">Bus:</label> <br />
+                <label id="companyMailboxNumber" class="userdata" type="text">@Model.WpBusNr</label>
+            </div>
+        </div>
+
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="companyZipCode">Postcode:</label> <br />
+                <label id="companyZipCode" class="userdata" type="text">@Model.WpZipCode</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="companyCity">Gemeente:</label> <br />
+                <label id="companyCity" class="userdata" type="text">@Model.WpCity</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="companyCountry">Land:</label> <br />
+                <label id="companyCountry" class="userdata" type="text">@Model.WpCountry</label>
+            </div>
+        </div>
+
+
+        <hr class="newLine line" />
+
+        <h3>CONTACTPERSOON</h3>
+
+        @*TODO: FIX*@
+
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="contactSurname">Voornaam:</label> <br />
+                <label id="contactSurname" class="userdata" type="text">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPersonId ).FirstOrDefault().Firstname</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="contactFamilyName">Naam:</label> <br />
+                <label id="contactFamilyName" class="userdata" type="text">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPersonId ).FirstOrDefault().Surname</label>
+            </div>
+        </div>
+
+        <div class="newLine">
+            <label class="Boltdata" for="contactFunction">Functie:</label>
+            <br />
+            <label id="contactFunction" class="userdata" type="text">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPersonId).FirstOrDefault().Function</label>
+        </div>
+
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="contactPhoneNumber">Telefoonnummer:</label> <br />
+                <label id="contactPhoneNumber" class="userdata" type="text">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPersonId ).FirstOrDefault().PhoneNumber</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="contactEmail">E-mailadres:</label> <br />
+                <label id="contactEmail" class="userdata smallMarginTop" type="email">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPersonId ).FirstOrDefault().Email</label>
+            </div>
+        </div>
+
+        <hr class="newLine line" />
+
+
+        <h3>BEDRIJFSPROMOTOR</h3>
+
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="promotorSurname">Voornaam:</label> <br />
+                <label id="promotorSurname" class="userdata" type="text">@Model.PromotorFirstname</label>
+            </div>
+
+            <div class="horizontal">
+                <label class="Boltdata" for="promotorFamilyName">Naam:</label> <br />
+                <label id="promotorFamilyName" class="userdata" type="text">@Model.PromotorSurname</label>
+            </div>
+        </div>
+
+        <div class="newLine">
+            <label class="Boltdata" for="promotorFunction">Functie:</label>
+            <br />
+            <label id="promotorFunction" class="userdata" type="text">@Model.PromotorFunction</label>
+        </div>
+
+        <div class="newLine">
+            <div class="horizontal">
+                <label class="Boltdata" for="promotorPhoneNumber">Telefoonnummer:</label> <br />
+                <label id="promotorPhoneNumber" class="userdata" type="text">@Model.PromotorEmail</label>
+            </div>
+
+            @*<div class="horizontal">
+                <label class="Boltdata" for="promotorEmail">E-mailadres:</label> <br />
+                <label id="promotorEmail" class="userdata smallMarginTop" type="email">@Model.Company.Contacts.Where(c => c.ContactId == @Model.ContactPromotorId).FirstOrDefault().Email</label>
+            </div>*@
+        </div>
+
+
+        <div style="page-break-after: always;"></div>
+
+        <div></div>
+
+        <h2>STAGEOPDRACHT</h2>
+        <br />
+
+        <div class="noLineHeight">
+            <h3 class="Boltdata" for="topicTitle">Titel:</h3>
+            <br />
+            <label id="topicTitle" class="long middleMarginBottom" type="text">@Model.ResearchTopicTitle</label>
+        </div>
+        <br />
+
+        <h3 class="Boltdata" class="noLineHeight">Voorkeur afstudeerrichting:</h3>
+        <div class="smallMarginTop middleMarginBottom">
+            <div>
+                <ul>
+                    @foreach (var x in @Model.InternshipSpecialisation)
+                    {
+                        <li>@x.Specialisation.Description</li>
+                    }
+                </ul>
+                <br />
+            </div>
+        </div>
+
+
+        <h3 class="Boltdata" for="topicAssignment">Beschrijving van de opdracht:</h3>
+        <br />
+        <label id="topicAssignment" class="smallMarginTop long middleMarginBottom" type="text">@Model.AssignmentDescription</label>
+        <br />
+        <br />
+
+
+        <h3 class="noLineHeight">Omgeving:</h3> 
+
+        <div class="smallMarginTop middleMarginBottom">
+             <div>
+                 <ul>
+                    @foreach (var x in @Model.InternshipEnvironment) 
+                    { 
+                        @if (@x.Environment.Description.Equals("Andere:"))
+                        {
+                            <li>Andere: @Model.InternshipEnvironmentOthers</li>
+                        }
+                        else
+                        {
+                            <li>@x.Environment.Description</li>
+                        }
+                    }
+                 </ul>                                     
+            </div>         
+
+        </div>
+        <br />
+        <div></div>
+
+        <h3 class="noLineHeight" for="topicDetails">Technische details:</h3>
+        <textarea id="topicDetails" class="smallMarginTop long middleMarginBottom" type="text">@Model.TechnicalDetails</textarea>
+
+        <h3 class="noLineHeight" for="topicConditions">Randvoorwaarden</h3>
+        <textarea id="topicConditions" class="smallMarginTop long middleMarginBottom" type="text">@Model.Conditions</textarea>
+
+        <h3 class="noLineHeight" for="topicResearchTheme">Onderzoeksthema:</h3>
+        <textarea id="topicResearchTheme" class="smallMarginTop marginBottomNegative long" type="text">@Model.ResearchTopicDescription</textarea>
+
+
+        <hr class="newLine line" />
+
+        <div></div>
+
+        <div style="page-break-after: always;"></div>
+
+        <div formGroupName="other">
+
+            <h2>OVERIGE</h2><br />
+
+            <h3 class="noLineHeight">Inleidende activiteiten/verwachtingen</h3>
+            <div class="smallMarginTop middleMarginBottom">
+                <ul>
+                    @foreach (var x in @Model.InternshipExpectation)
+                    {
+                        <li>@x.Expectation.Description</li>
+                    }
+                </ul>
+            </div>
+
+            <h3 class="noLineHeight">Aantal gewenste stagiairs:</h3>
+            <div class="smallMarginTop middleMarginBottom">
+                <label>@Model.TotalInternsRequired</label> <br />
+            </div>
+
+            <h3 class="noLineHeight">Bedrijf wenst deze opdracht aan deze student(en) aan te bieden:</h3>
+            <div class="smallMarginTop middleMarginBottom">
+                <label> @Model.ContactStudentName</label> <br />
+            </div>
+
+            <h3 class="noLineHeight" for="otherRemarks">Andere bemerkingen</h3>
+            <textarea id="otherRemarks" class="smallMarginTop middleMarginBottom long" type="text">@Model.Remark</textarea> <br />
+
+            <h3 class="noLineHeight">Stageperiode:</h3>
+            <div class="smallMarginTop middleMarginBottom">
+
+                <ul>
+                    @foreach (var x in @Model.InternshipPeriod)
+                    {
+                        <li>@x.Period.Description</li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

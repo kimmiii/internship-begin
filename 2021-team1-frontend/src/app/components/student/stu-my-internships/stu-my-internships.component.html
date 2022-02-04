@@ -1,0 +1,40 @@
+<div class="fullscreen">
+  <h2>MIJN STAGEOPDRACHTEN</h2>
+
+  <div>
+    <h3>MIJN STAGEOPDRACHT</h3>
+    <p class="middleMarginBottom" *ngIf="studentIsAlreadyAssignedToInternship">
+      Je bent toegewezen aan een stageopdracht. <br/>
+      <span id="hyperlinkToMyInternship" class="bold clickableItem" (click)="proceedToInternship()">Ga naar jouw stageopdracht.</span>
+    </p>
+    <p class="middleMarginBottom" *ngIf="!studentIsAlreadyAssignedToInternship">
+      Je hebt nog geen stageopdracht.
+    </p>
+  </div>
+
+  <h3>AANBOD STAGEOPDRACHTEN</h3>
+  <p class="middleMarginBottom">
+    Hieronder vind je alle stageopdrachten waarvoor je gesolliciteerd hebt en waarbij het stagebedrijf jou als stagiair wilt. <br/><br/>
+    Bevestig dat je de aangeboden stageopdracht wilt accepteren. Vervolgens zal de stagecoördinator je al dan niet toestemming geven de
+    desbetreffende stageopdracht uit te voeren.<br/><br/>
+    <span class="bold">Let op: </span> je kan slechts één stageopdracht accepteren. Deze keuze is onomkeerbaar.
+  </p>
+
+  <!-- Internship list -->
+  <ng-container *ngIf="isAllDataFetched">
+    <table>
+      <tbody class="container">
+        <tr *ngFor="let internship of myInternshipList;">
+          <app-stu-my-internship-item [internship]="internship"></app-stu-my-internship-item>
+          <hr/>
+        </tr>
+        <tr *ngIf="myInternshipList.length == 0">
+          <span style="font-style: italic;">Je komt niet in aanmerking voor een of meerdere stageopdrachten.</span>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+
+</div>

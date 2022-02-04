@@ -1,0 +1,16 @@
+<h2>beheer Handshake Event</h2>
+
+<div class="event-list" *ngIf="events?.length; else noEvents">
+  <app-event-card *ngFor="let event of events"
+                  [event]="event"
+                  [hasActiveEvents]="hasActiveEvents()"
+                  [showStatusChangeActions]="true"
+                  (changeStatus)="changeStatusEvent($event)">
+  </app-event-card>
+</div>
+
+<ng-template #noEvents>
+  <p><em>Er zijn momenteel geen evenementen aangemaakt.</em></p>
+</ng-template>
+
+<button mat-flat-button color="primary" (click)="createEvent()">{{ 'evenement aanmaken' | uppercase }}</button>

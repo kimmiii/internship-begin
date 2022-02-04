@@ -1,0 +1,86 @@
+@import "../../../../_styles/colors";
+
+.company-settings {
+  &__info {
+    background-color: $color-frosted-pine;
+    border-radius: 6px;
+    display: flex;
+    margin: 30px 0;
+    padding: 30px;
+
+    &__logo {
+      border-radius: 6px;
+      margin-bottom: 20px;
+      max-height: 200px;
+      max-width: 400px;
+    }
+  }
+
+  &__data {
+    border-radius: 6px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 30px;
+    padding: 20px;
+    width: 60%;
+
+    &__label {
+      color: $color-lime;
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    &__value {
+      line-height: 10px;
+    }
+
+    &--wide {
+      grid-column: span 2;
+    }
+  }
+
+  &__form {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 20px 0;
+
+    &__button {
+      height: 36px;
+      width: fit-content;
+    }
+  }
+
+  &__company-name {
+    color: $color-dark-forest;
+    font-family: "Roboto", serif;
+    font-size: 20px;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px 0;
+  }
+}
+
+textarea {
+  width: 100%;
+}
+
+.mat-form-field-infix {
+  border-top: 0;
+}
+
+.form__error {
+  color: $error-color;
+  display: block;
+  font-size: 12px;
+  font-style: italic;
+  padding: 5px 0;
+}

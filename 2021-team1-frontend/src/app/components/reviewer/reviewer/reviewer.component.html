@@ -1,0 +1,27 @@
+<nav>
+  <ul class="blackNavigationHeader">
+    <!-- PXL logo -->
+    <li><a routerLink="/reviewer/internships"><img id="pxlLogo" src="../../../../assets/images/PXLLogo.png" alt="PXL Logo"></a></li>
+
+    <!-- Signed in as INFORMATION -->
+    <li id="signedInAs">
+      <div>
+        <span class="bold">{{ reviewerName }} &nbsp;</span>
+        <label>({{ roleDescription }})</label>
+      </div>
+      <!-- Button SIGN OUT -->
+      <a class="clickableItem" (click)="logOut()">Afmelden</a>
+    </li>
+  </ul>
+
+  <!-- MENU ITEMS -->
+  <ul class="whiteNavigationHeader">
+    <li class="navButtonList">
+      <div>
+        <a class="navButton clickableItem" routerLink="/reviewer/internships" [routerLinkActive]="'active'">Stageaanvragen</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>

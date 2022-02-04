@@ -1,0 +1,32 @@
+<nav>
+  <ul class="blackNavigationHeader">
+    <!-- PXL logo -->
+    <li><a routerLink="/coordinator/internships"><img id="pxlLogo" src="../../../../assets/images/PXLLogo.png" alt="PXL Logo"></a></li>
+
+    <!-- Signed in as INFORMATION -->
+    <li id="signedInAs">
+      <div>
+        <span class="bold">{{ coordinatorName }} &nbsp;</span>
+        <label>({{ roleDescription }})</label>
+      </div>
+      <!-- Button SIGN OUT -->
+      <a class="clickableItem" (click)="logOut()">Afmelden</a>
+    </li>
+  </ul>
+
+  <!-- MENU ITEMS -->
+  <ul class="whiteNavigationHeader">
+      <li class="navButtonList">
+        <div>
+          <a class="navButton clickableItem" routerLink="/coordinator/internships" [routerLinkActive]="'active'">Stageaanvragen</a>
+          <a class="navButton clickableItem" routerLink="/coordinator/finished-internships" [routerLinkActive]="'active'">Stageopdrachten</a>
+          <a class="navButton clickableItem" routerLink="/coordinator/assignments" [routerLinkActive]="'active'">Toewijzingen</a>
+          <a class="navButton clickableItem" routerLink="/coordinator/companies" [routerLinkActive]="'active'">Bedrijven</a>
+          <a class="navButton clickableItem" routerLink="/coordinator/lectors" [routerLinkActive]="'active'">Lectoren</a>
+          <a class="navButton clickableItem" routerLink="/coordinator/students" [routerLinkActive]="'active'">Studenten</a>
+        </div>
+      </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>

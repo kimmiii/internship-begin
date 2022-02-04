@@ -1,0 +1,17 @@
+<div class="fullItem">
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button class="symbol" (click)="proceedToNextPage()">
+      <span class="tooltip">Bekijk alle informatie.</span>
+      &#xE18B;</button> <!-- eye -->
+  </div>
+  <!-- INFO -->
+  <div>
+    <span class="bold student">{{ student.userFirstName }} {{ student.userSurname }}</span> <br/>
+    <span><span class="bold">Bedrijf: </span>{{ internship.company.name }} ({{ internship.company.city }})</span> <br/>
+    <p class="internshipTitle"><span class="bold">Stageopdracht: </span>{{ internship.researchTopicTitle }}</p>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,25 @@
+<div class="fullscreen">
+  <h2>PROFIEL</h2>
+  <label class="bold">{{ firstname }} {{ surname }}</label> <br/>
+  <label>{{ emailAddress }}</label>
+
+  <h3>CV</h3>
+  <p>Voeg hier jouw cv toe in .pdf-formaat. Wanneer je solliciteert voor een stageopdracht, kan het desbetreffende bedrijf jouw cv raadplegen.</p>
+
+  <form [formGroup]="cvForm" (ngSubmit)="submitPDFFile()">
+    <input type="file" accept=".pdf" (change)="onSelectFile($event)" formControlName="filePicker" class="verySmallMarginBottom verySmallMarginTop inline"/> <br/><br/>
+    <input class="button" type="submit" value="UPLOAD">
+    <button [disabled]="!userHasCv" [ngClass]="{disabled: !userHasCv, clickableItem: userHasCv}" class="button marginLeft" type="button" (click)="downloadPdf()">OPEN CV</button>
+    <button [disabled]="!userHasCv" [ngClass]="{disabled: !userHasCv, clickableItem: userHasCv}" class="button marginLeft" type="button" (click)="removeCv()">VERWIJDER CV</button>
+
+    <!-- Notification -->
+    <label class="errorDescription" *ngIf="wrongFile">Enkel .pdf-bestanden mogelijk!</label>
+    <label class="errorDescription" *ngIf="!filePicker.valid && sendPDFClicked">Voeg een .pdf-bestand toe.</label>
+    <label class="uploadSuccessful" *ngIf="pDFFileSent">CV is succesvol geüpload.</label>
+    <label class="uploadSuccessful" *ngIf="deleteSuccessful">CV is succesvol verwijderd.</label>
+  </form>
+
+  <p *ngIf="!userHasCv">Je hebt geen cv geüpload.</p>
+
+  <div class="spinner" *ngIf="showSpinnerBool"></div>
+</div>

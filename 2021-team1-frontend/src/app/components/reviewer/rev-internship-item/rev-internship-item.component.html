@@ -1,0 +1,19 @@
+<ng-container *ngIf="dataIsFetched">
+  <div class="fullComponent">
+    <div class="content">
+      <p class="company">{{ company.name }}</p>
+      <p class="title">{{ internship.researchTopicTitle }} </p>
+      <p class="date"><span class="bold">Laatste versie:</span> {{ lastAssignedDate }} </p>
+    </div>
+
+    <p class="student">
+      <span *ngIf="!internship.completed" class="smallMarginRight symbol">
+        <span *ngFor="let student of countStudentSymbol;">&#xE13D;</span> <!-- Student -->
+      </span>
+      <span *ngIf="internship.completed" class="smallMarginRight">
+        <span class="tooltip">Deze stageopdracht is volzet.</span>
+        <span class="symbol bold green" style="font-size: 13pt;">&#xEC61;</span> <!--checkmark-->
+      </span>
+    </p>
+  </div>
+</ng-container>

@@ -1,0 +1,51 @@
+button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6ca336;
+}
+
+button:hover .tooltip {
+  display: block;
+}
+
+.buttons {
+  float: right;
+  padding: 5px;
+}
+
+.fullItem {
+  padding: 5px;
+  width: 400px;
+}
+
+.internshipTitle {
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tooltip {
+  margin-left: 30px;
+  height: 20px;
+  line-height: 15px;
+}
+
+.student {
+  display: inline-block;
+  font-size: 13pt;
+  margin-bottom: 5px;
+}
+
+.symbol {
+  font-family: 'Segoe MDL2 Assets', serif;
+  font-size: 10pt;
+}

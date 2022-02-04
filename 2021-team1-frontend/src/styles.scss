@@ -1,0 +1,284 @@
+@import "./app/_styles/_dialog.scss";
+@import "./app/_styles/_colors.scss";
+@import "./app/_styles/_snackbar.scss";
+@import "./app/_styles/_material-overrides.scss";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@font-face {
+  font-family: "helvetica-83-heavy-extended";
+  src: url("./assets/fonts/Helvetica.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  cursor: pointer;
+}
+
+button:hover .tooltip {
+  display: block;
+}
+
+h2 {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  color: #6ca336;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  color: #6ca336;
+  font-size: 13pt;
+}
+
+h4 {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  color: #6ca336;
+}
+
+.block {
+  display: block;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.clickableItem {
+  cursor: pointer;
+}
+
+.confirmationPopup {
+  display: block;
+  position: fixed;
+  background-color: #6ca336;
+  color: white;
+  border: solid 1px green;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px black;
+  z-index: 3;
+  margin-left: 40%;
+  margin-top: 100px;
+  animation: fadein 5s;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.error {
+  border: solid 2px red;
+}
+
+.errorDescription {
+  color: red;
+  font-size: 8pt;
+  margin-bottom: -50px;
+}
+
+.errorDescriptionBig {
+  color: red;
+  font-size: 12pt;
+  margin-left: 20px;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+
+.green {
+  color: #6ca336;
+}
+
+.inline {
+  display: inline;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.infoSign {
+  display: inline-block;
+  font-family: "Segoe MDL2 Assets", serif;
+  font-size: 10pt;
+  color: black;
+  margin-left: 3px;
+}
+
+.infoSign:hover {
+  color: #6ca336;
+}
+
+.messageBox {
+  background-color: #6ca33650;
+  border: #6ca336 2px solid;
+  padding: 5px;
+  width: 60vw;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.modalPopup {
+  position: fixed;
+  width: 450px;
+  height: 160px;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+  padding: 15px;
+  border: solid 1px darkgray;
+  box-shadow: 1px 1px 3px black;
+}
+
+.modalPopup div {
+  text-align: center;
+}
+
+.modalPopup div button {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 3px;
+}
+
+.modalPopup p {
+  text-align: center;
+  width: 100%;
+  color: black;
+  margin-top: 16px;
+}
+
+.necessary {
+  color: red;
+  font-weight: bold;
+}
+
+.newLine {
+  display: block;
+  clear: both;
+}
+
+.noLineHeight {
+  line-height: 0;
+}
+
+.spinner {
+  border: 10px solid #6ca33640;
+  border-top: 10px solid #6ca336;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 700ms linear infinite;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  z-index: 2;
+}
+
+.tooltip {
+  display: none;
+  margin-left: 170px;
+  margin-top: 15px;
+  position: absolute;
+  z-index: 50;
+  background-color: #6ca336;
+  color: white;
+  padding: 2px;
+  font-size: 9pt;
+  border-radius: 2px;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .confirmationPopup {
+    visibility: hidden;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.imageBackground {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./assets/images/Campagnebeeld-crop.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: center;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+  position: initial !important;
+}

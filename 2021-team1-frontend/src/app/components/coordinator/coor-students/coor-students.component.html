@@ -1,0 +1,73 @@
+<div class="fullscreen">
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <h2>STUDENTEN</h2>
+
+    <!-- New students -->
+    <h3>NIEUWE STUDENTEN</h3>
+    <p>Voeg hier nieuwe studenten toe aan de hand van een .csv-bestand.</p>
+
+    <!-- Add form (by .csv-file) -->
+    <form [formGroup]="userForm" (ngSubmit)="submitCSVFile()">
+      <input type="file" accept=".csv" (change)="onSelectFile($event)" formControlName="filePicker" class="verySmallMarginBottom verySmallMarginTop"/> <br/>
+      <input class="button" type="submit" value="VERZENDEN"/>
+      <label class="errorDescription" *ngIf="wrongFile">Enkel .csv-bestanden mogelijk!</label>
+      <label class="errorDescription" *ngIf="wrongFileStructure">Het geüploade .csv-bestand bevat niet de juiste structuur. Gebruik de
+        downloadbare template.</label>
+      <label class="errorDescription" *ngIf="!filePicker.valid && sendCSVClicked">Voeg een .csv-bestand toe!</label>
+    </form>
+
+    <!-- Response after uploading .csv-file -->
+    <div class="block" *ngIf="CSVFileSent">
+      <p [innerHTML]="responseString"></p>
+
+      <div *ngIf="errorList.length > 0">
+        <label class="bold">Fouten</label> <br/>
+        <table>
+          <tbody class="container middleHeight">
+          <tr *ngFor="let error of errorList;">
+            {{ error }}
+            <hr/>
+          </tr>
+          </tbody>
+        </table>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      </div>
+    </div>
+
+    <!-- csv template -->
+    <h3 class="marginTop">.CSV TEMPLATE</h3>
+    <p>Download onderstaande template om gegevens van studenten in toe te voegen. Deze template kan vervolgens gebruikt worden om studenten toe te voegen.</p>
+
+    <button (click)="downloadCsvTemplate()">DOWNLOAD TEMPLATE</button>
+
+    <h3 class="marginTop">ALLE STUDENTEN</h3>
+    <!-- Filter student list -->
+    <div class="order">
+      <label for="orderStudents">Sorteer op: </label>
+      <select id="orderStudents" (change)="orderOptionChanged()" [(ngModel)]="selectedOrderOption">
+        <option [ngValue]="1">Voornaam (alfabetisch)</option>
+        <option [ngValue]="2">Voornaam (omgekeerd alfabetisch)</option>
+        <option [ngValue]="3">Naam (alfabetisch)</option>
+        <option [ngValue]="4">Naam (omgekeerd alfabetisch)</option>
+        <option [ngValue]="5">Aantal sollicitaties (oplopend)</option>
+        <option [ngValue]="6">Aantal sollicitaties (aflopend)</option>
+      </select>
+    </div>
+
+    <!-- Student list -->
+    <table>
+      <tbody *ngIf="studentList.length == 0">
+      <tr class="emptyTable italic">Geen studenten</tr>
+      </tbody>
+
+      <tbody class="container" *ngIf="studentList.length > 0">
+      <tr *ngFor="let student of studentList;">
+        <app-coor-student-item [student]="student" (studentToListComponent)="redefineStudent($event)"></app-coor-student-item>
+        <hr/>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <div class="spinner" *ngIf="showSpinnerBool"></div>
+</div>

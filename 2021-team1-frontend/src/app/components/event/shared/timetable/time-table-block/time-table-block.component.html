@@ -1,0 +1,54 @@
+<div class="content__item__block content__item__block--{{ appointment.type }}">
+  <span class="content__item__block__status" [ngSwitch]="appointment.type">
+
+      <ng-container *ngSwitchCase="AppointmentType.STUDENT_RESERVED">
+        <span class="material-icons">pending_actions</span> gereserveerd door andere student
+      </ng-container>
+
+      <ng-container *ngSwitchCase="AppointmentType.STUDENT_CONFIRMED">
+        <span class="material-icons">disabled_by_default</span> bezet
+      </ng-container>
+
+      <ng-container *ngSwitchCase="AppointmentType.COMPANY_RESERVED">
+        <ng-template [ngTemplateOutlet]="detailedAppointmentInfo">
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="AppointmentType.COMPANY_CONFIRMED">
+        <ng-template [ngTemplateOutlet]="detailedAppointmentInfo">
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="AppointmentType.STUDENT">
+        afspraak bij {{ appointment?.companyName }}
+      </ng-container>
+
+      <ng-container *ngSwitchCase="AppointmentType.COMPANY_STUDENT_MATCH">
+        jouw afspraak
+      </ng-container>
+
+  </span>
+</div>
+
+<ng-template #detailedAppointmentInfo>
+  <div class="detailed-appointment" (click)="showAppointmentInfo()">
+    <div class="detailed-appointment__info">
+      <div class="detailed-appointment__info__item">
+        <span class="material-icons clickable-icon">person</span>
+        {{ appointment?.studentName }}
+      </div>
+      <div class="detailed-appointment__info__item">
+        <span class="material-icons clickable-icon">description</span>
+        {{ appointment?.researchTopicTitle }}
+      </div>
+    </div>
+
+    <div class="detailed-appointment__actions">
+      <button mat-icon-button
+              *ngIf="!(appointment?.appointmentStatus === AppointmentStatus.CONFIRMED)"
+              (click)="confirmAppointment()">
+        <mat-icon>check_circle</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>

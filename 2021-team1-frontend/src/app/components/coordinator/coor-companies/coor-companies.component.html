@@ -1,0 +1,109 @@
+<div class="confirmationPopup" *ngIf="activatedSuccessfully">
+  <label><span class="bold">{{ selectedCompany.name }}</span> is succesvol geactiveerd.</label>
+</div>
+
+<div class="confirmationPopup" *ngIf="rejectedSuccessfully">
+  <label><span class="bold">{{ selectedCompany.name }}</span> is succesvol afgekeurd.</label>
+</div>
+
+<div class="fullscreen">
+  <ng-container *ngIf="isAllDataFetched">
+    <h2>BEDRIJVEN</h2>
+
+    <!--LIST NEW COMPANY REGISTRATIONS -->
+    <div class="ignoreFloat">
+      <h3>NIEUWE BEDRIJFSREGISRTATIES</h3>
+      <p>Onderstaande bedrijven willen zich registreren. Bekijk de bedrijfsgegevens en activeer de gewenste bedrijven.</p>
+
+      <table>
+        <tbody *ngIf="newCompanyList.length == 0">
+          <tr class="emptyTable italic">Geen bedrijfsregistraties</tr>
+        </tbody>
+
+        <tbody class="container" *ngIf="newCompanyList.length > 0">
+        <tr *ngFor="let company of newCompanyList;">
+          <app-coor-company-item [company]="company" (showNewCompanyDetails)="showNewCompanyDetails($event)"
+                                 (approveCompany)="approveNewCompany($event)" (rejectCompany)="rejectNewCompany($event)"></app-coor-company-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <app-coor-company-details *ngIf="newCompanyDetailsIsVisible" [company]="selectedNewCompany"></app-coor-company-details>
+      <app-coor-company-reject *ngIf="companyRejectIsVisible" [company]="selectedNewCompany"
+                               (cancelClicked)="hideRejectComponent()" (companyRejected)="refreshPage(selectedNewCompany)"
+                               (showSpinner)="showSpinner()"></app-coor-company-reject>
+    </div>
+
+    <!-- POPUP ACTIVATION NEW COMPANY -->
+    <div class="modalPopup" *ngIf="modalPopupNewCompanyIsVisible">
+      <p>Ben je zeker dat je bedrijf <span class="bold">{{ selectedNewCompany.name }}</span> wilt activeren?</p>
+      <div>
+        <button (click)="confirmConfirmationNewCompany()">JA</button>
+        <button (click)="cancelConfirmationNewCompany()">ANNULEER</button>
+      </div>
+    </div>
+
+    <!-- ACTIVE COMPANIES -->
+    <div class="ignoreFloat">
+      <br/>
+      <h3>ACTIEVE BEDRIJVEN</h3>
+      <p>Deze bedrijven hebben zich succesvol geregistreerd en kunnen stageaanvragen indienen.</p>
+
+      <table>
+        <tbody *ngIf="activeCompayList.length == 0">
+        <tr class="emptyTable italic">Geen geactiveerde bedrijven</tr>
+        </tbody>
+
+        <tbody class="container" *ngIf="activeCompayList.length > 0">
+        <tr *ngFor="let company of activeCompayList;">
+          <app-coor-company-item-active [company]="company" (showCompanyDetails)="showActiveCompanyDetails($event)"
+                                        (rejectActiveCompany)="rejectActiveCompany($event)"></app-coor-company-item-active>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <app-coor-company-details *ngIf="activeCompanyDetailsIsVisible" [company]="selectedActiveCompany" [counters]="counters"></app-coor-company-details>
+      <app-coor-company-reject *ngIf="activeCompanyRejectIsVisible" [company]="selectedActiveCompany"
+                               (cancelClicked)="hideRejectActiveComponent()" (companyRejected)="refreshPage(selectedActiveCompany)"
+                               (showSpinner)="showSpinner()"></app-coor-company-reject>
+    </div>
+
+    <!-- REJECTED COMPANIES -->
+    <div class="ignoreFloat">
+      <br/>
+      <h3>AFGEKEURDE BEDRIJVEN</h3>
+      <p>Deze bedrijven zijn door de stagecoördinator afgekeurd en kunnen geen stageaanvragen indienen.</p>
+
+      <table>
+        <tbody *ngIf="inactiveCompanyList.length == 0">
+        <tr class="emptyTable italic">Geen afgekeurde bedrijven</tr>
+        </tbody>
+
+        <tbody class="container" *ngIf="inactiveCompanyList.length > 0">
+        <tr *ngFor="let company of inactiveCompanyList;">
+          <app-coor-company-item-inactive-evaluated [company]="company" (showInactiveCompanyDetails)="showInactiveCompanyDetails($event)"
+                                        (approveCompany)="approveInactiveCompany($event)"></app-coor-company-item-inactive-evaluated>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <app-coor-company-details *ngIf="inactiveCompanyDetailsIsVisible" [company]="selectedInactiveCompany"></app-coor-company-details>
+    </div>
+
+    <!-- POPUP ACTIVATION INACTIVE COMPANY -->
+    <div class="modalPopup" *ngIf="modalPopupInactiveCompanyIsVisible">
+      <p>Ben je zeker dat je bedrijf <span class="bold">{{ selectedInactiveCompany.name }}</span> wilt activeren?</p>
+      <div>
+        <button (click)="confirmConfirmationInactiveCompany()">JA</button>
+        <button (click)="confirmConfirmationInactiveCompany()">ANNULEER</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="spinner" *ngIf="showSpinnerBool"></div>
+
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>

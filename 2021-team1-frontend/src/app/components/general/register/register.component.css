@@ -1,0 +1,174 @@
+hr {
+  border-top: solid 2px #6ca33699;
+  border-bottom: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 8px;
+}
+
+label {
+  line-height: 25px;
+}
+
+.box {
+  background-color: white;
+  width: 600px;
+  height: 80%;
+  padding: 15px;
+  border: solid 1px darkgray;
+  box-shadow: 1px 1px 3px black;
+  font-size: 11pt;
+  overflow-y: scroll;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 8px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 10pt;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+.description {
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.errorDescription {
+  color: red;
+  font-size: 8pt;
+  margin-bottom: -50px;
+  margin-left: 7px;
+}
+
+.errorDescription ul {
+  list-style: '- ';
+  margin-top: 0;
+  margin-left: -30px;
+  margin-bottom: 55px;
+}
+
+.horizontal {
+  float: left;
+  margin-right: 20px;
+}
+
+.long {
+  width: 300px;
+}
+
+.middle {
+  width: 180px;
+}
+
+.necessary {
+  display: block;
+  color: red;
+  font-size: 10pt;
+}
+
+.no-margin-left {
+  margin-left: 0;
+}
+
+.returnHyperlink {
+  text-decoration: none;
+  color: steelblue;
+  font-size: 10pt;
+}
+
+.short {
+  width: 70px;
+}
+
+.smallDescription{
+  display: block;
+  font-size: 8.5pt;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}
+
+.smallHeight {
+  height: 22px;
+}
+
+.smallMarginBottom {
+  margin-bottom: 8px;
+}
+
+.smallMarginTop {
+  margin-top: 10px;
+  margin-bottom: -17px;
+}
+
+.spinner {
+  margin-top: 180%;
+  margin-left: -5%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6ca336;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6ca336;
+}
+
+#btnCancel {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 650px) {
+  .box {
+    width: 400px;
+  }
+}
+
+@media screen and (max-height: 500px) and (max-width: 500px) {
+  .box {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}

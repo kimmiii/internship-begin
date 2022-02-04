@@ -1,0 +1,48 @@
+textarea {
+  width: 535px;
+  height: 100px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+.rejectionError {
+  display: block;
+  margin-top: 10px;
+  color: red;
+}
+
+.mat-option.mat-selected {
+  color: #6ca336 !important;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: unset;
+}
+
+::ng-deep .mat-option-pseudo-checkbox.mat-pseudo-checkbox-checked {
+  background-color: #6ca336 !important;
+}
+
+@media screen and (max-width: 770px) {
+  textarea {
+    width: 400px;
+  }
+}

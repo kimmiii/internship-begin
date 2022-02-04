@@ -1,0 +1,38 @@
+<div class="fullComponent" [ngClass]="{biggerComponent: showLabel()}">
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <div class="content">
+      <p class="title">{{ internship.researchTopicTitle }}</p>
+      <p class="contact"><span class="bold">Contactpersoon:</span> {{ contact.firstname }} {{ contact.surname }}</p>
+      <p class="promotor"><span class="bold">Bedrijfspromotor:</span> {{ internship.promotorFirstname }} {{ internship.promotorSurname }}</p>
+    </div>
+
+    <p class="student">
+      <span *ngIf="!internship.completed">
+        <span *ngIf="internship.projectStatus.code == 'APP'">
+          <span class="tooltip" *ngIf="countAssignedStudents == 1">
+            Er is al één student
+            <span class="bold">({{ internship.internshipAssignedUser[0].user.userFirstName }} {{ internship.internshipAssignedUser[0].user.userSurname }})</span>
+            toegewezen aan deze stageopdracht.
+          </span>
+          <span class="symbol assignedStudentSymbol" *ngFor="let student of countAssignedStudentsArray">&#xE1E0;</span> <!-- applied student -->
+        </span>
+        <span class="symbol notAssignedStudentSymbol" *ngFor="let student of countStudentSymbol;">&#xE13D;</span> <!-- student -->
+      </span>
+      <span *ngIf="internship.completed" class="smallMarginRight">
+        <span class="tooltip">Deze stageopdracht is volzet.</span>
+        <span class="symbol bold green" style="font-size: 13pt;">&#xEC61;</span> <!--checkmark-->
+      </span>
+      <br/>
+      <!-- Extra buttons for approved internships -->
+      <span *ngIf="internship.projectStatusId == 4">
+        <span class="star">&#xE208;</span> <!-- star -->
+        <span class="favouriteCount">{{ favouriteCount }}</span>
+        <br/>
+        <span class="textBalloon">&#xED15;</span> <!-- text balloon -->
+        <span class="appliedStudentsCount"> &nbsp; {{ countAppliedStudents }}</span>
+      </span>
+    </p>
+
+      <div class="label" *ngIf="showLabel()">In behandeling</div>
+  </ng-container>
+</div>

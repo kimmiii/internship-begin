@@ -1,0 +1,84 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 13pt;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+.btnAccept {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 5px;
+}
+
+.clickHere:hover {
+  color: #6ca336;
+}
+
+.completedMessageBox {
+  background-color: #ab000040;
+  border: #ab0000 2px solid;
+  padding: 5px;
+  width: 60vw;
+  margin-bottom: 20px;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 120px;
+}
+
+.hyperlink {
+  text-decoration: none;
+  color: steelblue;
+  font-size: 12pt;
+  cursor: pointer;
+}
+
+.tooltip {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  margin-left: 130px;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 150px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+
+  .horizontal {
+    float: none;
+  }
+
+  .middleMarginTop {
+    margin-top: 50px;
+  }
+}

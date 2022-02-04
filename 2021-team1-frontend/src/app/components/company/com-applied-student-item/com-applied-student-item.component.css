@@ -1,0 +1,52 @@
+button {
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+}
+
+div {
+  padding: 5px;
+}
+
+label {
+  display: inline-block;
+}
+
+button:hover .tooltip {
+  display: block;
+}
+
+.buttons {
+  float: right;
+  margin-top: -20px;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.emailAddress {
+  font-size: 10pt;
+}
+
+.tooltip {
+  margin-left: 30px;
+  text-align: left;
+}
+
+.hireRequested {
+  width:
+    300px;
+}
+
+.symbol {
+  font-family: 'Segoe MDL2 Assets', serif;
+  font-size: 10pt;
+}

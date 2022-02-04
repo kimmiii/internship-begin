@@ -1,0 +1,17 @@
+#btnSend {
+  display: block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#btnSend:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}

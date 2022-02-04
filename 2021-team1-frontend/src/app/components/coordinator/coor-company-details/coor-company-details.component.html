@@ -1,0 +1,43 @@
+<div>
+  <h4>{{company.name}}</h4>
+
+  <div [ngClass]="{floatLeft: company.activated && counters != null}">
+    <label class="bold">Adres&nbsp;</label> <br/>
+    <label>{{ company.street }} {{ company.houseNr}}<span *ngIf="company.busNr != null">/</span>{{company.busNr}}</label> <br/>
+    <label>{{ company.zipCode}} {{ company.city }}</label> <br/>
+    <label>{{ company.country }}</label> <br/>
+
+    <label class="bold smallMarginTop">Contact&nbsp;</label> <br/>
+    <label>{{ company.email }}</label> <br/>
+    <label>{{ company.phoneNumber }}</label> <br/>
+
+    <label class="bold smallMarginTop">BTW-nummer:&nbsp;</label>
+    <label>{{ company.vatNumber }}</label> <br/>
+
+    <label class="bold">Aantal medewerkers:&nbsp;</label>
+    <label>{{ company.totalEmployees }}</label> <br/>
+
+    <label class="bold">Aantal IT-medewerkers:&nbsp;</label>
+    <label>{{ company.totalITEmployees }}</label> <br/>
+
+    <label class="bold">Aantal technische begeleiders:&nbsp;</label>
+    <label>{{ company.totalITEmployeesActive }}</label>
+  </div>
+
+  <div class="smallMarginTop" *ngIf="company.activated && counters != null">
+    <label class="bold">Aantal ingediende stageaanvragen:&nbsp;</label>
+    <label>{{counters[0]}}</label> <br/>
+    <label class="bold">Aantal goedgekeurde stageopdrachten:&nbsp;</label>
+    <label>{{counters[1]}}</label> <br/>
+    <label class="bold">Aantal stageopdrachten (semester 1):&nbsp;</label>
+    <label>{{counters[2]}}</label> <br/>
+    <label class="bold">Aantal stageopdrachten (semester 2):&nbsp;</label>
+    <label>{{counters[3]}}</label> <br/>
+    <label class="bold">Aantal stageopdrachten voor Elektronica-ICT:&nbsp;</label>
+    <label>{{counters[4]}}</label> <br/>
+    <label class="bold">Aantal stagiairs (alle afstudeerrichtingen):&nbsp;</label>
+    <label>{{counters[5]}}</label> <br/>
+    <label class="bold">Aantal stagiairs (Elektronica-ICT):&nbsp;</label>
+    <label>{{counters[6]}}</label> <br/>
+  </div>
+</div>

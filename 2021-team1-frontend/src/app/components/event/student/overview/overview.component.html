@@ -1,0 +1,13 @@
+<div class="fullscreen">
+  <div *ngIf="activeEvent$ | async as activeEvent" class="overview">
+    <div class="event">
+      <h2>Handshake Event {{ activeEvent?.dateEvent | date: 'yyyy' }}</h2>
+      <app-event-card [event]="activeEvent"
+                      [showStatusChangeActions]="false">
+      </app-event-card>
+    </div>
+    <app-internships class="internships"></app-internships>
+    <app-appointments class="appointments"></app-appointments>
+  </div>
+</div>
+

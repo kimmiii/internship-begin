@@ -1,0 +1,95 @@
+<div class="fullComponent">
+  <ng-container *ngIf="isAllDataFetched == true;">
+
+    <!-- BUTTONS -->
+    <div class="middleMarginBottom">
+      <button class="clickableItem" (click)="filter()">ZOEK</button>
+      <button class="clickableItem" (click)="resetFilter()">RESET</button>
+    </div>
+
+      <form [formGroup]="filterForm">
+        <div class="middleMarginBottom">
+          <!-- Hide completed internships (checkbox) -->
+          <input id="hideCompletedInternships" type="checkbox" formControlName="hideCompletedInternships"/>
+          <label for="hideCompletedInternships" class="inline">Verberg volzette stages</label> <br/><br/>
+
+          <!-- Show favourites/Show applied internships (radiobutton) -->
+          <input id="showFavorites" type="radio" formControlName="showFavouritesApplied" [value]="1"/>
+          <label for="showFavorites" class="inline">Toon favorieten</label> <br/>
+          <input id="showApplied" type="radio" formControlName="showFavouritesApplied" [value]="2"/>
+          <label for="showApplied" class="inline">Toon stages waarvoor gesolliciteerd</label>
+        </div>
+
+        <!-- Company -->
+        <h5>BEDRIJF</h5>
+        <select id="company" formControlName="company" class="middleMarginBottom middleWidth">
+          <option></option>
+          <option *ngFor="let company of companyList" [value]="company.companyId">{{ company.name }}</option>
+        </select>
+
+        <!-- Title + description -->
+        <h5>TITEL & BESCHRIJVING</h5>
+        <input type="text" formControlName="internshipTitleDescription" class="middleMarginBottom middleWidth" placeholder="Zoek in stagetitel of beschrijving"
+               [ngClass]="{error: !internshipTitleDescription.valid}"/>
+
+        <!-- Specialisation -->
+        <h5>AFSTUDEERRICHTING</h5>
+        <div formArrayName="specialisations" class="middleMarginBottom">
+          <div *ngFor="let specControl of specialisations['controls']; let i = index;">
+            <div>
+              <label>
+                <span class="tooltip">{{specialisationList[i].description}}</span>
+                <input type="checkbox" [formControlName]="i" [value]="specialisationList[i].description" [(ngModel)]="checkedSpecialisationList[i]">
+                {{ specialisationList[i].description }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Environment -->
+        <h5>OMGEVING</h5>
+        <div formArrayName="environments">
+          <div *ngFor="let specControl of environments['controls']; let i = index;">
+            <div *ngIf="i < environmentList.length-1">
+              <label>
+                <span class="tooltip">{{environmentList[i].description}}</span>
+                <input type="checkbox" [formControlName]="i" [value]="environmentList[i].description" [(ngModel)]="checkedEnvironmentList[i]">
+                {{ environmentList[i].description }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <input type="text" formControlName="otherEnvironment" class="middleMarginBottom middleWidth verySmallMarginTop" placeholder="Zoek andere omgeving"
+               [ngClass]="{error: !otherEnvironment.valid}"/>
+
+        <!-- Period -->
+        <h5>PERIODE</h5>
+        <div formArrayName="periods" class="middleMarginBottom">
+          <div *ngFor="let specControl of periods['controls']; let i = index;">
+            <div>
+              <label>
+                <span class="tooltip">{{periodList[i].description}}</span>
+                <input type="checkbox" [formControlName]="i" [value]="periodList[i].description" [(ngModel)]="checkedPeriodList[i]">
+                {{ periodList[i].description }}
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expectation -->
+        <h5>ACTIVITEITEN/VERWACHTINGEN</h5>
+        <div formArrayName="expectations" class="middleMarginBottom">
+          <div *ngFor="let specControl of expectations['controls']; let i = index;">
+            <div>
+              <label>
+                <span class="tooltip">{{expectationList[i].description}}</span>
+                <input type="checkbox" [formControlName]="i" [value]="expectationList[i].description" [(ngModel)]="checkedExpectationList[i]">
+                {{ expectationList[i].description }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+
+  </ng-container>
+</div>

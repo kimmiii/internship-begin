@@ -1,0 +1,20 @@
+<div class="fullComponent">
+  <div class="horizontal titleDiv">
+    <p class="bold biggerFont verySmallMarginBottom">{{ internship.researchTopicTitle }}</p>
+    <p>{{ internship.company.name }} ({{ internship.company.city }})</p>
+  </div>
+
+  <div class="horizontal infoDiv">
+    <p class="verySmallMarginBottom"><span class="bold">Afstudeerrichting:</span> {{ specialisationString }}</p>
+    <p><span class="bold">Omgeving:</span> {{ environmentString }}</p>
+  </div>
+
+  <div class="horizontal symbol" *ngIf="allDataFetched">
+    <span class="fullNotification" *ngIf="internship.completed && (myInternshipId != internship.internshipId)">Volzet</span>
+    <span class="myInternshipNotification" *ngIf="myInternshipId == internship.internshipId">Mijn stage</span>
+    <div>
+      <span *ngIf="isFavourite">&#xE208; </span> <!-- star -->
+      <span *ngIf="applied">&#xED15;</span> <!-- text balloon -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+
+hr {
+  border-top: solid 2px #328da880;
+  border-bottom: none;
+  width: 1000px;
+  margin-bottom: 0;
+}
+
+p {
+  width: 70%;
+  margin: 0;
+}
+
+table {
+  display: inline-block;
+  width: 400px;
+  border-collapse: collapse;
+}
+
+table tbody {
+  height: 250px;
+  display: block;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+  margin-bottom: 70px;
+}
+
+.middleMarginBottom {
+  margin-bottom: 50px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #328da810;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #328da880;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #328da880;
+}
+
+#hyperlinkToMyInternship:hover {
+  color: #6ca336;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 150px;
+  }
+
+  table {
+    margin-bottom: 70px;
+  }
+}

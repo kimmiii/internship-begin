@@ -1,0 +1,28 @@
+<div class="page">
+  <nav>
+    <ul class="blackNavigationHeader">
+      <li><a routerLink="/coordinator/internships"><img id="pxlLogo" src="../../../../assets/images/PXLLogo.png"
+                                                        alt="PXL Logo"></a></li>
+
+      <li id="signedInAs">
+        <div>
+          <span class="bold">{{ companyName || fullName }} &nbsp;</span>
+          <label>({{ roleDescription }})</label>
+        </div>
+        <a class="clickableItem" (click)="logOut()">Afmelden</a>
+      </li>
+    </ul>
+
+    <ul class="whiteNavigationHeader">
+      <li class="navButtonList">
+        <div>
+          <a *ngFor="let menuItem of menuItems" class="navButton clickableItem" [routerLink]="menuItem.routerLink"
+             [routerLinkActive]="'active'">{{ menuItem.displayText}}</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+
+

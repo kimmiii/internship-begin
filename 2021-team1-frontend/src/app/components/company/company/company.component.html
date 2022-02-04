@@ -1,0 +1,24 @@
+<nav>
+  <ul class="blackNavigationHeader">
+    <li><a routerLink="/company/internships"><img id="pxlLogo" src="../../../../assets/images/PXLLogo.png" alt="PXL Logo"></a></li>
+    <li id="signedInAs">
+      <div>
+        <span class="bold">{{ companyName }} &nbsp;</span>
+        <label>({{ roleDescription }})</label>
+      </div>
+      <a class="clickableItem" (click)="logOut()">Afmelden</a>
+    </li>
+  </ul>
+
+  <ul class="whiteNavigationHeader">
+    <li class="navButtonList">
+      <div>
+        <a class="navButton clickableItem" routerLink="/company/internships" [routerLinkActive]="'active'">Mijn stageaanvragen</a>
+        <a class="navButton clickableItem" routerLink="/company/application-form" [routerLinkActive]="'active'">Nieuwe stageaanvraag</a>
+        <a class="navButton clickableItem" routerLink="/company/profile" [routerLinkActive]="'active'">Profiel</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>

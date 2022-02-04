@@ -1,0 +1,85 @@
+<div id="fullscreen" class="fullscreen">
+
+  <ng-container *ngIf="isAllDataFetched">
+    <!-- <div class="middleMarginBottom">
+      <button id="btnCreatePDF" class="clickableItem" (click)="createPDF()">MAAK PDF</button>
+    </div> -->
+
+    <!-- Message: assigned to students -->
+    <div class="messageBox" *ngIf="internship.completed">
+      <p>Deze stageopdracht is volzet en toegewezen aan:</p>
+      <ul>
+        <li *ngFor="let student of internship.internshipAssignedUser">
+          {{ student.user.userFirstName }} {{ student.user.userSurname }}
+        </li>
+      </ul>
+    </div>
+
+    <app-internship-generic-details [internship]="internship" (closeModalPopup)="cancelConfirmation()"></app-internship-generic-details>
+
+    <!-- Button 'Assign to me' -->
+    <div *ngIf="internship.internshipAssignedUser.length > 0">
+      <a id="assignToMeHyperlink" *ngIf="internship.internshipAssignedUser[0].user.role.code == 'REV'" (click)="showAssignToMePopup()">Geef mij de controle over de stageaanvraag.</a>
+    </div>
+
+    <label class="errorDescription" *ngIf="confirmErrorIsVisible">Er is iets misgelopen. Probeer opnieuw.</label>
+
+    <!-- 4 BUTTONS: approve, reject, feedback, reviewers -->
+    <div class="smallMarginTop middleMarginBottom" *ngIf="internship.projectStatus.code != 'APP' && internship.projectStatus.code != 'REJ'">
+      <div class="pairOfButtons">
+        <button id="btnApprove" class="clickableItem actionButton" (click)="approve()" [disabled]="disableButton()" [ngClass]="{disabled: disableButton()}">
+          <span id="approveTooltip" class="tooltip" *ngIf="disableButton() && !modalPopupIsVisible">
+            Niet mogelijk om een actie uit te voeren op deze stageaanvraag.
+          </span>
+          GOEDKEUREN
+        </button>
+        <button id="btnToggleRejection" class="clickableItem actionButton" (click)="toggleRejection()" [disabled]="disableButton()" [ngClass]="{disabled: disableButton()}">
+          <span id="rejectTooltip" class="tooltip" *ngIf="disableButton() && !modalPopupIsVisible">
+            Niet mogelijk om een actie uit te voeren op deze stageaanvraag.
+          </span>
+          AFKEUREN
+        </button>
+      </div>
+      <div>
+        <button id="btnToggleMoreInfo" class="clickableItem actionButton" (click)="toggleMoreInfo()" [disabled]="disableButton()" [ngClass]="{disabled: disableButton()}">
+          <span id="moreInfoTooltip" class="tooltip" *ngIf="disableButton() && !modalPopupIsVisible">
+            Niet mogelijk om een actie uit te voeren op deze stageaanvraag.
+          </span>
+          MEER INFO VRAGEN
+        </button>
+        <button id="btnToggleSendToReviewer" class="clickableItem actionButton" (click)="toggleSendToReviewer()" [disabled]="disableButton()" [ngClass]="{disabled: disableButton()}">
+          <span id="reviewerTooltip" class="tooltip" *ngIf="disableButton() && !modalPopupIsVisible">
+            Niet mogelijk om een actie uit te voeren op deze stageaanvraag.
+          </span>
+          STUREN NAAR REVIEWER
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal popup: approve internship -->
+    <div id="modalPopup" class="modalPopup" *ngIf="modalPopupIsVisible">
+      <p>Ben je zeker dat je deze stageaanvraag wilt goedkeuren?</p>
+      <div>
+        <button (click)="confirmConfirmation()" [disabled]="submitted">JA</button>
+        <button (click)="cancelConfirmation()">ANNULEER</button>
+      </div>
+    </div>
+
+    <!-- Modal popup: approve assign to me -->
+    <div id="assignToMePopUp" class="modalPopup" *ngIf="assignToMePopupIsVisible">
+      <p>Deze stageaanvraag zal verdwijnen bij de reviewers die nog niet geantwoord hebben. Ben je zeker dat je wilt doorgaan?</p>
+      <div>
+        <button (click)="assignToMe()" [disabled]="assignToMeSubmitted">JA</button>
+        <button (click)="cancelConfirmation()">ANNULEER</button>
+      </div>
+    </div>
+
+    <app-coor-more-info id="moreInfoComponent" *ngIf="moreInfoVisible" [internship]="internship"></app-coor-more-info>
+    <app-coor-rejection id="rejectionComponent" *ngIf="rejectionVisible" [internship]="internship"></app-coor-rejection>
+    <app-coor-internship-to-reviewer id="toReviewerComponent" *ngIf="sendToReviewerIsVisible" [internship]="internship"></app-coor-internship-to-reviewer>
+  </ng-container>
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+
+  <br/> <br/> <br/> <br/>
+</div>

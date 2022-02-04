@@ -1,0 +1,79 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+  margin-right: 20px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+button:hover .tooltip {
+  display: block;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.feedbackBox {
+  background-color: #328da810;
+  border: solid 2px #328da880;
+  width: 450px;
+  height: 120px;
+  margin-top: 5px;
+  font-style: italic;
+  padding: 3px;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 120px;
+}
+
+.middleMarginBottom {
+  margin-bottom: 50px;
+}
+
+.middleMarginTop {
+  margin-top: 30px;
+}
+
+.tooltip {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  margin-left: 100px;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 170px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .horizontal {
+    float: none;
+  }
+
+  .middleMarginTop {
+    margin-top: 50px;
+  }
+}

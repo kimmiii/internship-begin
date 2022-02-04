@@ -1,0 +1,91 @@
+<!-- Confimation popups -->
+<div class="confirmationPopup" *ngIf="appliedSuccessfully">
+  <label><span class="bold">Je hebt succesvol gesolliciteerd.</span></label>
+</div>
+
+<div class="confirmationPopup" *ngIf="rejectedApplicationSuccessfully">
+  <label><span class="bold">Je hebt de sollicitatie succesvol ingetrokken.</span></label>
+</div>
+
+<div class="fullscreen">
+  <ng-container *ngIf="isAllDataFetched == true; else loading">
+    <!-- Message (hireRequested): accept hire request -->
+    <div class="messageBox" *ngIf="showInternshipAccept">
+      <p>Het bedrijf {{ internship.company.name }} wil jou als stagiair voor deze stageopdracht. Klik op <span class="bold">BEVESTIG</span> om te bevestigen dat jij
+      deze stageopdracht wilt doen. Nadat de stagecoördinator jou toestemming heeft gegeven, is jouw stageopdracht definitief en is het mogelijk de stagecontracten te bekijken en ondertekenen. <br/><br/>
+      <span class="bold">Let op: </span>als je deze stageopdracht bevestigt, kan je niet meer:</p>
+      <ul>
+        <li>Solliciteren voor een andere stageopdracht;</li>
+        <li>Bevestigen dat je een andere stageopdracht wilt uitvoeren.</li>
+      </ul>
+      <button class="btnAccept" (click)="acceptHireRequest()">BEVESTIG</button>
+    </div>
+
+    <!-- Message (hireConfirmed): wait for confirmation by coordinator (for this internship) -->
+    <div class="messageBox" *ngIf="showHireConfirmedConfirmationMessage">
+      <p>Je hebt aan de stagecoördinator en het stagebedrijf {{ internship.company.name }} bevestigd dat je deze stageopdracht wilt uitvoeren.
+        Zodra de stagecoördinator jou toestemming geeft deze stageopdracht uit te voeren, zullen de nodige
+        stagecontracten gegenereerd worden.</p>
+    </div>
+
+    <!-- Message: can't apply for insternship anymore because you have confirmed another hireRequest -->
+    <div class="messageBox" *ngIf="studentConfirmedHireRequest">
+      <p>Omdat je al hebt aangegeven dat je een andere stageopdracht wilt uitvoeren, kan je niet meer:</p>
+      <ul>
+        <li>Solliciteren voor een andere stageopdracht;</li>
+        <li>Bevestigen dat je een andere stageopdracht wilt uitvoeren.</li>
+      </ul>
+    </div>
+
+    <!-- Message (hireApproved): you are already assigned to an internship -->
+    <div class="messageBox" *ngIf="showAlreadyAssignedToInternshipMessage">
+      <p>Je hebt al een stageopdracht. <span class="clickableItem bold clickHere" (click)="proceedToInternship()">Klik hier</span> om naar jouw stageopdracht te gaan.</p>
+    </div>
+
+    <!-- Message: this is my internship -->
+    <div class="messageBox" *ngIf="myInternshipId == internship.internshipId">
+      <p>Dit is jouw stageopdracht.</p>
+    </div>
+
+    <!-- Message: internship is full -->
+    <div class="completedMessageBox" *ngIf="internship.completed && myInternshipId != internship.internshipId">
+      <p>Deze stageopdracht is volzet.</p>
+    </div>
+
+    <!-- Message: rejection message -->
+    <div class="completedMessageBox" *ngIf="showRejectionMessage">
+      <p>
+        Je hebt geen toestemming gekregen van de stagecoördinator om deze stageopdracht uit te voeren. De stagecoördinator heeft het volgende gemeld: <br/><br/>
+        <span style="font-style: italic;" [innerHTML]="rejectionMessage"></span>
+      </p>
+    </div>
+
+    <app-internship-generic-details [internship]="internship"></app-internship-generic-details>
+
+    <!-- Apply button -->
+    <span *ngIf="showApplyButton && !internship.completed">
+      <button id="btnApply" (click)="openModalPopup()" [disabled]="applyButtonDisabled" [ngClass]="{disabled: applyButtonDisabled, clickableItem: !applyButtonDisabled}">
+        <span class="tooltip" *ngIf="applyButtonDisabled">Je hebt al gesolliciteerd voor deze stageaanvraag.</span>
+        {{ textApplyButton }}
+      </button>
+      <p *ngIf="applyButtonDisabled">Je hebt gesolliciteerd voor deze stageopdracht. Als je in aanmerking komt voor deze stageopdracht, zal je dit zien in het 'Mijn stageopdrachten'-menu. <br/>
+      <span (click)="removeApplication()" class="hyperlink">Trek sollicitatie in.</span></p>
+    </span>
+  </ng-container>
+
+  <!-- APPLICATION CONFIRMATION -->
+  <div class="modalPopup" *ngIf="modalPopupIsVisible">
+    <p>Ben je zeker dat je wilt solliciteren voor deze stageopdracht?</p>
+    <div>
+      <button (click)="apply()">JA</button>
+      <button (click)="closeModalPopup()">ANNULEER</button>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="spinner"></div>
+  </ng-template>
+
+  <br/> <br/> <br/> <br/>
+
+</div>

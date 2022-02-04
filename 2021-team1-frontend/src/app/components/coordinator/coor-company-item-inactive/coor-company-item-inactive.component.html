@@ -1,0 +1,18 @@
+<div>
+  <label>{{ company.name }}</label>
+
+  <div class="buttons">
+    <button class="symbol" (click)="showDetails()">
+      <span class="tooltip">Toon bedrijfsgegevens.</span>
+      &#xE18B; <!-- eye -->
+    </button>
+    <button class="symbol" (click)="approve()">
+      <span class="tooltip">Activeer bedrijf.</span>
+      &#xE001; <!-- checkmark -->
+    </button>
+    <button class="symbol" (click)="reject()">
+      <span class="tooltip">Keur bedrijf af.</span>
+      &#xE106; <!-- cross -->
+    </button>
+  </div>
+</div>

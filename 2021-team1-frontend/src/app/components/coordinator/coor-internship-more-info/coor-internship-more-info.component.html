@@ -1,0 +1,13 @@
+<h2>MEER INFO VRAGEN</h2>
+
+<form [formGroup]="moreInfoForm" (ngSubmit)="submitRejectedForm()">
+  <label class="bold" for="otherRemarks">Meer info vragen aan bedrijf*</label>
+  <label class="errorDescription" *ngIf="!externalFeedback.valid && btnSendClicked">&nbsp; Verplicht - Max. 500 karakters</label>
+  <label class="errorDescription" *ngIf="confirmErrorIsVisible">Er is iets misgelopen. Probeer opnieuw.</label> <br/>
+  <textarea id="otherRemarks" class="smallMarginTop middleMarginBottom long" type="text" formControlName="externalFeedback"
+            [ngClass]="{error: !externalFeedback.valid && btnSendClicked}"></textarea> <br/>
+
+  <input class="button" type="submit" value="BEVESTIG">
+
+  <div class="spinner" [hidden]="!submitted"></div>
+</form>

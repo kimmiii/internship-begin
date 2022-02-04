@@ -1,0 +1,22 @@
+.overview {
+  column-gap: 30px;
+  display: grid;
+  grid-template-areas:
+    "event appointments"
+    "internships appointments"
+    "internships appointments";
+  grid-template-rows: 175px auto;
+  padding-bottom: 30px;
+}
+
+.event {
+  grid-area: event;
+}
+
+.internships {
+  grid-area: internships;
+}
+
+.appointments {
+  grid-area: appointments;
+}

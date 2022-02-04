@@ -1,0 +1,11 @@
+.event-card {
+  margin: 10px 0;
+  width: 50%;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+}

@@ -1,0 +1,28 @@
+@import "../../../../_styles/colors";
+
+.form {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__wide-field {
+    grid-column: span 2;
+  }
+}
+
+.create-appointment__info {
+  margin-bottom: 20px;
+
+  &__item {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 10% 90%;
+
+    &--label {
+      color: $color-lime;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+}

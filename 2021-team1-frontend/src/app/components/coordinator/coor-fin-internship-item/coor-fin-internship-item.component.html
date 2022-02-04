@@ -1,0 +1,41 @@
+<div class="fullComponent" xmlns="http://www.w3.org/1999/html">
+  <ng-container *ngIf="isAllDataFetched">
+    <div>
+      <!-- Left part of component-->
+      <div class="textDiv">
+        <p class="company">
+          {{ internship.company.name }}
+          <label class="symbol" *ngIf="internship.completed">
+            <span class="tooltip">Deze stageopdracht is volzet.</span>
+            <span class="bold green" style="font-size: 13pt;">&#xEC61;</span> <!-- checkmark -->
+          </label>
+        </p>
+
+        <p class="title">{{ internship.researchTopicTitle }}</p>
+        <p class="contact"><span class="bold">Contactpersoon:</span> {{ contact.firstname }} {{ contact.surname }}</p>
+        <p class="contact"><span class="bold">Bedrijfspromotor:</span> {{ internship.promotorFirstname }} {{ internship.promotorSurname }}</p>
+      </div>
+
+      <!-- Right part of component -->
+      <div class="specialisationDiv">
+        <p>Afstudeerrichting(en):</p>
+        <ul>
+          <li *ngFor="let specialisation of specialisationList;"  class="shortenText">{{ specialisation.specialisation.description }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="student">
+      <span class="tooltip" *ngIf="countAssignedStudents == 1">
+        Er is al één student
+        <span class="bold">({{ internship.internshipAssignedUser[0].user.userFirstName }} {{ internship.internshipAssignedUser[0].user.userSurname }})</span>
+        toegewezen aan deze stageopdracht.
+      </span>
+      <span *ngIf="!internship.completed">
+          <span class="symbol assignedStudentSymbol" *ngFor="let student of countAssignedStudentsArray">&#xE1E0;</span>
+      </span>
+      <span class="symbol notAssignedStudentSymbol" *ngFor="let student of countStudentSymbol;">&#xE13D;</span> <!-- student -->
+    </p>
+
+  </ng-container>
+</div>

@@ -1,0 +1,37 @@
+<div class="fullComponent">
+  <h4>VOEG CONTACTPERSOON TOE</h4>
+
+  <form [formGroup]="addContactForm" (ngSubmit)="addContact()">
+    <label class="bold" for="firstname">Voornaam*</label>
+    <input id="firstname" type="text" formControlName="firstname" class="smallMarginBottom"
+           [ngClass]="{error: !firstname.valid && submitButtonClicked}">
+    <label class="errorDescription" *ngIf="!firstname.valid && submitButtonClicked">Maximum 50 karakters</label>
+    <br/>
+
+    <label class="bold" for="surname">Naam*</label>
+    <input id="surname" type="text" formControlName="surname" class="smallMarginBottom"
+           [ngClass]="{error: !surname.valid && submitButtonClicked}">
+    <label class="errorDescription" *ngIf="!surname.valid && submitButtonClicked">Maximum 50 karakters</label><br/>
+
+    <label class="bold" for="function">Functie*</label>
+    <input id="function" type="text" formControlName="function" class="smallMarginBottom"
+           [ngClass]="{error: !function.valid && submitButtonClicked}">
+    <label class="errorDescription" *ngIf="!function.valid && submitButtonClicked">Minimum 2 - Maximum 100 karakters</label><br/>
+
+    <label class="bold" for="email">E-mailadres*</label>
+    <input id="email" type="text" formControlName="email" class="smallMarginBottom"
+           [ngClass]="{error: !email.valid && submitButtonClicked}">
+    <label class="errorDescription" *ngIf="!email.valid && submitButtonClicked">Geen geldig e-mailadres</label>
+    <br/>
+
+    <label class="bold" for="phoneNumber">Telefoonnummer*</label>
+    <input id="phoneNumber" type="text" formControlName="phoneNumber" class="smallMarginBottom" placeholder="+3212345678 of +32123456789"
+           [ngClass]="{error: !phoneNumber.valid && submitButtonClicked}">
+    <label class="errorDescription" *ngIf="!phoneNumber.valid && submitButtonClicked">Geen geldig telefoonnummer</label><br/>
+
+    <input id="btnAdd" value="VOEG TOE" type="submit" [disabled]="formSubmitted"/>
+    <label class="errorDescription" *ngIf="contactErrorOccurred">{{ contactErrorMessage }}</label>
+  </form>
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+</div>

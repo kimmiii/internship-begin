@@ -1,0 +1,72 @@
+<div class="fullscreen">
+  <!-- Message: approve hire approval -->
+  <div class="messageBox" *ngIf="allDataIsFetched && !internship.completed && userIntership.rejectionFeedback == null">
+    <p>
+    <span *ngIf="!userIntership.hireApproved">
+      Student <span class="bold">{{ student.userFirstName }} {{ student.userSurname }}</span> wil graag onderstaande stageopdracht uitvoeren. Klik op:
+      <ul>
+        <li><span class="bold">GOEDKEUREN</span> om te bevestigen dat hij/zij deze stageopdracht mag doen. Hierna is het mogelijk om de nodige stagecontracten
+          te bekijken en ondertekenen.</li>
+        <li><span class="bold">WEIGEREN</span> om de student geen toestemming te geven om deze stageopdracht te doen.</li>
+      </ul>
+
+    <button class="btnAcceptReject" (click)="openModalPopup()">GOEDKEUREN</button>
+    <button class="btnAcceptReject" (click)="toggleRejectForm()">WEIGEREN</button>
+    </span>
+
+      <br/><br/>
+
+    <span *ngIf="internship.internshipAssignedUser.length > 0 && internship.internshipAssignedUser[0].user.role.code == 'STU'">
+      Deze stageopdracht vergt twee studenten. Student
+      <span class="bold">{{ internship.internshipAssignedUser[0].user.userFirstName }} {{ internship.internshipAssignedUser[0].user.userSurname }}</span>
+      is al toegewezen aan deze stageopdracht. <br/><br/>
+    </span>
+
+    <div *ngIf="showRejectForm">
+      <form [formGroup]="rejectForm" (ngSubmit)="submitRejectForm()">
+        <label class="errorDescription" *ngIf="!feedback.valid && btnSubmitClicked">&nbsp; Verplicht - Max. 1000 karakters</label><br/>
+        <textarea id="feedback" class="smallMarginTop middleMarginBottom long" type="text" formControlName="feedback"
+                  [ngClass]="{error: !feedback.valid && btnSubmitClicked}" placeholder="Geef feedback aan de student.">
+        </textarea> <br/>
+        <input id="btnConfirm" class="button" type="submit" value="BEVESTIG">
+      </form>
+    </div>
+  </div>
+
+  <!-- Message: rejected internship -->
+  <div class="rejectionMessageBox" *ngIf="allDataIsFetched && userIntership.rejectionFeedback != null && !userIntership.hireApproved">
+    <p>
+      Je hebt student <span class="bold">{{ student.userFirstName }} {{ student.userSurname }}</span> geen toestemming gegeven om deze stageopdracht uit te voeren. Jouw bericht: <br/><br/>
+      <span style="font-style: italic" [innerHTML]="userIntership.rejectionFeedback"></span>
+    </p>
+  </div>
+
+  <!-- Message: assigned to students -->
+  <div class="messageBox" *ngIf="allDataIsFetched && internship.completed">
+    <p>Deze stageopdracht is volzet en toegewezen aan:</p>
+    <ul>
+      <li *ngFor="let student of internship.internshipAssignedUser">
+        {{ student.user.userFirstName }} {{ student.user.userSurname }}
+      </li>
+    </ul>
+  </div>
+
+  <br/><br/>
+
+  <!-- Internship generic details component -->
+  <app-internship-generic-details *ngIf="allDataIsFetched" [internship]="internship" [student]="student"></app-internship-generic-details>
+
+  <!-- Modal popup approve hire request -->
+  <div class="modalPopup" *ngIf="showModalPopup">
+    <p>Ben je zeker dat student <span class="bold">{{ student.userFirstName }} {{ student.userSurname }}</span> de stageopdracht
+      van bedrijf <span class="bold">{{ internship.company.name }}</span> met titel <span class="bold">{{ internship.researchTopicTitle }}</span> mag uitvoeren?</p>
+    <div>
+      <button (click)="approveHireRequest()">JA</button>
+      <button (click)="closeModalPopup()">ANNULEER</button>
+    </div>
+  </div>
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+
+  <br/><br/><br/>
+</div>

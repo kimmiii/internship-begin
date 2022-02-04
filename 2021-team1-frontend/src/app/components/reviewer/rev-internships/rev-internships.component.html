@@ -1,0 +1,58 @@
+<div class="fullscreen">
+  <h2>STAGEAANVRAGEN</h2>
+  <p>
+    Deze lijsten tonen de stageaanvragen die bekeken, beoordeeld en opgevolgd kunnen worden.
+  </p>
+
+  <ng-container *ngIf="isAllDataFetched == true; else loading">
+    <div class="pairOfTables">
+      <table>
+        <thead class="submitted">TE BEOORDELEN</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of toReviewInternshipList;">
+          <app-rev-internship-item id="submittedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-rev-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead class="askedChange">BEOORDEELD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of reviewedInternshipList;">
+          <app-rev-internship-item id="changeAskedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-rev-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pairOfTables">
+      <table>
+        <thead class="approved">GOEDGEKEURD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of approvedInternshipList;">
+          <app-rev-internship-item id="approvedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-rev-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead class="rejected">AFGEKEURD</thead>
+        <tbody class="container">
+        <tr *ngFor="let internship of rejectedInternshipList;">
+          <app-rev-internship-item id="rejectedInternship{{internship.internshipId}}" class="clickableItem" [internship]="internship" (click)="proceedToDetailPage(internship.internshipId)" (internshipItemLoaded)="addToLoadedArray()"></app-rev-internship-item>
+          <hr/>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="spinner" *ngIf="!allInternshipItemsAreLoaded"></div>
+  </ng-template>
+
+  <br/><br/><br/><br/>
+</div>

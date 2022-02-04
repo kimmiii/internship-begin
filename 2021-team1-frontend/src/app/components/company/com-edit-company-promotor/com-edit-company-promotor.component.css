@@ -1,0 +1,24 @@
+form {
+  margin-top: 20px;
+}
+
+.middle {
+  width: 250px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#btnSend {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 10px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+#btnSend:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}

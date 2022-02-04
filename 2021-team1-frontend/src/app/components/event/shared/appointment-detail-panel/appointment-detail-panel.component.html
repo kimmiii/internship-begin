@@ -1,0 +1,99 @@
+<div class="appointment-detail" [ngClass]="getDetailPanelClasses()" [formGroup]="editAppointmentFormGroup">
+
+  <div class="appointment-detail__content">
+    <div class="appointment-detail__data">
+      <div class="appointment-detail__title">
+        {{ getAppointmentTitle() }}
+        <app-appointment-status [appointmentStatus]="appointmentDetail?.appointmentStatus">
+        </app-appointment-status>
+      </div>
+
+      <p class="appointment-detail__icon-info">
+        <span class="material-icons">schedule</span>
+        {{ appointmentDetail?.beginHour | timeSpan }} -
+        {{ appointmentDetail?.endHour | timeSpan }}
+      </p>
+
+      <p class="appointment-detail__icon-info">
+        <span class="material-icons">person</span>
+        {{ appointmentDetail?.studentName || appointmentDetail?.attendeeName }}
+      </p>
+
+      <p class="appointment-detail__icon-info">
+        <span class="material-icons">description</span>
+        {{ appointmentDetail?.researchTopicTitle }}
+      </p>
+
+      <hr class="line">
+
+      <ng-template [ngIf]="canUpdateAppointment" [ngIfElse]="readonlyTeamsLink">
+        <mat-form-field appearance="outline" class="form__field">
+          <mat-label>Teams-vergadering</mat-label>
+          <input matInput [formControlName]="teamsLinkFormControlName">
+          <span matSuffix><img src="/assets/images/teams-logo.svg" class="teams__logo" alt="Microsoft Teams"/></span>
+        </mat-form-field>
+      </ng-template>
+      <ng-template #readonlyTeamsLink>
+        <label class="appointment-detail__label">Teams-vergadering</label>
+        <ng-template [ngIf]="appointmentDetail?.onlineMeetingLink" [ngIfElse]="noData">
+          <p class="appointment-detail__icon-info">
+            <img src="/assets/images/teams-logo.svg" class="teams__logo" alt="Microsoft Teams"/>
+            <a class="teams__link" (click)="openTeamsLink()">{{ appointmentDetail?.onlineMeetingLink }}</a>
+          </p>
+        </ng-template>
+      </ng-template>
+
+      <label class="appointment-detail__label">Extra info</label>
+      <ng-template [ngIf]="appointmentDetail?.comment" [ngIfElse]="noData">
+        <p>{{ appointmentDetail?.comment }}</p>
+      </ng-template>
+
+      <label class="appointment-detail__label">Bestanden</label>
+      <ng-template [ngIf]="appointmentFiles?.length" [ngIfElse]="noData">
+        <p class="appointment-detail__icon-info appointment-detail__file"
+           *ngFor="let file of appointmentFiles"
+           (click)="openFile(file)">
+          <span class="material-icons">attach_file</span>
+          <span>{{ file?.fileName }}</span>
+        </p>
+      </ng-template>
+
+      <ng-template #noData>
+        <p class="info">-</p>
+      </ng-template>
+    </div>
+
+    <div class="appointment-detail__actions">
+      <button mat-flat-button color="primary"
+              *ngIf="!(appointmentDetail?.appointmentStatus === AppointmentStatus.CONFIRMED) && canUpdateAppointment"
+              (click)="confirmAppointment()">
+        Bevestigen
+      </button>
+      <button mat-flat-button color="primary"
+              *ngIf="canCancelAppointment()"
+              (click)="cancelAppointment()">
+        Afspraak annuleren
+      </button>
+      <button mat-flat-button color="primary"
+              *ngIf="canUpdateAppointment"
+              (click)="saveAppointment()">
+        Opslaan
+      </button>
+    </div>
+  </div>
+
+  <button mat-icon-button class="appointment-detail__button--expand"
+          (click)="expandAppointmentDetail()">
+    <mat-icon *ngIf="expandedAppointmentDetail; else expandIcon">chevron_right</mat-icon>
+    <ng-template #expandIcon>
+      <mat-icon>chevron_left</mat-icon>
+    </ng-template>
+  </button>
+
+  <button mat-icon-button class="appointment-detail__button--close"
+          *ngIf="closeable"
+          (click)="hideAppointmentDetail()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+</div>

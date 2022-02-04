@@ -1,0 +1,101 @@
+<h2>statistieken</h2>
+
+<div *ngIf="dataSource; else noData" class="student-report">
+  <strong>Totaal aantal studenten ingeschreven:</strong> {{ totalRegisteredStudents }}
+
+  <div class="filters" [formGroup]="filterForm">
+
+    <ng-select class="filters__item"
+               [multiple]="true"
+               [formControlName]="studentFilterFormControlName"
+               placeholder="Kies een student">
+      <ng-option *ngFor="let student of studentOptions"
+                 [value]="student.studentId">
+        {{ student.studentName }}
+      </ng-option>
+    </ng-select>
+
+    <ng-select class="filters__item"
+               [multiple]="true"
+               [formControlName]="companyFilterFormControlName"
+               placeholder="Kies een bedrijf">
+      <ng-option *ngFor="let company of companyOptions | async"
+                 [value]="company.companyId">
+        {{ company.name }}
+      </ng-option>
+    </ng-select>
+
+    <ng-select class="filters__item"
+               [multiple]="true"
+               [formControlName]="statusFilterFormControlName"
+               placeholder="Kies een status">
+      <ng-option *ngFor="let status of statusOptions"
+                 [value]="status">
+        {{ status | translate }}
+      </ng-option>
+    </ng-select>
+  </div>
+
+
+  <ng-container *ngIf="dataSource
+  | sort: sortByAppointments: sort
+  | filter: filterByStudent: studentValues
+  | filter: filterByCompany: companyValues
+  | filter: filterByStatus: statusValues
+  as filteredStudentAppointmentInfo">
+    <ng-container *ngIf="filteredStudentAppointmentInfo?.length; else noFilteredAppointments">
+      <div class="report-grid report-grid__titles" matSort (matSortChange)="changeSort($event)">
+        <p>Student</p>
+        <p>Afspraken</p>
+        <p mat-sort-header="amountOfAppointments">Aantal afspraken</p>
+      </div>
+
+      <ng-container *ngIf="filteredStudentAppointmentInfo | slice: startIndex: endIndex as studentAppointmentInfos">
+        <div *ngFor="let studentAppointmentInfo of studentAppointmentInfos" class="report-grid report-grid__student"
+             [ngClass]="studentAppointmentInfo.appointments?.length | appointmentsToStatusColor">
+          <div>{{ studentAppointmentInfo.studentName }}</div>
+
+          <div class="report-grid__student__appointment">
+            <ng-container *ngIf="studentAppointmentInfo.appointments?.length > 0; else noAppointments">
+              <ng-container *ngFor="let appointment of studentAppointmentInfo?.appointments">
+                <div class="report-grid__student__appointment__status
+                    report-grid__student__appointment__status--{{ appointment?.appointmentStatus | lowercase }}">
+                  {{ appointment?.appointmentStatus | translate }}
+                </div>
+                <div>
+                  {{ appointment?.companyName }}
+                </div>
+                <div>{{ appointment?.beginHour | timeSpan }} - {{ appointment?.endHour | timeSpan }}</div>
+              </ng-container>
+            </ng-container>
+
+          <ng-template #noAppointments>
+            <em class="report-grid__student__appointment--no-appointments">
+              Deze student heeft nog geen afspraken gemaakt.
+            </em>
+          </ng-template>
+        </div>
+
+          <div>{{ studentAppointmentInfo?.appointments?.length }}</div>
+        </div>
+
+        <mat-paginator [length]="filteredStudentAppointmentInfo?.length"
+                       [pageIndex]="pageIndex"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="pageSizeOptions"
+                       (page)="changePage($event)">
+        </mat-paginator>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #noFilteredAppointments>
+      <em class="report-grid__student__appointment--no-appointments">
+        Er zijn geen afspraken die voldoen aan de filters.
+      </em>
+    </ng-template>
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <p><em>Er zijn momenteel geen statistieken beschikbaar.</em></p>
+</ng-template>

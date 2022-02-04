@@ -1,0 +1,71 @@
+.button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.errorDescription {
+  color: red;
+  font-size: 12pt;
+  margin-bottom: -50px;
+  margin-left: 10px;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+  margin-bottom: 70px;
+}
+
+.inline {
+  display: inline;
+}
+
+.marginLeft {
+  margin-left: 15px;
+}
+
+.uploadSuccessful {
+  color: #6ca336;
+  font-size: 12pt;
+  margin-bottom: -50px;
+  margin-left: 10px;
+}
+
+.verySmallMarginTop {
+  margin-top: 5px;
+}
+
+.verySmallMarginBottom {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 150px;
+  }
+}

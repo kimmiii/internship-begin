@@ -1,0 +1,41 @@
+<div class="appointments">
+  <h3>AFSPRAKEN</h3>
+
+  <div *ngIf="studentActiveAppointments?.length; else noAppointments">
+    <div *ngFor="let activeAppointment of studentActiveAppointments" class="appointment">
+      <ng-template [ngTemplateOutlet]="appointmentCard"
+                   [ngTemplateOutletContext]="{ appointment: activeAppointment, isCancelled: false  }">
+      </ng-template>
+    </div>
+  </div>
+
+  <div *ngIf="studentCancelledAppointments?.length">
+    <h4 class="title--smaller">Geannuleerde afspraken</h4>
+    <div *ngFor="let canceledAppointment of studentCancelledAppointments" class="appointment">
+      <ng-template [ngTemplateOutlet]="appointmentCard"
+                   [ngTemplateOutletContext]="{ appointment: canceledAppointment, isCancelled: true }">
+      </ng-template>
+    </div>
+  </div>
+
+  <ng-template #noAppointments>
+    <div class="warning">
+      <span class="material-icons">announcement</span>
+      Klik op een stageopdracht om deze in detail te bekijken en een afspraak te maken.
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #appointmentCard let-appointment="appointment" let-isCancelled="isCancelled">
+  <mat-card class="appointment-card" (click)="routeToStudentAppointmentsPage(appointment.companyId, appointment.internshipId)">
+    <mat-card-title class="appointment-card__title">{{ appointment?.beginHour | timeSpan }}
+      - {{ appointment?.endHour | timeSpan }} {{ appointment?.companyName }}</mat-card-title>
+    <mat-card-subtitle>met {{ appointment?.attendeeName }}</mat-card-subtitle>
+    <mat-card-content class="appointment-card__content">
+      <app-appointment-status [appointmentStatus]="appointment?.appointmentStatus"></app-appointment-status>
+      <p *ngIf="isCancelled && appointment?.cancelMotivation">Reden: {{ appointment?.cancelMotivation }}</p>
+    </mat-card-content>
+    <img *ngIf="appointment?.onlineMeetingLink && !isCancelled" src="/assets/images/teams-logo.svg" class="teams__logo" alt="Microsoft Teams"
+      (click)="openTeamsLink(appointment)"/>
+  </mat-card>
+</ng-template>

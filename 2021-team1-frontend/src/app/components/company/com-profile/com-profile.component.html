@@ -1,0 +1,89 @@
+<div class="confirmationPopup" *ngIf="deletedSuccessfully">
+  <label><span class="bold">{{ selectedContact.firstname }} {{ selectedContact.surname}}</span> is succesvol verwijderd.</label>
+</div>
+
+<div class="fullscreen">
+  <h2>PROFIEL</h2>
+  <p>Bekijk hier het bedrijfsprofiel en beheer de contactpersonen van uw bedrijf.</p>
+
+  <ng-container *ngIf="isAllDataFetched == true; else loading">
+    <!-- Company information -->
+    <div class="company-overview">
+      <div class="horizontal middleMarginRight">
+        <label class="bold">Bedrijfsnaam</label> <br/>
+        <label id="companyName" class="smallMarginBottom">{{ company.name }}</label>
+      </div>
+
+      <div class="horizontal">
+        <label class="bold">BTW-nummer</label> <br/>
+        <label id="companyVatNumber">{{ company.vatNumber }}</label>
+      </div>
+
+      <div class="newLine">
+        <div class="horizontal middleMarginRight smallMarginBottom">
+          <label class="bold">Adres</label> <br/>
+          <label id="companyAddress1">{{ company.street }} {{ company.houseNr }}<span *ngIf="company.busNr !== null">
+            <span *ngIf="company.busNr != null">/</span>{{ company.busNr }}</span></label> <br/>
+          <label id="companyAddress2">{{ company.zipCode}} {{ company.city}}</label> <br/>
+          <label id="companyAddress3">{{ company.country }}</label>
+        </div>
+
+        <div class="horizontal middleMarginRight">
+          <label class="bold">Contact</label> <br/>
+          <label id="companyEmail">{{ company.email }}</label> <br/>
+          <label id="companyPhoneNumber">{{ company.phoneNumber }}</label>
+        </div>
+      </div>
+
+      <div class="newLine">
+        <label class="bold">Aantal medewerkers: </label>
+        <label id="companyTotalEmployees">{{ company.totalEmployees }}</label> <br/>
+        <label class="bold">Aantal IT-medewerkers: </label>
+        <label id="companyTotalITEmployees">{{ company.totalITEmployees }}</label> <br/>
+        <label class="bold">Aantal technische begeleiders: </label>
+        <label id="companyTotalItEmployeesActive">{{ company.totalITEmployeesActive }}</label>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <h3>CONTACTPERSONEN</h3>
+    <p class="description">Voeg hier één of meerdere contactpersonen toe. Deze zullen fungeren als contactpersoon tussen
+      de PXL Hogeschool en uw bedrijf in functie van een de desbetreffende stageopdracht. Deze persoon zal de stagecontracten ondertekenen.
+      Het is ook mogelijk bestaande contactpersonen te bekijken of verwijderen.</p>
+
+    <table>
+      <tbody *ngIf="contactist.length == 0">
+        <tr id="emptyTable italic">Geen contactpersonen</tr>
+      </tbody>
+
+      <tbody class="container" *ngIf="contactist.length > 0">
+        <tr *ngFor="let contact of contactist;">
+          <app-com-contact-item id="contactComponent" [contact]="contact" (viewDetailsClicked)="showContactDetails($event)" (deleteContactClicked)="delete($event)"></app-com-contact-item>
+          <hr/>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Components (toggle on/off) -->
+    <app-com-contact-details id="contactDetailsComponent" *ngIf="showContactDetailsIsVisible" [contact]="selectedContact"></app-com-contact-details>
+    <app-com-contact-add id="contactAddComponent" *ngIf="addContactFormIsVisible" (closeAddContactComponent)="closeAddContactComponent()"></app-com-contact-add>
+
+    <!-- Toggle button AddContactForm -->
+    <button id="addButton" (click)="toggleAddContactForm()" [ngClass]="{disabled: addContactFormIsVisible}" [disabled]="addContactFormIsVisible">VOEG CONTACTPERSOON TOE</button>
+
+    <!-- Confirmation popup -->
+    <div id="confirmPopup" class="modalPopup" *ngIf="modalPopupIsVisible">
+      <p>Ben je zeker dat je contactpersoon <span class="bold">{{ selectedContact.firstname }} {{ selectedContact.surname }}</span> wilt verwijderen?</p>
+      <div>
+        <button (click)="confirmDelete()">JA</button>
+        <button (click)="cancelDelete()">ANNULEER</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="spinner"></div>
+  </ng-template>
+
+  <br/><br/><br/>
+</div>

@@ -1,0 +1,27 @@
+<h2>Stageopdrachten</h2>
+<p>Kies de stageopdrachten die u beschikbaar wil maken voor het Handshake Event.</p>
+
+<ng-container *ngIf="internships?.length > 0; else noInternships">
+  <div class="company-internships__select-all">
+    Selecteer alle stageopdrachten
+    <mat-slide-toggle [checked]="showAllInEvent" (toggleChange)="toggleShowAllInEvent()"></mat-slide-toggle>
+  </div>
+
+  <div class="internship-list">
+    <app-internship-card *ngFor="let internship of internships"
+                         [internship]="internship"
+                         [show]="showAllInEvent">
+    </app-internship-card>
+  </div>
+</ng-container>
+
+<ng-template #noInternships>
+  <p><em>Er zijn momenteel geen goedgekeurde stageopdrachten.</em></p>
+</ng-template>
+
+<button *ngIf="internships?.length > 0"
+        mat-flat-button color="primary"
+        class="company-internships__save-button"
+        (click)="save()">
+  Opslaan
+</button>

@@ -1,0 +1,18 @@
+.internship-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.company-internships {
+  &__select-all {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+  }
+
+  &__save-button {
+    margin-top: 30px;
+  }
+}

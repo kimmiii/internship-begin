@@ -1,0 +1,35 @@
+<div class="fullscreen">
+  <h2>maak een afspraak</h2>
+  <h3>{{ companyAppointmentInfo?.companyName | uppercase }}</h3>
+
+  <div class="appointments-overview">
+    <div *ngIf="canMakeAppointment(); else appointmentNotPossible"
+         class="time-table"
+         [ngClass]="{ 'time-table--disabled': studentCompanyAppointment }">
+      <app-time-table [timeSlot]="companyAppointmentInfo?.timeSlot"
+                      [start]="companyAppointmentInfo?.arrivalTime"
+                      [end]="companyAppointmentInfo?.departureTime"
+                      [attendees]="companyAppointmentInfo?.attendees"
+                      [companyAppointments]="companyAppointments"
+                      [studentAppointments]="studentAppointments"
+                      [studentCompanyAppointment]="studentCompanyAppointment"
+                      (createAppointment)="createAppointment($event)">
+      </app-time-table>
+    </div>
+
+    <app-appointment-detail-panel *ngIf="studentCompanyAppointment"
+                                  [showAppointmentDetailPanel]="true"
+                                  [appointmentDetail]="studentCompanyAppointment"
+                                  [appointmentFiles]="appointmentFiles$ | async"
+                                  [activeEvent]="activeEvent"
+                                  [companyRegistrationInfo]="companyAppointmentInfo"
+                                  [closeable]="false"
+                                  [canUpdateAppointment]="false"
+                                  (onCancelAppointmentClicked)="cancelAppointment()">
+    </app-appointment-detail-panel>
+  </div>
+
+  <ng-template #appointmentNotPossible>
+    <p>Het is momenteel nog niet mogelijk om een afspraak te maken bij dit bedrijf.</p>
+  </ng-template>
+</div>

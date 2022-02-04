@@ -1,0 +1,40 @@
+<div class="fullComponent">
+
+  <ng-container *ngIf="isAllDataFetched">
+    <!-- Left part of component -->
+      <div class="textDiv">
+        <p class="company">{{ internship.company.name }}</p>
+        <p class="title">{{ internship.researchTopicTitle }}</p>
+
+        <!-- This will be shown in all columns, except for reviewer column -->
+        <div *ngIf="(internship.projectStatus.code == 'FEE') || (internship.projectStatus.code != 'REV' &&
+        internship.internshipAssignedUser[0].user.role.code != 'REV') || (internship.projectStatus.code == 'REV' &&
+        internship.internshipAssignedUser[0].user.role.code == 'COO')">
+          <p class="contact" [ngClass]="{smallerWidth: internship.projectStatus.code == 'NEW'}">
+            <span class="bold">Contactpersoon:</span> {{ contact.firstname }} {{ contact.surname }}
+          </p>
+          <p class="promotor" [ngClass]="{smallerWidth: internship.projectStatus.code == 'NEW'}">
+            <span class="bold">Bedrijfspromotor:</span> {{ internship.promotorFirstname }} {{ internship.promotorSurname }}
+          </p>
+        </div>
+
+        <!-- This will be shown in the reviewers column -->
+        <div *ngIf="internship.projectStatus.code == 'REV' && internship.internshipAssignedUser[0].user.role.code == 'REV'">
+          <p class="contact" [ngClass]="{smallerWidth: internship.projectStatus.code == 'NEW'}">
+            <span class="bold">{{countReviewersAnswered}}</span> (van {{internship.countTotalAssignedReviewers}})
+            <span *ngIf="countReviewersAnswered == 1">reviewer heeft</span>
+            <span *ngIf="countReviewersAnswered != 1">reviewers hebben</span> geantwoord.
+          </p>
+          <p class="contact" [ngClass]="{smallerWidth: internship.projectStatus.code == 'NEW'}">
+            <span class="bold">Verstuurd:</span> {{ internship.sentToReviewersAt | date:'dd-MM-yyyy \'om\' HHumm' }}.
+          </p>
+        </div>
+      </div>
+
+      <p class="student">
+        <span class="symbol" *ngFor="let student of countStudentSymbol;">&#xE13D;</span> <!-- student -->
+      </p>
+
+      <div class="box" *ngIf="internship.projectStatus.code == 'NEW' && internship.externalFeedback == null">{{ internship.projectStatus.description }}</div>
+  </ng-container>
+</div>

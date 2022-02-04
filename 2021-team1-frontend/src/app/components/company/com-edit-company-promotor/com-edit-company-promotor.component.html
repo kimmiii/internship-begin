@@ -1,0 +1,36 @@
+<form [formGroup]="editCompanyPromotorForm" (ngSubmit)="editPromotor()">
+  <div class="newLine">
+    <div class="horizontal">
+      <label for="promotorfirstname">Voornaam*</label>
+      <label class="errorDescription" *ngIf="!promotorfirstname.valid && btnSendClicked">&nbsp; Max. 50 karakters</label><br/>
+      <input id="promotorfirstname" class="middle" type="text" formControlName="promotorfirstname"
+             [ngClass]="{error: !promotorfirstname.valid && btnSendClicked}"/>
+    </div>
+
+    <div class="horizontal">
+      <label for="promotorSurname">Naam*</label>
+      <label class="errorDescription" *ngIf="!promotorSurname.valid && btnSendClicked">&nbsp; Min 50 karakters</label><br/>
+      <input id="promotorSurname" class="middle" type="text" formControlName="promotorSurname"
+             [ngClass]="{error: !promotorSurname.valid && btnSendClicked}"/>
+    </div>
+  </div>
+
+  <div class="newLine">
+    <label for="promotorFunction">Functie*</label>
+    <label class="errorDescription" *ngIf="!promotorFunction.valid && btnSendClicked">&nbsp; Min 2 karakters - Max 100 karakters</label><br/>
+    <input id="promotorFunction" class="middle" type="text" formControlName="promotorFunction"
+           [ngClass]="{error: !promotorFunction.valid && btnSendClicked}"/>
+  </div>
+
+  <div class="horizontal middleMarginBottom">
+    <label for="promotorEmail">E-mailadres*</label>
+    <label class="errorDescription" *ngIf="!promotorEmail.valid && btnSendClicked">&nbsp; Geen geldig e-mailadres</label><br/>
+    <input id="promotorEmail" class="middle" type="email" formControlName="promotorEmail"
+           [ngClass]="{error: !promotorEmail.valid && btnSendClicked}"/>
+  </div>
+
+  <!-- Button -->
+  <input id="btnSend" type="submit" value="OPSLAAN" class="clickableItem" [disabled]="submitted">
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+</form>

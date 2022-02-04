@@ -1,0 +1,151 @@
+<div [formGroup]="eventSettingsFormGroup">
+  <h2>evenement</h2>
+
+  <ng-container *ngIf="event; else noActiveEvent">
+    <app-event-card [event]="event"></app-event-card>
+
+    <p><em *ngIf="!registration">Momenteel bent u nog niet ingeschreven voor het evenement.
+      Vul onderstaande formulier in en klik op registreren om u in te schrijven.</em></p>
+
+    <h2>profiel</h2>
+
+    <h3 class="company-settings__company-name">{{ company?.name }}</h3>
+
+    <div class="company-settings__info">
+      <div>
+        <img [src]="logo" alt="logo {{ company?.name }}"
+             class="company-settings__info__logo"
+             *ngIf="logo" />
+
+        <app-upload-file [label]="'Logo'"
+                         [isImage]="true"
+                         [formControlName]="logoFormControlName">
+        </app-upload-file>
+      </div>
+
+      <div class="company-settings__data">
+        <div>
+          <label class="company-settings__data__label">Adres</label>
+          <p class="company-settings__data__value">{{ company?.street }} {{ company?.houseNr }} {{ company?.busNr }}</p>
+          <p class="company-settings__data__value">{{ company?.zipCode }} {{ company?.city }}</p>
+          <p class="company-settings__data__value">{{ company?.country }}</p>
+        </div>
+
+        <div>
+          <label class="company-settings__data__label">E-mail</label>
+          <p class="company-settings__data__value">{{ company?.email }}</p>
+        </div>
+
+        <div>
+          <label class="company-settings__data__label">Telefoon</label>
+          <p class="company-settings__data__value">{{ company?.phoneNumber}}</p>
+        </div>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Website</mat-label>
+            <input matInput [formControlName]="websiteFormControlName" />
+          </mat-form-field>
+        </div>
+
+        <div class="company-settings__data--wide">
+          <mat-form-field appearance="outline">
+            <mat-label>Beschrijving bedrijf</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="5"
+                      [formControlName]="companyDescriptionFormControlName">
+          </textarea>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <h2>afspraken</h2>
+
+
+    <div class="company-settings__form">
+      <mat-form-field appearance="outline">
+        <mat-label>Aankomstuur</mat-label>
+        <input matInput type="time" [formControlName]="arrivalTimeFormControlName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Vertrekuur</mat-label>
+        <input matInput type="time" [formControlName]="departureTimeFormControlName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Duur tijdslot</mat-label>
+        <input matInput type="number" [min]="0" [max]="60" [formControlName]="timeslotFormControlName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Afspraak maken tot ... uur voor het evenement</mat-label>
+        <input matInput type="number" [min]="0" [max]="60" [formControlName]="createAppointmentUntilFormControlName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Afspraak annuleren tot ... uur voor het evenement</mat-label>
+        <input matInput type="number" [min]="0" [max]="60"
+               [formControlName]="cancelAppointmentUntilFormControlName" />
+      </mat-form-field>
+    </div>
+    <div>
+      <label class="company-settings__data__label">Aanwezigen</label>
+
+      <span *ngIf="attendeeFormGroup.valid && !canAddAttendee"
+            class="form__error">
+          Er kunnen maximum 3 aanwezigen toegevoegd worden.
+      </span>
+
+      <div class="company-settings__form" [formGroup]="attendeeFormGroup">
+        <mat-form-field appearance="outline">
+          <mat-label>Voornaam</mat-label>
+          <input matInput [formControlName]="firstNameFormControlName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Familienaam</mat-label>
+          <input matInput [formControlName]="lastNameFormControlName" />
+        </mat-form-field>
+
+        <button mat-flat-button color="accent"
+                class="company-settings__form__button"
+                [disabled]="attendeeFormGroup.invalid || !canAddAttendee"
+                (click)="addAttendee(attendeeFormGroup.value)">Toevoegen
+        </button>
+      </div>
+
+      <mat-chip-list aria-label="Fruit selection">
+        <mat-chip *ngFor="let attendee of attendees?.value; let i = index"
+                  [selectable]="false"
+                  [removable]="!attendee.id"
+                  (removed)="removeAttendee(i)">
+          {{ attendee?.firstName }} {{ attendee?.lastName }}
+          <mat-icon matChipRemove *ngIf="!attendee.id">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="company-settings__footer">
+      <button mat-flat-button color="primary"
+              [disabled]="eventSettingsFormGroup.invalid || !event"
+              (click)="saveSettings()">
+        <span *ngIf="!registration; else editRegistration">Registreren</span>
+        <ng-template #editRegistration>
+          <span>Opslaan</span>
+        </ng-template>
+      </button>
+      <button *ngIf="registration"
+              mat-flat-button color="primary"
+              [routerLink]="['/event/company']">
+        Kies stageopdrachten
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #noActiveEvent>
+    <em>Er is momenteel geen evenement gepland.</em>
+  </ng-template>
+
+</div>

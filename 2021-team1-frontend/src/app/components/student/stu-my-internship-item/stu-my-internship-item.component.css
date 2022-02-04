@@ -1,0 +1,41 @@
+button {
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+}
+
+button:hover .tooltip {
+  display: block;
+}
+
+label:hover .tooltip {
+  display: block;
+}
+
+.component {
+  padding-top: 7px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.componentInfo {
+  display: inline;
+  float: left;
+  width: 350px;
+}
+
+.componentButtons {
+  margin-top: 3px;
+}
+
+.symbol {
+  font-family: 'Segoe MDL2 Assets', serif;
+  font-size: 10pt;
+  display: inline-block;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+.tooltip {
+  margin-left: 30px;
+}

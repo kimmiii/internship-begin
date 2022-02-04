@@ -1,0 +1,154 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+  margin-right: 20px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+p {
+  width: 70%;
+}
+
+.actionButton {
+  font-size: 14pt;
+  padding: 10px;
+}
+
+.disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+}
+
+.disabled:hover {
+  background-color: lightgray;
+  border-color: lightgray;
+  cursor: default;
+}
+
+.errorDescription {
+  display: block;
+  margin-top: 10px;
+  color: red;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 120px;
+}
+
+.horizontalWithMargin {
+  float: left;
+}
+
+.largeWidth {
+  display: block;
+  width: 1220px;
+}
+
+.middleMarginBottom {
+  margin-bottom: 50px;
+}
+
+.middleMarginTop {
+  margin-top: 80px;
+}
+
+.middleWidth {
+  width: 300px;
+}
+
+.modalPopup {
+  position: fixed;
+  width: 450px;
+  height: 170px;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: white;
+  padding: 15px;
+  border: solid 1px darkgray;
+  box-shadow: 1px 1px 5px black;
+}
+
+.modalPopup button {
+  padding: 10px;
+  font-size: 12pt;
+}
+
+.pairOfButtons {
+  float: left;
+}
+
+.smallMarginBottom {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.smallMarginTop {
+  margin-top: 30px;
+}
+
+#melding {
+  width: 100%;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  color: #6ca336;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+  .pairOfButtons {
+    float: none;
+    margin-bottom: 20px;
+  }
+
+  #btnApprove {
+    width: 326px;
+  }
+
+  #btnToggleMoreInfo {
+    width: 326px;
+  }
+
+  #btnToggleRejection {
+    width: 326px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  button {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .fullscreen {
+    padding-top: 100px;
+  }
+
+  .middleMarginBottom {
+    margin-bottom: 0;
+  }
+
+  .middleMarginTop {
+    margin-top: 50px;
+  }
+
+  .pairOfButtons {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,124 @@
+p {
+  width: 70%;
+  margin-bottom: 30px;
+}
+
+table {
+  display: inline-block;
+  width: 300px;
+  border-collapse: collapse;
+  margin-right: 20px;
+}
+
+table thead {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15pt;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table tbody {
+  height: 600px;
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+}
+
+hr {
+  border-top: solid 2px #328da880;
+  border-bottom: none;
+  width: 300px;
+  margin-bottom: 0;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #328da810;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #328da880;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #328da880;
+}
+
+.pairOfTables {
+  display: inline;
+}
+
+.submitted {
+  background-color: #6ca336;
+  border: solid 2px green;
+  color: white;
+}
+
+.askedChange {
+  background-color: black;
+  border: solid 2px black;
+  color: white;
+}
+
+.inTreatment {
+  background-color: #e0de3430;
+  border: solid 2px #e0de34;
+  color: #e0de34;
+}
+
+.approved {
+  background-color: #6ca336;
+  border: solid 2px green;
+  color: white;
+}
+
+.rejected {
+  background-color: black;
+  border: solid 2px black;
+  color: white;
+}
+
+.clickableItem:hover {
+  color: #328da880;
+}
+
+@media screen and (max-width: 1360px) {
+  .pairOfTables {
+    display: block;
+  }
+
+  table {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .fullscreen {
+    padding-top: 100px;
+  }
+}

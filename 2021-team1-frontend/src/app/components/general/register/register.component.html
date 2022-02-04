@@ -1,0 +1,202 @@
+<div class="imageBackground">
+  <div class="center box container">
+    <button class="button clickableItem" (click)="proceedToLoginPage()">ANNULEER</button>
+
+    <h2>REGISTREER</h2>
+    <p class="description">
+      Registreer uw bedrijf aan de hand van dit formulier. <br />
+      <span class="necessary">* vereist</span>
+    </p>
+
+    <ng-container *ngIf="isAllDataFetched">
+      <!-- Register form -->
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+        <div formGroupName="loginData">
+          <!-- sign up data -->
+          <h3>AANMELDGEGEVENS</h3>
+
+          <label for="email">E-mailadres*</label>
+          <label class="errorDescription" *ngIf="!email.valid && (registerButtonClicked || email.touched)">Geen geldig
+            e-mailadres</label>
+          <label class="errorDescription" *ngIf="emailAlreadyUsed">Dit e-mailadres is reeds in gebruik.</label> <br />
+          <input id="email" type="text" formControlName="email" class="long" (input)="resetFlags()"
+                 [ngClass]="{error: (!email.valid && (registerButtonClicked || email.touched)) || (emailAlreadyUsed)}" />
+          <br />
+
+          <label for="password">Wachtwoord*</label> <br />
+          <input id="password" type="password" formControlName="password" class="long"
+                 [ngClass]="{error: !password.valid && (registerButtonClicked || password.touched)}" /> <br />
+          <div class="errorDescription no-margin-left"
+               *ngIf="!password.valid && (registerButtonClicked || password.touched)">
+            <span>Wachtwoord moet er als volgt uitzien:</span>
+            <ul>
+              <li>Minstens 8 karakters</li>
+              <li>Minstens één kleine letter</li>
+              <li>Minstens één hoofdletter</li>
+              <li>Minstens één cijfer</li>
+              <li>Minsten één speciaal karakter (-_!@#$%^&*)</li>
+            </ul>
+          </div>
+
+          <label for="passwordConfirmation">Bevestig wachtwoord*</label>
+          <label class="errorDescription" *ngIf="!passwordConfirmation.valid && passwordConfirmation.touched">Wachtwoord
+            en bevestiging komen niet overeen</label> <br />
+          <input id="passwordConfirmation" type="password" formControlName="passwordConfirmation" class="long"
+                 [ngClass]="{error: !passwordConfirmation.valid && passwordConfirmation.touched || registerButtonClicked && !passwordConfirmation.valid}" />
+          <br />
+        </div>
+
+        <hr class="newLine" />
+
+        <!-- Company -->
+        <div formGroupName="company">
+          <h3>BEDRIJF</h3>
+
+          <label for="companyName">Bedrijfsnaam*</label>
+          <label class="errorDescription" *ngIf="!companyName.valid && registerButtonClicked">Max. 50 karakters</label>
+          <br />
+          <input id="companyName" type="text" formControlName="companyName" class="long"
+                 [ngClass]="{error: !companyName.valid && registerButtonClicked}"> <br />
+
+          <label for="companyStreet">Straat*</label>
+          <label class="errorDescription" *ngIf="!companyStreet.valid && registerButtonClicked">Min. 3 - Max. 50
+            karakters</label> <br />
+          <input id="companyStreet" type="text" formControlName="companyStreet" class="long"
+                 [ngClass]="{error: !companyStreet.valid && registerButtonClicked}"> <br />
+
+          <div class="horizontal">
+            <label for="companyHouseNumber">Huisnummer*</label>
+            <label class="errorDescription" *ngIf="!companyHouseNumber.valid && registerButtonClicked">Niet geldig -
+              Max. 50 karakters</label> <br />
+            <input id="companyHouseNumber" type="number" formControlName="companyHouseNumber" class="short"
+                   [ngClass]="{error: !companyHouseNumber.valid && registerButtonClicked}"> <br />
+          </div>
+
+          <div class="horizontal">
+            <label for="companyBusNumber">Bus</label>
+            <label class="errorDescription" *ngIf="!companyBusNumber.valid && registerButtonClicked">Max. 10
+              karakters</label> <br />
+            <input id="companyBusNumber" type="text" formControlName="companyBusNumber" class="short"
+                   [ngClass]="{error: !companyBusNumber.valid && registerButtonClicked}"> <br />
+          </div>
+
+          <div class="newLine">
+            <label for="companyZipCode">Postcode*</label>
+            <label class="errorDescription" *ngIf="!companyZipCode.valid && registerButtonClicked">Min. 4 - Max. 50
+              karakters</label> <br />
+            <input id="companyZipCode" type="text" formControlName="companyZipCode" class="middle"
+                   [ngClass]="{error: !companyZipCode.valid && registerButtonClicked}"> <br />
+          </div>
+
+          <label for="companyCity">Gemeente*</label>
+          <label class="errorDescription" *ngIf="!companyCity.valid && registerButtonClicked">Min. 2 - Max. 50
+            karakters</label> <br />
+          <input id="companyCity" type="text" formControlName="companyCity" class="long"
+                 [ngClass]="{error: !companyCity.valid && registerButtonClicked}"> <br />
+
+          <label for="companyCountry">Land*</label> <br />
+          <select id="companyCountry" formControlName="companyCountry" class="long smallHeight smallMarginBottom"
+                  [ngClass]="{error: !companyCountry.valid && registerButtonClicked}">
+            <option *ngFor="let country of countryList" [value]="country.name">{{ country.name }}</option>
+          </select> <br />
+
+          <label for="companyVatNumber" class="smallMarginTop">Btw-nummer</label>
+          <label class="errorDescription" *ngIf="!companyVatNumber.valid && registerButtonClicked">Max. 50
+            karakters</label> <br />
+          <input id="companyVatNumber" type="text" formControlName="companyVatNumber" class="long"
+                 [ngClass]="{error: (!companyVatNumber.valid && registerButtonClicked) || vatNumberErrorOccurred}">
+          <br />
+
+          <label for="companyPhoneNumber">Telefoonnummer*</label>
+          <label class="errorDescription" *ngIf="!companyPhoneNumber.valid && registerButtonClicked">Niet geldig</label>
+          <br />
+          <label class="smallDescription">+3211123456 of +32496123456</label> <br />
+          <input id="companyPhoneNumber" type="text" formControlName="companyPhoneNumber" class="long"
+                 [ngClass]="{error: !companyPhoneNumber.valid && registerButtonClicked}"> <br />
+
+          <label for="companyEmail" class="smallMarginTop">E-mailadres*</label>
+          <label class="errorDescription" *ngIf="!companyEmail.valid && registerButtonClicked">Niet geldig</label>
+          <br />
+          <input id="companyEmail" type="text" formControlName="companyEmail" class="long"
+                 [ngClass]="{error: !companyEmail.valid && registerButtonClicked}"> <br />
+
+          <label for="companyCountEmployees" class="smallMarginTop">Aantal medewerkers*</label>
+          <label class="errorDescription" *ngIf="!companyCountEmployees.valid && registerButtonClicked">Niet
+            geldig</label> <br />
+          <input id="companyCountEmployees" type="number" formControlName="companyCountEmployees" class="short"
+                 [ngClass]="{error: !companyCountEmployees.valid && registerButtonClicked}"> <br />
+
+          <label for="companyCountITEmployees" class="smallMarginTop">Aantal IT-medewerkers*</label>
+          <label class="errorDescription" *ngIf="!companyCountITEmployees.valid && registerButtonClicked">Niet
+            geldig</label> <br />
+          <input id="companyCountITEmployees" type="number" formControlName="companyCountITEmployees" class="short"
+                 [ngClass]="{error: !companyCountITEmployees.valid && registerButtonClicked}"> <br />
+
+          <label for="companyCountMentors" class="smallMarginTop">Aantal technische begeleiders*</label>
+          <label class="errorDescription" *ngIf="!companyCountMentors.valid && registerButtonClicked">Niet
+            geldig</label> <br />
+          <input id="companyCountMentors" type="number" formControlName="companyCountMentors" class="short"
+                 [ngClass]="{error: !companyCountMentors.valid && registerButtonClicked}"> <br />
+        </div>
+
+        <hr class="newLine" />
+
+        <!-- Contact -->
+        <div formGroupName="contact">
+          <h3>CONTACTPERSOON</h3>
+          <p class="description">
+            Voeg een contactpersoon toe. Het is mogelijk om nadien andere contactpersonen toe te voegen.
+          </p>
+
+          <label for="contactFirstName">Voornaam*</label>
+          <label class="errorDescription" *ngIf="!contactFirstName.valid && registerButtonClicked">Max. 50
+            karakters</label> <br />
+          <input id="contactFirstName" type="text" formControlName="contactFirstName" class="long"
+                 [ngClass]="{error: !contactFirstName.valid && registerButtonClicked}"> <br />
+
+          <label for="contactSurname">Naam*</label>
+          <label class="errorDescription" *ngIf="!contactSurname.valid && registerButtonClicked">Max. 50
+            karakters</label> <br />
+          <input id="contactSurname" type="text" formControlName="contactSurname" class="long"
+                 [ngClass]="{error: !contactSurname.valid && registerButtonClicked}"> <br />
+
+          <label for="contactFunction">Functie*</label>
+          <label class="errorDescription" *ngIf="!contactFunction.valid && registerButtonClicked">Min. 3 - Max. 50
+            karakters</label> <br />
+          <input id="contactFunction" type="text" formControlName="contactFunction" class="long"
+                 [ngClass]="{error: !contactFunction.valid && registerButtonClicked}"> <br />
+
+          <label for="contactPhoneNumber">Telefoonnummer*</label>
+          <label class="errorDescription" *ngIf="!contactPhoneNumber.valid && registerButtonClicked">Niet geldig</label>
+          <br />
+          <label class="smallDescription">+3211123456 of +32496123456</label> <br />
+          <input id="contactPhoneNumber" type="text" formControlName="contactPhoneNumber" class="long"
+                 [ngClass]="{error: !contactPhoneNumber.valid && registerButtonClicked}"> <br />
+
+          <label for="contactEmail" class="smallMarginTop">E-mailadres*</label>
+          <label class="errorDescription" *ngIf="!contactEmail.valid && registerButtonClicked">Niet geldig</label>
+          <br />
+          <input id="contactEmail" type="text" formControlName="contactEmail" class="long"
+                 [ngClass]="{error: !contactEmail.valid && registerButtonClicked}"> <br />
+        </div>
+
+        <!-- Buttons and error messages -->
+        <input id="btnRegister" type="submit" value="REGISTREER" class="button clickableItem"
+               [disabled]="submitButtonDisabled" />
+        <button id="btnCancel" class="button clickableItem" (click)="proceedToLoginPage()">ANNULEER</button>
+        <label class="errorDescription"
+               *ngIf="(registerForm.invalid && registerButtonClicked) || (registerButtonClicked && emailAlreadyUsed)">Niet
+          alle velden zijn correct ingevuld.</label>
+        <label class="errorDescription" *ngIf="accountRegistrationErrorOccurred">Er is iets fout gegaan bij het aanmaken
+          van uw account. Probeer opnieuw.</label>
+        <label class="errorDescription" *ngIf="vatNumberErrorOccurred">Btw-nummer is reeds in gebruik</label>
+        <label class="errorDescription" *ngIf="contactErrorOccurred">Contactpersoon: {{ contactErrorMessage }}</label>
+      </form>
+    </ng-container>
+
+    <div class="spinner" *ngIf="!isAllDataFetched || submitButtonDisabled"></div>
+
+    <br /><br />
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>evenement {{ stateAction }}</h1>
+
+<div mat-dialog-content>
+  <p>Weet u zeker dat u dit evenement wil {{ stateAction }} ?</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button color="accent" (click)="cancel()">Annuleer</button>
+  <button mat-flat-button color="accent" [mat-dialog-close]="true">{{ stateAction | titlecase }}</button>
+</div>

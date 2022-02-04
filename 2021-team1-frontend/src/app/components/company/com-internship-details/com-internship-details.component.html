@@ -1,0 +1,36 @@
+<div class="fullscreen">
+
+  <ng-container *ngIf="isAllDataFetched == true; else loading">
+
+    <!-- Message: assigned to students -->
+    <div class="messageBox" *ngIf="internship.completed">
+      <p>Deze stageopdracht is volzet en toegewezen aan:</p>
+      <ul>
+        <li *ngFor="let student of internship.internshipAssignedUser">
+          {{ student.user.userFirstName }} {{ student.user.userSurname }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- General Internship Component -->
+    <app-internship-generic-details [internship]="internship"></app-internship-generic-details>
+
+    <!-- EDIT-button (down screen) -->
+    <div *ngIf="internship.projectStatus.code != 'APP' && internship.projectStatus.code != 'REJ'" class="middleMarginTop">
+      <!-- <button id="btnCreatePDFDown" class="clickableItem" (click)="createPDF()">MAAK PDF</button> -->
+
+      <button id="btnEditDown" (click)="proceedToEditScreen()" [disabled]="disableButton()" [ngClass]="{disabled: disableButton(),clickableItem: !disableButton()}">
+        <span class="tooltip" *ngIf="disableButton()">
+          Niet mogelijk om deze stageaanvraag te wijzigen omdat deze in behandeling is.
+        </span>
+        WIJZIG
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="spinner"></div>
+  </ng-template>
+
+  <br/> <br/> <br/> <br/>
+</div>

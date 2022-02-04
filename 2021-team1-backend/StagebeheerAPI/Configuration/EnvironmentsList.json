@@ -1,0 +1,34 @@
+[
+  {
+    "Code": "AND",
+    "Description": "Andere:"
+  },
+  {
+    "Code": "JAV",
+    "Description": "Programmeren: Java"
+  },
+  {
+    "Code": "DOT",
+    "Description": "Programmeren: .NET"
+  },
+  {
+    "Code": "WEB",
+    "Description": "Web: CSS, Javascript, PHP, Angular, ..."
+  },
+  {
+    "Code": "MOB",
+    "Description": "Mobile: Android, iOS, Windows, ..."
+  },
+  {
+    "Code": "SYS",
+    "Description": "Systemen & Netwerken: Linux, Windows, ..."
+  },
+  {
+    "Code": "TES",
+    "Description": "Software testing, ITIL, Projectmanagement, CRM, Information Management"
+  },
+  {
+    "Code": "EICT",
+    "Description":  "Elektronica-ICT"
+  }
+] 

@@ -1,0 +1,40 @@
+<h2>Afspraken</h2>
+<div *ngIf="hasUnconfirmedAppointments(appointments)" class="warning">
+  <span class="material-icons">announcement</span>
+  Sommige afspraken zijn nog niet bevestigd. U moet de afspraken eerst bevestigen voor deze definitief kunnen
+  doorgaan.
+</div>
+
+<div class="appointments-overview" *ngIf="companyRegistrationInfo?.attendees?.length; else noData">
+  <div class="time-table">
+    <app-time-table [companyAppointments]="appointments"
+                    [start]="companyRegistrationInfo.arrivalTime"
+                    [end]="companyRegistrationInfo.departureTime"
+                    [timeSlot]="companyRegistrationInfo.timeSlot"
+                    [attendees]="companyRegistrationInfo.attendees"
+                    [showDetailedData]="true"
+                    [canConfirm]="true"
+                    [selectable]="false"
+                    (showAppointmentInfo)="showAppointmentDetailPanel($event)"
+                    (confirmAppointment)="confirmAppointment($event)">
+    </app-time-table>
+  </div>
+
+  <app-appointment-detail-panel [showAppointmentDetailPanel]="showAppointmentDetail"
+                                [appointmentDetail]="appointmentDetail"
+                                [appointmentFiles]="appointmentFiles"
+                                [activeEvent]="activeEvent"
+                                [companyRegistrationInfo]="companyRegistrationInfo"
+                                (onCancelAppointmentClicked)="cancelAppointment($event)"
+                                (onConfirmAppointmentClicked)="confirmAppointment($event)"
+                                (onCloseAppointmentClicked)="closeAppointmentDetailPanel()"
+                                (onSaveAppointmentClicked)="saveAppointment($event)">
+  </app-appointment-detail-panel>
+</div>
+
+<ng-template #noData>
+  <em *ngIf="!companyRegistrationInfo; else noAttendees">U bent nog niet ingeschreven voor het Handshake Event.</em>
+  <ng-template #noAttendees>
+    <em> U heeft geen aanwezigen ingeschreven die beschikbaar voor zijn een afspraak.</em>
+  </ng-template>
+</ng-template>

@@ -1,0 +1,27 @@
+.box {
+  background-color: white;
+  width: 600px;
+  height: 50%;
+  padding: 15px;
+  border: solid 1px darkgray;
+  box-shadow: 1px 1px 3px black;
+  font-size: 11pt;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#returnHyperlink {
+  text-decoration: none;
+  color: steelblue;
+  font-size: 10pt;
+}
+
+#returnHyperlink:hover {
+  font-weight: bold;
+}

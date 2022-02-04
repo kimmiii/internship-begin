@@ -1,0 +1,14 @@
+<div>
+  <h4>{{company.name | uppercase}} AFKEUREN</h4>
+  <p>Met welke reden wordt dit bedrijf afgekeurd?</p>
+
+  <form [formGroup]="rejectForm" (ngSubmit)="submitRejectForm()">
+    <label class="errorDescription" *ngIf="!feedback.valid && btnSubmitClicked">&nbsp; Max. 1000 karakters</label><br/>
+    <textarea id="feedback" class="smallMarginTop middleMarginBottom long" type="text" formControlName="feedback"
+              [ngClass]="{error: !feedback.valid && btnSubmitClicked}">
+    </textarea> <br/>
+
+    <input id="btnConfirm" class="button" type="submit" value="BEVESTIG">
+    <button id="btnCancel" class="button" (click)="cancel()">ANNULEER</button>
+  </form>
+</div>

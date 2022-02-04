@@ -1,0 +1,24 @@
+@import "../../../../_styles/colors";
+
+.warning {
+  align-items: center;
+  background-color: $warning-light-color;
+  border-radius: 6px;
+  color: $warning-color;
+  display: flex;
+  font-size: 13px;
+  font-style: normal;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 10px;
+  width: fit-content;
+}
+
+.appointments-overview {
+  display: flex;
+  gap: 10px;
+}
+
+.time-table {
+  flex: 1;
+}

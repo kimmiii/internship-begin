@@ -1,0 +1,8 @@
+mat-tab-group {
+  padding-bottom: 1px;
+  margin-bottom: 1px;
+}
+
+.mat-tab-label{
+  font-size: 100px !important;
+}

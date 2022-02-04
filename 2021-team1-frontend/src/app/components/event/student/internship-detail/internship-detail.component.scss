@@ -1,0 +1,66 @@
+.large-icon {
+  float: left;
+  margin-right: 20px;
+  max-width: 400px;
+}
+
+.company-name {
+  margin-left: 20px;
+}
+
+.company-address {
+  margin-left: 20px;
+}
+
+.top-details {
+  height: 200px;
+  margin-bottom: 40px;
+}
+
+.button-container {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  float: right;
+  justify-content: center;
+}
+
+.button {
+  margin-bottom: 15px;
+  margin-right: 20px;
+  width: 100px;
+}
+
+
+.subtitle {
+  margin-top: 100px;
+}
+
+.internship-list {
+  margin-top: 20px;
+  padding-right: 16px;
+}
+
+.internship-card {
+  background-color: rgb(242, 240, 240);
+  cursor: pointer;
+  height: auto;
+  padding-left: 30px;
+
+  &__city {
+    margin-top: 35px;
+  }
+}
+
+.internship-card-image {
+  float: left;
+  height: 50px;
+  margin-right: 20px;
+  width: 50px;
+}
+
+.card-holder {
+  :hover {
+    background-color: rgb(230, 230, 230);
+  }
+}

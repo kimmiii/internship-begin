@@ -1,0 +1,71 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 13pt;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+textarea {
+  margin-top: 0;
+  width: 400px;
+  height: 100px;
+}
+
+.btnAcceptReject {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 5px;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 5px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+.errorDescription {
+  margin-left: -5px
+}
+
+.modalPopup {
+  height: 170px;
+}
+
+.rejectionMessageBox {
+  background-color: #ab000050;
+  border: #ab0000 2px solid;
+  padding: 5px;
+  width: 60vw;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 225px;
+    margin-bottom: 100px;
+  }
+}

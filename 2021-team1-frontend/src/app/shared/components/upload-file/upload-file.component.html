@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <div class="file-upload__container">
+      <input matInput readonly [value]="fileName || browseFilePlaceholder" />
+
+      <button mat-icon-button color="primary">
+              <span class="material-icons">
+                file_upload
+              </span>
+      </button>
+    </div>
+  </mat-form-field>
+
+  <input class="file-upload" type="file" (change)="upload($event.target.files)" />
+</div>

@@ -1,0 +1,37 @@
+<div class="imageBackground">
+  <div class="box center">
+    <!-- PXL logo + title -->
+    <img id="pxlLogo" src="../../../../assets/images/PXLHogeschoolLogo.png" alt="PXL Logo">
+    <p id="titleSignIn">Aanmelden</p>
+
+    <!-- Sign in form -->
+    <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+      <p class="errorMessage" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <input id="email" type="email" placeholder="iemand@example.com"
+             [formControlName]="emailFormControlName"
+             (input)="resetErrorMessage()" />
+      <input id="password" type="password" placeholder="wachtwoord"
+             [formControlName]="passwordFormControlName"
+             (input)="resetErrorMessage()" />
+      <button mat-flat-button color="primary" type="submit"
+              (click)="signIn()"
+              [disabled]="signInForm.invalid">
+        {{ 'aanmelden' | uppercase }}
+      </button>
+    </form>
+
+    <!-- login info -->
+    <p id="loginInfo">
+      <span class="bold">Login Studenten: </span> [login nummer]@student.pxl.be <br />
+      <span class="bold">Login Personeel: </span> [login nummer]@pxl.be <br />
+      <span class="bold">Login Bedrijven: </span> [iemand]@company.com
+    </p>
+
+    <div class="spinner" *ngIf="showSpinner"></div>
+
+    <p><a id="registerHyperlink" routerLink="/register">Registreer als bedrijf</a></p>
+  </div>
+</div>

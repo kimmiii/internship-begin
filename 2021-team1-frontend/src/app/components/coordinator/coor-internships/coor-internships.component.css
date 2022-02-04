@@ -1,0 +1,160 @@
+button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 14pt;
+  margin-right: 20px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+hr {
+  border-top: solid 2px #328da880;
+  border-bottom: none;
+  width: 300px;
+  margin-bottom: 0;
+}
+
+p {
+  width: 70%;
+  margin-bottom: 30px;
+}
+
+table {
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  border-collapse: collapse;
+  margin-right: 20px;
+}
+
+table thead {
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15pt;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+table tbody {
+  height: 600px;
+  display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #328da810;
+  border: solid 2px #328da880;
+}
+
+.academicYearCombobox {
+  display: inline;
+}
+
+.approved {
+  background-color: #6ca336;
+  border: solid 2px green;
+  color: white;
+}
+
+.askedChange {
+  background-color: black;
+  border: solid 2px black;
+  color: white;
+}
+
+.clickableItem:hover {
+  color: #328da880;
+}
+
+.container::-webkit-scrollbar {
+  width: 4px;
+  display: none;
+}
+
+.container:hover::-webkit-scrollbar {
+  display: inline;
+}
+
+.filterCombobox {
+  display: inline;
+  margin-bottom: 10px;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 98vw;
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+
+.pairOfTables {
+  display: inline;
+}
+
+.periodForm {
+  display: inline-block;
+  margin-top: 7px;
+  margin-bottom: 40px;
+}
+
+.rejected {
+  background-color: black;
+  border: solid 2px black;
+  color: white;
+}
+
+.submitted {
+  background-color: #6ca336;
+  border: solid 2px green;
+  color: white;
+}
+
+.tableInfo {
+  display: inline-block;
+  font-size: 10pt;
+  width: 300px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #328da810;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #328da880;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #328da880;
+}
+
+@media screen and (max-width: 1360px) {
+  table {
+    margin-bottom: 30px;
+  }
+
+  .pairOfTables {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 225px;
+  }
+}

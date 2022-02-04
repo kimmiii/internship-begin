@@ -1,0 +1,27 @@
+@import "../../../../_styles/colors";
+
+.status {
+  align-items: center;
+  border-radius: 6px;
+  display: flex;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 10px;
+  text-transform: uppercase;
+  width: fit-content;
+
+  &--confirmed {
+    background-color: $success-color;
+    color: $color-white;
+  }
+
+  &--reserved {
+    background-color: $warning-color;
+    color: $color-white;
+  }
+
+  &--cancelled {
+    background-color: $error-color;
+    color: $color-white;
+  }
+}

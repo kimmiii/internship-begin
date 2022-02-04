@@ -1,0 +1,18 @@
+[
+  {
+    "Code": "COM",
+    "Description": "Stagebedrijf"
+  },
+  {
+    "Code": "COO",
+    "Description": "Stagecoordinator"
+  },
+  {
+    "Code": "REV",
+    "Description": "Reviewer"
+  },
+  {
+    "Code": "STU",
+    "Description": "Student"
+  }
+]

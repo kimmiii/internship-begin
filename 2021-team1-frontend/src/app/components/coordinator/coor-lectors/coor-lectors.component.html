@@ -1,0 +1,59 @@
+<div class="fullscreen">
+  <ng-container *ngIf="isAllDataFetched == true;">
+    <h2>LECTOREN</h2>
+
+    <!-- New lectors -->
+    <h3>NIEUWE LECTOREN</h3>
+    <p>Voeg hier nieuwe lectoren toe aan de hand van een .csv-bestand.</p>
+
+    <!-- Add form (by .csv-file) -->
+    <form [formGroup]="userForm" (ngSubmit)="submitCSVFile()">
+      <input type="file" accept=".csv" (change)="onSelectFile($event)" formControlName="filePicker" class="verySmallMarginBottom verySmallMarginTop"/> <br/>
+      <input class="button" type="submit" value="VERZENDEN"/>
+      <label class="errorDescription" *ngIf="wrongFile">Enkel .csv-bestanden mogelijk!</label>
+      <label class="errorDescription" *ngIf="wrongFileStructure">Het geüploade .csv-bestand bevat niet de juiste structuur. Gebruik de
+        downloadbare template.</label>
+      <label class="errorDescription" *ngIf="!filePicker.valid && sendCSVClicked">Voeg een .csv-bestand toe!</label>
+    </form>
+
+    <!-- Reponse after uploading .csv-file -->
+    <div class="block" *ngIf="CSVFileSent">
+      <p [innerHTML]="responseString"></p>
+      <div *ngIf="errorList.length > 0">
+        <label class="bold">Fouten</label> <br/>
+        <table>
+          <tbody class="container middleHeight">
+          <tr *ngFor="let error of errorList;">
+            {{ error }}
+            <hr/>
+          </tr>
+          </tbody>
+        </table>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      </div>
+    </div>
+
+    <!-- csv template -->
+    <h3 class="marginTop">.CSV TEMPLATE</h3>
+    <p>Download onderstaande template om gegevens van lectoren in toe te voegen. Deze template kan vervolgens gebruikt worden om lectoren toe te voegen.</p>
+
+    <button (click)="downloadCsvTemplate()">DOWNLOAD TEMPLATE</button>
+
+    <h3 class="marginTop">ALLE LECTOREN</h3>
+    <!-- Lector list -->
+    <table class="allLectors">
+      <tbody *ngIf="lectorList.length == 0">
+      <tr class="emptyTable italic">Geen lectoren</tr>
+      </tbody>
+
+      <tbody class="container" *ngIf="lectorList.length > 0">
+      <tr *ngFor="let lector of lectorList;">
+        <app-coor-lector-item [lector]="lector"></app-coor-lector-item>
+        <hr/>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <div class="spinner" *ngIf="showSpinnerBool"></div>
+</div>

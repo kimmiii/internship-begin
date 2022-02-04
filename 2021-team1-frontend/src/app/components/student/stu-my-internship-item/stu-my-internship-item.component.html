@@ -1,0 +1,37 @@
+<div class="component">
+  <!-- Component info -->
+  <div class="componentInfo">
+    <label class="bold">{{ internship.researchTopicTitle }}</label>
+    <!-- Clock -->
+    <label class="symbol" *ngIf="showClock">
+      <span class="tooltip">
+      Je hebt bevestigd dat je deze stageopdracht wilt uitvoeren. <br/> De stagecoördinator zal jou al dan niet toestemming geven voor deze stageopdracht.
+      </span>
+      <span class="bold green" style="font-size: 14pt;">&#xE121;</span> <!-- Clock -->
+    </label>
+
+    <!-- Checkmark -->
+    <label class="symbol" *ngIf="showCheckMark">
+      <span class="tooltip">
+      Dit is jouw stageopdracht.<br/>
+      </span>
+      <span class="bold green" style="font-size: 13pt;">&#xEC61;</span> <!-- Checkmark -->
+    </label>
+
+    <!-- Cross -->
+    <label class="symbol" *ngIf="showCross">
+      <span class="tooltip">
+        De stagecoördinator heeft jouw geen toestemming gegeven om deze stageopdracht uit te voeren.
+      </span>
+      <span class="bold" style="font-size: 14pt; color: darkred">&#xEB90;</span> <!-- Cross -->
+    </label>
+
+    <br/>
+    <label>{{ internship.company.name }}</label>
+  </div>
+
+  <!-- Component button(s) -->
+  <div class="componentButtons">
+    <button class="symbol" (click)="showInternshipDetails()"><span class="tooltip">Bekijk informatie.</span>&#xE18B;</button>
+  </div>
+</div>

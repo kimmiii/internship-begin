@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EventAPI</name>
+    </assembly>
+    <members>
+        <member name="M:EventAPI.Controllers.AcademicYearsController.GetAcademicYears">
+            <summary>
+                Get all academic years
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.AcademicYearsController.GetAcademicYearById(System.Guid)">
+            <summary>
+                Get an academic year by id
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.AcademicYearsController.CreateAcademicYear">
+            <summary>
+                Create a new academic year
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetEventsAsync">
+            <summary>
+            Returns all events
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.CreateEventAsync(EventAPI.Domain.ViewModels.EventVM)">
+            <summary>
+             Creates event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.UpdateEventAsync(EventAPI.Domain.ViewModels.EventVM)">
+            <summary>
+            Updates event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetActiveEventAsync">
+            <summary>
+            Get active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetCompanyFromActiveEventAsync">
+            <summary>
+            Returns EventCompany (token - active event)
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.CreateEventCompany(EventAPI.Domain.ViewModels.EventCompanyVM)">
+            <summary>
+             Create eventCompany (token - active event)
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetCompanyFromActiveEventByIdAsync(System.Int32)">
+            <summary>
+            returns eventCompany by companyId
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetCompaniesFromActiveEventAsync">
+            <summary>
+            Returns all eventCompanies from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.CreateAttendeeAsync(EventAPI.Domain.Models.AttendeeVM)">
+            <summary>
+             Creates attendee
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.UploadLogoAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+             Upload logo 
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.DownloadLogoAsync(System.Int32)">
+            <summary>
+             Get logo 
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetInternshipsByEventIdAsync">
+            <summary>
+            Returns all internships from active event (approved and showInEvent)
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetInternshipsByIdAsync(System.Int32)">
+            <summary>
+            Returns internship by id
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetInternshipsByCompanyFromActiveEventAsync">
+            <summary>
+            Returns all internships (approved) from company(token) from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetInternshipsByCompanyIdFromActiveEventAsync(System.Int32)">
+            <summary>
+            Returns all internships (approved) by companyId from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.CreateAppointmentAsync(EventAPI.Domain.ViewModels.AppointmentVM)">
+            <summary>
+            Create appointment in active event for student (token)
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.UpdateAppointmentAsync(EventAPI.Domain.ViewModels.AppointmentVM)">
+            <summary>
+            Update appointment
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetAppointmentsByIdAsync(System.Guid)">
+            <summary>
+            Returns details appointment 
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.DeleteAppointmentByIdAsync(System.Guid)">
+            <summary>
+             Delete appointment
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetFilesAsync(System.Guid)">
+            <summary>
+             Get files from appointment
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetFileAsync(System.Guid,System.String)">
+            <summary>
+             Get single file from appointment
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.UploadFilesAsync(System.Guid,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+             Upload file  
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetAppointmentsFromCompanyAsync(System.String)">
+            <summary>
+            Get all appointment from company(token) from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetAppointmentsByCompanyAsync(System.Int32,System.String)">
+            <summary>
+            Get appointment by id from company from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetAppointmentsFromStudentAsync(System.String)">
+            <summary>
+            Get all appointments from student(token) from active event
+            </summary>
+        </member>
+        <member name="M:EventAPI.Controllers.EventsController.GetAllAppointmentsByStatus(System.String)">
+            <summary>
+            Get all appointments by status from active event
+            </summary>
+        </member>
+    </members>
+</doc>

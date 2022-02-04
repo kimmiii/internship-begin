@@ -1,0 +1,60 @@
+<div class="fullscreen">
+  <div *ngIf="internship; else noInternship">
+    <div class="top-details">
+      <img class="large-icon" mat-card-image [src]="logoSource" alt="{{internship?.companyName}}" *ngIf="logoSource">
+      <h1 class="company-name">{{internship?.companyName}}</h1>
+      <p class="company-address"><strong>{{internship?.wpStreet}} {{internship?.wpHouseNr}},
+        {{internship?.wpZipCode}} {{internship?.wpCity}}</strong></p>
+      <p>{{internship?.contactPersonName}}</p>
+      <div class="button-container">
+        <button class="button" (click)="OnClickWebsiteButton(internship?.website)">WEBSITE</button>
+        <button class="button" (click)="OnClickEmailButton(internship.contactPersonName, internship.email)">EMAIL
+        </button>
+        <button class="button" (click)="OnClickAfspraakButton()">AFSPRAAK</button>
+      </div>
+    </div>
+
+    <h3>{{internship?.researchTopicTitle}}</h3>
+    <p>{{internship?.researchTopicDescription}}</p><br />
+    <p>{{internship?.assignmentDescription}}</p><br />
+    <p>Technologiën: {{internship?.technicalDetails}}</p>
+  </div>
+
+  <ng-template #noInternship>
+    <p><em>Deze stageopdracht bestaat niet.</em></p>
+  </ng-template>
+
+  <div>
+    <h3 class="subtitle">ANDERE STAGEOPDRACHTEN VAN BEDRIJF</h3>
+    <div class="internship-list" *ngIf="otherCompanyInternships?.length; else noOtherInternships">
+      <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"
+             *ngFor="let otherCompanyInternship of otherCompanyInternships" class="card-holder"
+             (click)="routeToInternshipDetailPage(otherCompanyInternship.internshipId)">
+          <mat-card class="internship-card">
+            <mat-card-title>
+              <img class="internship-card-image" alt="stageopdracht" mat-card-image
+                   src="./../../../../../assets/images/PXLLogo.png">
+              <h3>{{otherCompanyInternship?.researchTopicTitle}}</h3>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <p class="internship-card__city"><strong>{{otherCompanyInternship?.wpCity}}</strong></p>
+            </mat-card-subtitle>
+            <mat-card-content>
+              <p>{{otherCompanyInternship?.contactPersonName}}</p>
+              <p>{{otherCompanyInternship?.assignmentDescription}}</p>
+              <p>Specialisatie(s):</p>
+              <p
+                *ngFor="let specialisation of otherCompanyInternship.internshipSpecialisation">{{specialisation.description}}</p>
+              <p>Technologiën: {{otherCompanyInternship?.technicalDetails}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noOtherInternships>
+    <p><em>Dit bedrijf heeft geen andere stageopdrachten.</em></p>
+  </ng-template>
+</div>

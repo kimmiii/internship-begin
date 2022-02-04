@@ -1,0 +1,158 @@
+form {
+  margin-top: 50px;
+}
+
+hr {
+  border-top: solid 2px #6ca33699;
+  border-bottom: 0;
+}
+
+input {
+  margin-bottom: 15px;
+}
+
+label {
+  line-height: 30px;
+}
+
+label a span:hover .tooltip {
+  display: block;
+}
+
+.tooltip {
+  margin-left: 15px;
+  height: 20px;
+  line-height: 15px;
+}
+
+p {
+  width: 70%;
+}
+
+textarea {
+  height: 150px;
+}
+
+.description {
+  display: inline-block;
+  font-size: 10pt;
+  line-height: 15px;
+  width: 70%;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.middleHeight {
+  height: 22px;
+}
+
+.horizontalPositioning {
+  float: left;
+  margin-right: 20px;
+}
+
+.longWidth {
+  width: 520px;
+}
+
+.marginBottomNegative {
+  margin-bottom: -50px;
+}
+
+.middleMarginBottom {
+  margin-bottom: 20px;
+}
+
+.middleMarginTopAndBottom {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.middleMarginTop {
+  margin-top: 40px;
+}
+
+.middleWidth {
+  width: 250px;
+}
+
+.noLineHeight {
+  line-height: 0;
+}
+
+.shortWidth {
+  width: 90px;
+}
+
+.smallMarginTop {
+  margin-top: 10px;
+}
+
+.smallText {
+  font-size: 8.5pt;
+  margin-bottom: 4px;
+}
+
+.veryShortWidth {
+  width: 50px;
+}
+
+#btnSend {
+  background-color: black;
+  color: white;
+  border: solid 1px black;
+  padding: 15px;
+  font-family: "helvetica-83-heavy-extended", sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+#btnSend:hover {
+  background-color: #6ca336;
+  border: solid 1px #6ca336;
+}
+
+@media screen and (max-width: 850px) {
+  .fullscreen {
+    padding-top: 170px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .bigErrorDescription {
+    color: red;
+    font-size: 10pt;
+    margin-left: 5px;
+  }
+
+  .horizontalPositioning {
+    float: none;
+  }
+
+  .longWidth {
+    width: 70vw;
+  }
+
+  .marginBottomNegative {
+    margin-bottom: 0;
+  }
+
+  .middleMarginTopAndBottom {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .middleWidth {
+    width: 70vw;
+  }
+
+  .shortWidth {
+    width: 70vw;
+  }
+
+  .veryShortWidth {
+    width: 70vw;
+  }
+}

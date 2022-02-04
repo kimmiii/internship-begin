@@ -1,0 +1,13 @@
+<h2>VERSTUUR FEEDBACK</h2>
+
+<form [formGroup]="reviewForm" (ngSubmit)="submitReviewForm()">
+  <label class="bold" for="otherRemarks">Feedback aan de stagecoördinator*</label>
+  <label class="errorDescription" *ngIf="!internalFeedback.valid && btnSendClicked">&nbsp; Verplicht - Max. 500 karakters</label><br/>
+  <textarea id="otherRemarks" class="smallMarginTop middleMarginBottom long" type="text" formControlName="internalFeedback"
+            [ngClass]="{error: !internalFeedback.valid && btnSendClicked}"></textarea> <br/>
+  <input id="btnConfirm" class="button" type="submit" value="BEVESTIG" [disabled]="submitted">
+
+  <div class="spinner" [hidden]="!submitted"></div>
+
+  <label class="rejectionError" *ngIf="rejectionErrorIsVisible">Er is iets misgelopen. Probeer opnieuw.</label>
+</form>

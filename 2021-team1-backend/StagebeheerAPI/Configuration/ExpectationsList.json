@@ -1,0 +1,14 @@
+[
+  {
+    "Code": "RE",
+    "Description": "CV"
+  },
+  {
+    "Code": "JI",
+    "Description": "Sollicitatiegesprek"
+  },
+  {
+    "Code": "TC",
+    "Description": "Verplaatsingsvergoeding"
+  }
+]

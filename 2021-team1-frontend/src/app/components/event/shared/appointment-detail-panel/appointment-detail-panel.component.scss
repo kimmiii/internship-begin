@@ -1,0 +1,129 @@
+@import "../../../../_styles/colors";
+
+.appointment-detail {
+  background-color: #F4F7F9;
+  border-radius: 6px 6px 0 0;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  right: 0;
+  top: 0;
+  transition: 0.5s;
+
+  &--open {
+    opacity: 1;
+    padding: 30px;
+    transition: opacity 1s ease-out;
+    width: 500px;
+
+    &:hover {
+      .appointment-detail__button--expand {
+        visibility: visible;
+      }
+    }
+  }
+
+  &--closed {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 1s ease-out;
+    width: 0;
+  }
+
+  &--normal {
+    width: 500px;
+  }
+
+  &--expanded {
+    width: 800px;
+  }
+
+  &__button {
+    &--close {
+      color: #C4CBD6;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+
+    &--expand {
+      background-color: #C4CBD6;
+      color: black;
+      left: -20px;
+      position: absolute;
+      top: 50%;
+      visibility: hidden;
+    }
+  }
+
+  &__title {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    gap: 10px;
+  }
+
+  &__icon-info {
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  &__data {
+    font-size: 13px;
+  }
+
+  &__more-info {
+    font-size: 13px;
+  }
+
+  &__label {
+    font-weight: 500;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__file {
+    background-color: #d8dfe7;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px;
+    width: fit-content;
+
+    &:hover {
+      background-color: #e7ecf3;
+    }
+  }
+}
+
+.line {
+  border-top: 1px solid #C4CBD6;
+  margin: 20px -30px;
+}
+
+.form__field {
+  margin-bottom: 20px;
+}
+
+.teams {
+  &__logo {
+    width: 22px;
+  }
+
+  &__link {
+    color: cornflowerblue;
+    cursor: pointer;
+  }
+}

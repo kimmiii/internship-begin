@@ -1,0 +1,71 @@
+<div class="fullscreen">
+  <!-- Confirmation popup after approval hire request -->
+  <div class="confirmationPopup" *ngIf="showConfirmationPopupApprovalHireRequest">
+    <label>Student is succesvol toegewezen aan de stageopdracht.</label>
+  </div>
+
+  <h2>TOEWIJZINGEN</h2>
+  <h3>Geef toestemming</h3>
+  <p>
+    Onderstaande studenten vragen om toestemming om de desbetreffende stageopdracht uit te voeren.
+  </p>
+
+  <!-- Student list to confirm internship -->
+  <ng-container *ngIf="isAllDataFetched">
+    <table>
+      <tbody class="container">
+        <tr *ngFor="let userInternship of userInternshipsNotApprovedList;">
+          <app-coor-user-internship-item [internship]="userInternship.internship" [student]="userInternship.user"></app-coor-user-internship-item>
+          <hr/>
+        </tr>
+        <tr *ngIf="userInternshipsNotApprovedList.length == 0" class="italic">
+          Er zijn geen studenten die toestemming vragen om een stageopdracht uit te voeren.
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <h3>Studenten met stageopdracht</h3>
+  <p>
+    Onderstaande studenten zijn toegewezen aan de desbetreffende stageopdracht.
+  </p>
+
+  <!-- Student list assigned to internship -->
+  <ng-container *ngIf="isAllDataFetched">
+    <table>
+      <tbody class="container">
+      <tr *ngFor="let userInternship of userInternshipsApprovedList;">
+        <app-coor-user-internship-item [internship]="userInternship.internship" [student]="userInternship.user"></app-coor-user-internship-item>
+        <hr/>
+      </tr>
+      <tr *ngIf="userInternshipsApprovedList.length == 0" class="italic">
+        Er zijn geen studenten toegewezen aan een stageopdracht.
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <h3>Afgekeurde aanvragen</h3>
+  <p>
+    Onderstaande studenten zijn niet toegelaten om de desbetreffende stageopdracht uit te voeren.
+  </p>
+
+  <!-- Student list denied for internship -->
+  <ng-container *ngIf="isAllDataFetched">
+    <table>
+      <tbody class="container">
+      <tr *ngFor="let userInternship of userInternshipsRejectedList;">
+        <app-coor-user-internship-item [internship]="userInternship.internship" [student]="userInternship.user"></app-coor-user-internship-item>
+        <hr/>
+      </tr>
+      <tr *ngIf="userInternshipsRejectedList.length == 0" class="italic">
+        Er zijn geen studenten toegewezen aan een stageopdracht.
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <br/><br/><br/>
+
+  <div class="spinner" *ngIf="showSpinner"></div>
+</div>

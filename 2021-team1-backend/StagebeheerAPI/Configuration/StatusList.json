@@ -1,0 +1,26 @@
+[
+  {
+    "Code": "NEW",
+    "Description": "Nieuw"
+  },
+  {
+    "Code": "REV",
+    "Description": "In Review"
+  },
+  {
+    "Code": "APP",
+    "Description": "Goedgekeurd"
+  },
+  {
+    "Code": "REJ",
+    "Description": "Afgekeurd"
+  },
+  {
+    "Code": "FEE",
+    "Description": "Feedback"
+  },
+  {
+    "Code": "SAS",
+    "Description": "Student(en) Toegewezen"
+  }
+]

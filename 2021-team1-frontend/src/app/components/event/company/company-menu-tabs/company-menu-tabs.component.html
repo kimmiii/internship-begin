@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link *ngFor="let tabRoute of tabRoutes"
+     [routerLink]="tabRoute.route"
+     routerLinkActive #rla="routerLinkActive"
+     [routerLinkActiveOptions]="{ exact:true }"
+     [active]="rla.isActive"
+     [disabled]="tabRoute.disabled || (tabRoute.registrationRequired && !(registeredCompanyService.isCompanyRegistered | async))">
+    {{ tabRoute.text }}
+  </a>
+</nav>

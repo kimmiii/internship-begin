@@ -1,0 +1,41 @@
+<div class="timetable">
+
+  <div class="attendees">
+    <div *ngFor="let attendee of attendees" class="attendees__attendee">
+      {{ attendee?.firstName }} {{ attendee?.lastName }}
+    </div>
+  </div>
+
+  <div class="time-slots">
+    <div *ngFor="let timeSlot of timeSlots" class="time-slots__slot">
+      {{ timeSlot?.start?.toJSDate() | date: 'HH:mm' }} - {{ timeSlot?.end?.toJSDate() | date: 'HH:mm' }}
+    </div>
+  </div>
+
+  <div class="content">
+    <div *ngFor="let attendee of attendees">
+      <div *ngFor="let timeSlot of timeSlots" class="content__item">
+        <ng-container *ngIf="getAppointmentForAttendeeAndTimeSlot(attendee, timeSlot) as appointment; else freeSpot">
+          <app-time-table-block [appointment]="appointment"
+                                [appointmentType]="appointment.type"
+                                [showDetailedData]="showDetailedData"
+                                (onShowAppointmentInfoClicked)="showAppointmentInfo.emit($event)"
+                                (onConfirmAppointmentClicked)="confirmAppointment.emit($event)">
+          </app-time-table-block>
+        </ng-container>
+        <ng-template #freeSpot>
+          <ng-container *ngIf="!studentCompanyAppointment && selectable">
+            <div class="content__item__block content__item__block--free"
+                 (click)="selectFreeSpot(attendee, timeSlot)">
+            <span class="content__item__block__status">
+              <span class="material-icons">add_task</span> selecteer
+            </span>
+            </div>
+          </ng-container>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,13 @@
+{
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": ["**/*.css", "**/*.scss", "**/*.html"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

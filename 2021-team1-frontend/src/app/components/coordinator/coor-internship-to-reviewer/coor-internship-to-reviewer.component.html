@@ -1,0 +1,33 @@
+<h2>STUREN NAAR REVIEWER</h2>
+
+<ng-container *ngIf="allDataIsFetched == true; else loading;">
+
+  <form [formGroup]="sendToReviewerForm" (ngSubmit)="submitForm()">
+    <!-- REVIEWERS SELECTOR -->
+    <label class="bold">Selecteer reviewer(s)*</label>
+    <label class="errorDescription" *ngIf="!reviewers.valid && btnSendClicked">&nbsp; Maak een keuze</label><br/>
+    <mat-form-field>
+      <mat-select ngDefaultControl formControlName="reviewers" [(ngModel)]="selectedReviewers" multiple>
+        <mat-option *ngFor="let mentor of mentorList" [value]="mentor">
+          {{ mentor.userFirstName }} {{ mentor.userSurname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+
+    <!-- MESSAGE TO REVIEWERS -->
+    <label class="bold" for="otherRemarks">Bericht aan reviewer(s)*</label>
+    <label class="errorDescription" *ngIf="!internalFeedback.valid && btnSendClicked">&nbsp; Verplicht - Max. 500 karakters</label><br/>
+    <textarea id="otherRemarks" class="smallMarginTop middleMarginBottom long" type="text" formControlName="internalFeedback"
+              [ngClass]="{error: !internalFeedback.valid && btnSendClicked}"></textarea> <br/>
+    <input id="btnConfirm" class="button" type="submit" value="BEVESTIG">
+
+    <div class="spinner" [hidden]="!submitted"></div>
+
+    <label class="rejectionError" *ngIf="errorIsVisible">Er is iets misgelopen. Probeer opnieuw.</label>
+  </form>
+</ng-container>
+
+<ng-template #loading>
+  <div class="spinner"></div>
+</ng-template>

@@ -1,0 +1,116 @@
+nav {
+  position: fixed;
+  padding-bottom: 10px;
+}
+
+li {
+  float: left;
+  list-style: none;
+}
+
+.blackNavigationHeader {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px;
+  overflow: hidden;
+  background-color: black;
+  height: 55px;
+  width: 99vw;
+  /*position: fixed;*/
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.blackNavigationHeader li a {
+  margin-left: 20px;
+}
+
+.whiteNavigationHeader {
+  background-color: white;
+  box-shadow: 0 1px 2px #737373;
+  height: 30px;
+  margin: 0;
+}
+
+.navButtonList {
+  margin-left: 55px;
+}
+
+.navButtonList div a {
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+  text-decoration: none;
+}
+
+.navButtonList div a:hover {
+  color: #6ca336;
+}
+
+.navButtonList div a:active {
+  text-decoration: none;
+}
+
+.navButton {
+  font-size: 12pt;
+  margin-left: 30px;
+  line-height: 30px;
+  color: black;
+  font-weight: 300;
+}
+
+.active {
+  color: #6ca336;
+  border-bottom: #6ca336 2px solid;
+  font-weight: 600;
+}
+
+#pxlLogo {
+  position: fixed;
+  height: 80px;
+  border: solid 4px white;
+  border-radius: 100px;
+  margin: 0;
+  background-color: black;
+}
+
+
+#signedInAs {
+  float: right;
+  color: white;
+  padding: 5px;
+  text-align: right;
+  font-size: 10pt;
+}
+
+#signedInAs label {
+  font-size: 10pt;
+}
+
+#signedInAs a {
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 25px;
+}
+
+#signedInAs a:hover {
+  color: #6ca336;
+}
+
+@media screen and (max-width: 850px) {
+  .navButtonList {
+    margin-left: -10%;
+  }
+
+  .navButtonList div a {
+    width: 100vw;
+    display: block;
+    text-align: center;
+  }
+
+  .whiteNavigationHeader {
+    height: 90px;
+  }
+}
